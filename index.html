@@ -48,8 +48,10 @@
         /* 4) newsletter block removed */
         footer .grid > div:last-child { display: none; }
 
-        /* 6) sticky CTA text ≠ white */
-        .sticky-cta { color: #111827; }
+        /* sticky CTA colours */
+        .sticky-cta                          { background-color: var(--warm-brown); transition: background .3s, color .3s; }
+        .sticky-cta.white                   { color: #ffffff; }
+        .sticky-cta.dark                    { color: #111827; }
     </style>
 </head>
 <body class="bg-white text-gray-800">
@@ -70,7 +72,25 @@
 </nav>
 
 <!-- HERO -->
-<section class="hero-bg min-h-screen flex items-center justify-center text-white pt-20 relative overflow-hidden">
+<section id="hero" class="hero-bg min-h-screen flex items-center justify-center text-white pt-20 relative overflow-hidden">
+    <!-- INSANE 3-D FLOATING DEVICES -->
+<style>
+.floating-devices{position:absolute;inset:0;overflow:hidden;pointer-events:none;perspective:1000px}
+.floating-devices img{position:absolute;opacity:.08;animation:float3d 12s infinite ease-in-out}
+@keyframes float3d{
+  0%,100%{transform:translateY(0) rotateX(0) rotateY(0) scale(1)}
+  25%{transform:translateY(-40px) rotateX(20deg) rotateY(180deg) scale(1.15)}
+  50%{transform:translateY(20px) rotateX(-10deg) rotateY(360deg) scale(.9)}
+  75%{transform:translateY(-20px) rotateX(15deg) rotateY(540deg) scale(1.05)}
+}
+</style>
+<div class="floating-devices">
+  <img src="https://img.icons8.com/ios/100/ffffff/monitor.png" style="top:10%;left:5%;width:80px;animation-delay:0s">
+  <img src="https://img.icons8.com/ios/100/ffffff/laptop.png"  style="top:70%;right:10%;width:90px;animation-delay:2s">
+  <img src="https://img.icons8.com/ios/100/ffffff/smartphone.png" style="bottom:20%;left:15%;width:60px;animation-delay:4s">
+  <img src="https://img.icons8.com/ios/100/ffffff/tablet.png" style="top:40%;right:20%;width:70px;animation-delay:1s">
+  <img src="https://img.icons8.com/ios/100/ffffff/cpu.png" style="bottom:10%;right:5%;width:65px;animation-delay:3s">
+</div>
     <div class="absolute inset-0 bg-gradient-to-b from-black/70 to-transparent z-10"></div>
     <div class="container mx-auto px-6 text-center relative z-20">
         <h1 class="text-4xl md:text-6xl font-bold mb-6" data-aos="fade-up"><span>Your Trash.</span> <span class="accent">Their Future.</span></h1>
@@ -161,7 +181,7 @@
         <div class="max-w-5xl mx-auto grid md:grid-cols-2 gap-10 items-start">
             <!-- form -->
             <div data-aos="fade-up" data-aos-delay="100">
-                <form action="https://script.google.com/macros/s/AKfycbzjjViwmOVKk4fNhJXZjewJYz77TagVPTQAd5l1fgTYaPvPeDX1T6jCHGAXsBD9NaI-/exec" method="POST" target="hidden_iframe" class="space-y-6">
+                <form action="https://script.google.com/macros/s/AKfycbzjjViwmOVKk4fNhJXZjewJYz77TagVPTQAd5l1fgTYaPvPeDX1T6jCHGAXsBD9NaI-/exec" method="POST" target="hidden_iframe" class="space-y-6" onsubmit="shakeForm(this)">
                     <input name="name" type="text" required placeholder="Name" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500">
                     <input name="email" type="email" required placeholder="Email" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500">
                     <select name="reason" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500"><option>General Inquiry</option><option>Device Donation</option><option>Volunteering</option><option>Partnership</option></select>
@@ -198,13 +218,40 @@
 </footer>
 
 <!-- STICKY CTA -->
-<a href="#contact" class="sticky-cta fixed bottom-6 right-6 z-50 animate-bounce bg-var(--warm-brown) px-6 py-3 rounded-full font-bold shadow-lg hover:bg-var(--clay) transition transform hover:scale-110" style="animation-duration:2s"><i data-feather="user-plus" class="mr-2 inline"></i>Join the Mission</a>
+<a href="#contact" id="stickyCta" class="sticky-cta fixed bottom-6 right-6 z-50 animate-bounce bg-var(--warm-brown) px-6 py-3 rounded-full font-bold shadow-lg hover:bg-var(--clay) transition transform hover:scale-110" style="animation-duration:2s"><i data-feather="user-plus" class="mr-2 inline"></i>Join the Mission</a>
 
 <iframe name="hidden_iframe" style="display:none"></iframe>
 
 <script>
     AOS.init({duration:800,easing:'ease-in-out',once:true});
     feather.replace();
+
+    /* ---------- colour switcher ---------- */
+    const btn   = document.getElementById('stickyCta');
+    const hero  = document.getElementById('hero');
+    const root  = document.documentElement;
+    const dark  = '#ffffff';   // white text/icon on dark bg
+    const light = '#111827';   // dark text/icon on light bg
+
+    const update = () => {
+        const heroBottom = hero.getBoundingClientRect().bottom;
+        if (heroBottom > 0) {                  // still over hero (dark bg)
+            btn.classList.add('white');
+            btn.classList.remove('dark');
+        } else {                               // below hero (light bg)
+            btn.classList.add('dark');
+            btn.classList.remove('white');
+        }
+    };
+    window.addEventListener('scroll', update);
+    update(); // initial call
 </script>
+    <script>
+function shakeForm(form){
+  form.style.animation='shake .4s';
+  setTimeout(()=>form.style.animation='',400);
+}
+</script>
+<style>@keyframes shake{0%,100%{transform:translateX(0)}10%,30%,50%,70%,90%{transform:translateX(-6px)}20%,40%,60%,80%{transform:translateX(6px)}}</style>
 </body>
 </html>
