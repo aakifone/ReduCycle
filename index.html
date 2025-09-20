@@ -34,9 +34,12 @@
         .bg-teal { background-color: var(--deep-teal); }
         .text-sand { color: var(--sand); }
         .counter { font-size: 3.5rem; font-weight: 700; }
-        .card-hover:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0,0,0,.1); }
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
 
-        /* 1) "Cycle" darker green on white footer */
+        /* 1) footer "Cycle" darker green */
         footer h3 span:last-child { color: #2F7D32; }
 
         /* 3) footer headings readable */
@@ -45,7 +48,7 @@
         /* 4) newsletter block removed */
         footer .grid > div:last-child { display: none; }
 
-        /* 6) sticky CTA text colour ≠ white */
+        /* 6) sticky CTA text ≠ white */
         .sticky-cta { color: #111827; }
     </style>
 </head>
@@ -195,7 +198,7 @@
 </footer>
 
 <!-- STICKY CTA -->
-<a href="#contact" class="fixed bottom-6 right-6 z-50 animate-bounce sticky-cta bg-var(--warm-brown) px-6 py-3 rounded-full font-bold shadow-lg hover:bg-var(--clay) transition transform hover:scale-110" style="animation-duration:2s"><i data-feather="user-plus" class="mr-2 inline"></i>Join the Mission</a>
+<a href="#contact" class="sticky-cta fixed bottom-6 right-6 z-50 animate-bounce bg-var(--warm-brown) px-6 py-3 rounded-full font-bold shadow-lg hover:bg-var(--clay) transition transform hover:scale-110" style="animation-duration:2s"><i data-feather="user-plus" class="mr-2 inline"></i>Join the Mission</a>
 
 <iframe name="hidden_iframe" style="display:none"></iframe>
 
