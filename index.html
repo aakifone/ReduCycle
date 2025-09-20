@@ -52,6 +52,35 @@
         .sticky-cta                          { background-color: var(--warm-brown); transition: background .3s, color .3s; }
         .sticky-cta.white                   { color: #ffffff; }
         .sticky-cta.dark                    { color: #111827; }
+
+        /* ========== INSANE ANIMATIONS ========== */
+        /* 3-D floating devices */
+        .floating-devices{position:absolute;inset:0;overflow:hidden;pointer-events:none;perspective:1000px}
+        .floating-devices img{position:absolute;opacity:.08;animation:float3d 12s infinite ease-in-out}
+        @keyframes float3d{
+          0%,100%{transform:translateY(0) rotateX(0) rotateY(0) scale(1)}
+          25%{transform:translateY(-40px) rotateX(20deg) rotateY(180deg) scale(1.15)}
+          50%{transform:translateY(20px) rotateX(-10deg) rotateY(360deg) scale(.9)}
+          75%{transform:translateY(-20px) rotateX(15deg) rotateY(540deg) scale(1.05)}
+        }
+
+        /* glitch on click */
+        .glitch{animation:glitch .35s linear}@keyframes glitch{
+          0%,100%{transform:translate(0)}10%{transform:translate(-2px,-1px)}20%{transform:translate(2px,1px)}30%{transform:translate(-1px,2px)}40%{transform:translate(1px,-2px)}50%{transform:translate(-2px,1px)}60%{transform:translate(2px,-1px)}70%{transform:translate(-1px,-1px)}80%{transform:translate(1px,1px)}90%{transform:translate(-2px,0)}
+        }
+
+        /* rainbow nav hover */
+        nav a{position:relative;overflow:hidden}
+        nav a::before{
+          content:'';position:absolute;inset:0;background:linear-gradient(45deg,#ff0f7b,#ff512f,#fca311,#00f5d4,#9b5de5,#f15bb5);
+          background-size:400% 400%;opacity:0;transition:opacity .3s;
+          animation:rainbow 2s linear infinite;
+        }
+        nav a:hover::before{opacity:.25}
+        @keyframes rainbow{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
+
+        /* shake form */
+        @keyframes shake{0%,100%{transform:translateX(0)}10%,30%,50%,70%,90%{transform:translateX(-6px)}20%,40%,60%,80%{transform:translateX(6px)}}
     </style>
 </head>
 <body class="bg-white text-gray-800">
@@ -73,24 +102,6 @@
 
 <!-- HERO -->
 <section id="hero" class="hero-bg min-h-screen flex items-center justify-center text-white pt-20 relative overflow-hidden">
-    <!-- INSANE 3-D FLOATING DEVICES -->
-<style>
-.floating-devices{position:absolute;inset:0;overflow:hidden;pointer-events:none;perspective:1000px}
-.floating-devices img{position:absolute;opacity:.08;animation:float3d 12s infinite ease-in-out}
-@keyframes float3d{
-  0%,100%{transform:translateY(0) rotateX(0) rotateY(0) scale(1)}
-  25%{transform:translateY(-40px) rotateX(20deg) rotateY(180deg) scale(1.15)}
-  50%{transform:translateY(20px) rotateX(-10deg) rotateY(360deg) scale(.9)}
-  75%{transform:translateY(-20px) rotateX(15deg) rotateY(540deg) scale(1.05)}
-}
-</style>
-<div class="floating-devices">
-  <img src="https://img.icons8.com/ios/100/ffffff/monitor.png" style="top:10%;left:5%;width:80px;animation-delay:0s">
-  <img src="https://img.icons8.com/ios/100/ffffff/laptop.png"  style="top:70%;right:10%;width:90px;animation-delay:2s">
-  <img src="https://img.icons8.com/ios/100/ffffff/smartphone.png" style="bottom:20%;left:15%;width:60px;animation-delay:4s">
-  <img src="https://img.icons8.com/ios/100/ffffff/tablet.png" style="top:40%;right:20%;width:70px;animation-delay:1s">
-  <img src="https://img.icons8.com/ios/100/ffffff/cpu.png" style="bottom:10%;right:5%;width:65px;animation-delay:3s">
-</div>
     <div class="absolute inset-0 bg-gradient-to-b from-black/70 to-transparent z-10"></div>
     <div class="container mx-auto px-6 text-center relative z-20">
         <h1 class="text-4xl md:text-6xl font-bold mb-6" data-aos="fade-up"><span>Your Trash.</span> <span class="accent">Their Future.</span></h1>
@@ -100,10 +111,14 @@
             <button class="border-2 border-white text-white px-8 py-3 rounded-full font-bold hover:bg-white hover:text-gray-800 transition transform hover:scale-105">Donate Your Tech</button>
         </div>
     </div>
-    <!-- floating shapes -->
-    <div class="absolute top-1/4 left-1/4 w-16 h-16 rounded-full bg-white/10 animate-float" style="animation-delay:0s"></div>
-    <div class="absolute top-1/3 right-1/4 w-12 h-12 rounded-full bg-accent/20 animate-float" style="animation-delay:1s"></div>
-    <div class="absolute bottom-1/4 left-1/3 w-14 h-14 rounded-full bg-white/10 animate-float" style="animation-delay:2s"></div>
+    <!-- 3-D FLOATING DEVICES -->
+    <div class="floating-devices">
+      <img src="https://img.icons8.com/ios/100/ffffff/monitor.png" style="top:10%;left:5%;width:80px;animation-delay:0s">
+      <img src="https://img.icons8.com/ios/100/ffffff/laptop.png"  style="top:70%;right:10%;width:90px;animation-delay:2s">
+      <img src="https://img.icons8.com/ios/100/ffffff/smartphone.png" style="bottom:20%;left:15%;width:60px;animation-delay:4s">
+      <img src="https://img.icons8.com/ios/100/ffffff/tablet.png" style="top:40%;right:20%;width:70px;animation-delay:1s">
+      <img src="https://img.icons8.com/ios/100/ffffff/cpu.png" style="bottom:10%;right:5%;width:65px;animation-delay:3s">
+    </div>
 </section>
 
 <!-- ABOUT -->
@@ -111,7 +126,7 @@
     <div class="container mx-auto px-6">
         <h2 class="text-3xl md:text-4xl font-bold text-center mb-16" data-aos="fade-up">This Isn't Just Recycling.<br><span class="accent">This Is Revolution.</span></h2>
         <div class="grid md:grid-cols-3 gap-10">
-            <div class="bg-white p-8 rounded-xl shadow-md" data-aos="fade-up" data-aos-delay="100">
+            <div class="bg-white p-8 rounded-xl shadow-md card-hover" data-aos="fade-up" data-aos-delay="100">
                 <div class="text-5xl mb-4 accent"><i data-feather="eye"></i></div>
                 <h3 class="text-xl font-bold mb-3">Vision</h3>
                 <p class="text-gray-600">A world where digital literacy is a basic right, not a privilege.</p>
@@ -245,13 +260,54 @@
     };
     window.addEventListener('scroll', update);
     update(); // initial call
+
+    /* ---------- INSANE SCRIPTS ---------- */
+    // 1. glitch on every button / link
+    document.querySelectorAll('button, a').forEach(el=>{
+      el.addEventListener('click',()=>{el.classList.add('glitch'); setTimeout(()=>el.classList.remove('glitch'),350)})
+    });
+
+    // 2. scroll-tilt & scale for cards
+    const cards = document.querySelectorAll('.card-hover');
+    const tilt = (entries,observer)=>{
+      entries.forEach(entry=>{
+        if(entry.isIntersecting){
+          const ratio = entry.intersectionRatio;
+          entry.target.style.transform = `scale(${1+.1*ratio}) rotateX(${-10*ratio}deg)`;
+          entry.target.style.transition = 'transform .4s ease-out';
+        }
+      });
+    };
+    const io = new IntersectionObserver(tilt,{threshold:[0,.25,.5,.75,1]});
+    cards.forEach(c=>io.observe(c));
+
+    // 3. type-writer hero headline
+    const h1 = document.querySelector('#hero h1');
+    const txt = h1.innerText;
+    h1.innerHTML = '';
+    let i = 0;
+    const type = () => {
+      if (i < txt.length) {
+        h1.innerHTML += txt.charAt(i);
+        i++;
+        setTimeout(type, 60 + Math.random() * 40);
+      }
+    };
+    setTimeout(type, 500);
+
+    // 4. shake form on submit
+    function shakeForm(form){
+      form.style.animation='shake .4s';
+      setTimeout(()=>form.style.animation='',400);
+    }
+
+    // 5. parallax footer
+    const footer = document.querySelector('footer');
+    window.addEventListener('scroll',()=>{
+      const speed = 0.3;
+      const y = -(window.scrollY * speed);
+      footer.style.transform = `translateY(${y}px)`;
+    });
 </script>
-    <script>
-function shakeForm(form){
-  form.style.animation='shake .4s';
-  setTimeout(()=>form.style.animation='',400);
-}
-</script>
-<style>@keyframes shake{0%,100%{transform:translateX(0)}10%,30%,50%,70%,90%{transform:translateX(-6px)}20%,40%,60%,80%{transform:translateX(6px)}}</style>
 </body>
 </html>
