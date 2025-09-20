@@ -1011,138 +1011,109 @@
         </div>
     </footer>
 
-    <!-- Scripts -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
-    <script>
-        // Initialize AOS (Animate On Scroll)
-        AOS.init({
-            duration: 800,
-            easing: 'ease-in-out',
-            once: true
-        });
+<!-- Scripts -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+<script>
+    // Initialize AOS (Animate On Scroll)
+    AOS.init({
+        duration: 800,
+        easing: 'ease-in-out',
+        once: true
+    });
 
-        // Smooth scrolling for navigation links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
-        });
-
-        // Counter animation
-        const counters = document.querySelectorAll('.counter');
-        const speed = 200;
-
-        const animateCounter = (counter) => {
-            const target = +counter.getAttribute('data-target');
-            const count = +counter.innerText;
-            const increment = target / speed;
-
-            if (count < target) {
-                counter.innerText = Math.ceil(count + increment);
-                setTimeout(() => animateCounter(counter), 10);
-            } else {
-                counter.innerText = target;
-            }
-        };
-
-        // Trigger counters when they come into view
-        const observerOptions = {
-            threshold: 0.5
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    animateCounter(entry.target);
-                    observer.unobserve(entry.target);
-                }
-            });
-        }, observerOptions);
-
-        counters.forEach(counter => {
-            observer.observe(counter);
-        });
-
-        // Form submission
-        document.getElementById('contactForm').addEventListener('submit', function(e) {
+    // Smooth scrolling for navigation links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
             e.preventDefault();
-            
-            // Get form data
-            const formData = new FormData(this);
-            const name = formData.get('name');
-            const email = formData.get('email');
-            const message = formData.get('message');
-            
-            // Simulate form submission (replace with actual backend integration)
-            alert(`Thank you for your message, ${name}! We'll get back to you at ${email} soon.`);
-            
-            // Reset form
-            this.reset();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                target.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }
         });
+    });
 
-       /* ===== highlight active nav link on scroll ===== */
-            const sections = document.querySelectorAll("section[id]");
-            const navLinks  = document.querySelectorAll(".nav-links a");
+    // Counter animation
+    const counters = document.querySelectorAll('.counter');
+    const speed = 200;
 
-        window.addEventListener("scroll", () => {
-            let current = "";
-            sections.forEach(sec => {
+    const animateCounter = (counter) => {
+        const target = +counter.getAttribute('data-target');
+        const count = +counter.innerText;
+        const increment = target / speed;
+
+        if (count < target) {
+            counter.innerText = Math.ceil(count + increment);
+            setTimeout(() => animateCounter(counter), 10);
+        } else {
+            counter.innerText = target;
+        }
+    };
+
+    // Trigger counters when they come into view
+    const observerOptions = {
+        threshold: 0.5
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                animateCounter(entry.target);
+                observer.unobserve(entry.target);
+            }
+        });
+    }, observerOptions);
+
+    counters.forEach(counter => {
+        observer.observe(counter);
+    });
+
+    // Form submission
+    document.getElementById('contactForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        const formData = new FormData(this);
+        const name = formData.get('name');
+        const email = formData.get('email');
+        alert(`Thank you for your message, ${name}! We'll get back to you at ${email} soon.`);
+        this.reset();
+    });
+
+    /* ===== highlight active nav link on scroll ===== */
+    const sections = document.querySelectorAll("section[id]");
+    const navLinks  = document.querySelectorAll(".nav-links a");
+
+    window.addEventListener("scroll", () => {
+        let current = "";
+        sections.forEach(sec => {
             const secTop = sec.offsetTop - 120;          // bigger offset
             if (scrollY >= secTop && sec.id !== "home")  // skip #home
-            current = sec.getAttribute("id");
-         });
-
-            navLinks.forEach(link => link.classList.remove("active"));
-            const activeLink = document.querySelector(`.nav-links a[href="#${current}"]`);
-            if (activeLink) activeLink.classList.add("active");
-         });
-    
-        // Add typing effect to hero headline
-        const heroTitle = document.querySelector('.hero h1');
-        const originalText = heroTitle.textContent;
-        heroTitle.textContent = '';
-        
-        let i = 0;
-        const typeWriter = () => {
-            if (i < originalText.length) {
-                heroTitle.textContent += originalText.charAt(i);
-                i++;
-                setTimeout(typeWriter, 50);
-            }
-        };
-        
-        // Start typing effect after page load
-        window.addEventListener('load', () => {
-            setTimeout(typeWriter, 500);
+                current = sec.getAttribute("id");
         });
-        /* ===== highlight active nav link on scroll ===== */
-const sections = document.querySelectorAll("section[id]");
-const navLinks = document.querySelectorAll(".nav-links a");
 
-window.addEventListener("scroll", () => {
-  let current = "";
-  sections.forEach(sec => {
-    const secTop = sec.offsetTop - 100;
-    if (scrollY >= secTop) current = sec.getAttribute("id");
-  });
+        navLinks.forEach(link => link.classList.remove("active"));
+        const activeLink = document.querySelector(`.nav-links a[href="#${current}"]`);
+        if (activeLink) activeLink.classList.add("active");
+    });
 
-  navLinks.forEach(link => {
-    link.classList.remove("active");
-    if (link.getAttribute("href") === `#${current}`) {
-      link.classList.add("active");
-    }
-  });
-});
-    </script>
+    // Typing effect for hero headline
+    const heroTitle = document.querySelector('.hero h1');
+    const originalText = heroTitle.textContent;
+    heroTitle.textContent = '';
+    let i = 0;
+    const typeWriter = () => {
+        if (i < originalText.length) {
+            heroTitle.textContent += originalText.charAt(i);
+            i++;
+            setTimeout(typeWriter, 50);
+        }
+    };
+    window.addEventListener('load', () => setTimeout(typeWriter, 500));
+</script>
 </body>
 
 </html>
+
 
 
