@@ -98,6 +98,27 @@
             width: 100%;
         }
 
+        /* ----- active nav highlight ----- */
+        .nav-links a.active {
+            color: var(--neon-green);
+            background: rgba(0, 255, 136, 0.08);
+            padding: 6px 12px;
+            border-radius: 6px;
+            transition: all 0.3s ease;
+         }
+         .nav-links a.active::after {
+           content: "";
+           position: absolute;
+           bottom: -4px;
+           left: 12px;
+           right: 12px;
+           height: 2px;
+           background: var(--neon-green);
+        }
+        {
+            width: 100%;
+        }
+
         /* Hero Section */
         .hero {
             height: 100vh;
@@ -1099,6 +1120,25 @@
         window.addEventListener('load', () => {
             setTimeout(typeWriter, 500);
         });
+        /* ===== highlight active nav link on scroll ===== */
+const sections = document.querySelectorAll("section[id]");
+const navLinks = document.querySelectorAll(".nav-links a");
+
+window.addEventListener("scroll", () => {
+  let current = "";
+  sections.forEach(sec => {
+    const secTop = sec.offsetTop - 100;
+    if (scrollY >= secTop) current = sec.getAttribute("id");
+  });
+
+  navLinks.forEach(link => {
+    link.classList.remove("active");
+    if (link.getAttribute("href") === `#${current}`) {
+      link.classList.add("active");
+    }
+  });
+});
     </script>
 </body>
+
 </html>
