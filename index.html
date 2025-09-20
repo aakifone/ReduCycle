@@ -1,0 +1,1104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ReduCycle - Turning E-waste into Digital Literacy</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-black: #0a0a0a;
+            --primary-white: #ffffff;
+            --neon-green: #00ff88;
+            --electric-blue: #0099ff;
+            --earth-brown: #8b4513;
+            --earth-tan: #f5e6d3;
+            --dark-gray: #1a1a1a;
+            --medium-gray: #333333;
+            --light-gray: #f8f9fa;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--primary-white);
+            color: var(--primary-black);
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 1rem 0;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--neon-green);
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--primary-black);
+            font-weight: 600;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: var(--neon-green);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--neon-green);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            background: linear-gradient(135deg, var(--light-gray) 0%, var(--earth-tan) 100%);
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><defs><radialGradient id="a"><stop offset="0" stop-color="%2300ff88" stop-opacity=".1"/><stop offset="1" stop-color="%2300ff88" stop-opacity="0"/></radialGradient></defs><circle cx="200" cy="200" r="300" fill="url(%23a)"/><circle cx="800" cy="800" r="400" fill="url(%23a)"/></svg>') no-repeat;
+            background-size: cover;
+            opacity: 0.3;
+        }
+
+        .hero-content {
+            text-align: center;
+            z-index: 2;
+            max-width: 800px;
+            padding: 0 2rem;
+        }
+
+        .hero h1 {
+            font-size: clamp(3rem, 8vw, 6rem);
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            line-height: 1.1;
+            background: linear-gradient(135deg, var(--primary-black) 0%, var(--neon-green) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2.5rem;
+            color: var(--medium-gray);
+            line-height: 1.6;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 1rem 2.5rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-primary {
+            background: var(--neon-green);
+            color: var(--primary-black);
+        }
+
+        .btn-primary:hover {
+            background: var(--electric-blue);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0, 255, 136, 0.3);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--primary-black);
+            border: 2px solid var(--primary-black);
+        }
+
+        .btn-secondary:hover {
+            background: var(--primary-black);
+            color: var(--primary-white);
+            transform: translateY(-3px);
+        }
+
+        /* Sections */
+        section {
+            padding: 5rem 0;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding-left: 2rem;
+            padding-right: 2rem;
+        }
+
+        .section-title {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 3rem;
+            text-align: center;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: var(--neon-green);
+        }
+
+        /* About Section */
+        .about {
+            background: var(--light-gray);
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+
+        .about-card {
+            background: var(--primary-white);
+            padding: 2.5rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .about-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .about-card h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--neon-green);
+        }
+
+        /* Impact Section */
+        .impact {
+            background: var(--primary-white);
+        }
+
+        .impact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .impact-card {
+            text-align: center;
+            padding: 2rem;
+            background: linear-gradient(135deg, var(--neon-green) 0%, var(--electric-blue) 100%);
+            border-radius: 20px;
+            color: var(--primary-white);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .impact-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            animation: pulse 3s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 0.5; }
+            50% { transform: scale(1.1); opacity: 0.3; }
+        }
+
+        .impact-number {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+
+        .impact-label {
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        /* World Map */
+        .world-map {
+            margin-top: 4rem;
+            text-align: center;
+            background: var(--light-gray);
+            padding: 3rem;
+            border-radius: 20px;
+        }
+
+        .map-placeholder {
+            width: 100%;
+            max-width: 800px;
+            height: 400px;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 400"><rect width="800" height="400" fill="%23f0f0f0"/><circle cx="200" cy="150" r="8" fill="%2300ff88"/><circle cx="400" cy="200" r="8" fill="%2300ff88"/><circle cx="600" cy="180" r="8" fill="%2300ff88"/><text x="400" y="50" text-anchor="middle" font-size="24" fill="%23333">Students Reached Across India & Africa</text></svg>') center/contain no-repeat;
+            margin: 0 auto;
+        }
+
+        /* Courses Section */
+        .courses {
+            background: var(--light-gray);
+        }
+
+        .courses-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .course-card {
+            background: var(--primary-white);
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            border-left: 5px solid var(--neon-green);
+        }
+
+        .course-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .course-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--neon-green) 0%, var(--electric-blue) 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+            color: var(--primary-white);
+        }
+
+        .course-card h3 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        /* Get Involved Section */
+        .get-involved {
+            background: var(--primary-white);
+        }
+
+        .involvement-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+
+        .involvement-card {
+            text-align: center;
+            padding: 3rem 2rem;
+            background: linear-gradient(135deg, var(--earth-tan) 0%, var(--light-gray) 100%);
+            border-radius: 20px;
+            transition: transform 0.3s ease;
+        }
+
+        .involvement-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .involvement-icon {
+            width: 80px;
+            height: 80px;
+            background: var(--neon-green);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            font-size: 2rem;
+            color: var(--primary-white);
+        }
+
+        .involvement-card h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        /* Contact Section */
+        .contact {
+            background: var(--light-gray);
+        }
+
+        .contact-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            margin-top: 3rem;
+        }
+
+        .contact-form {
+            background: var(--primary-white);
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--neon-green);
+        }
+
+        .contact-info {
+            padding: 2rem;
+        }
+
+        .contact-item {
+            margin-bottom: 2rem;
+        }
+
+        .contact-item h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+            color: var(--neon-green);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .social-links a {
+            width: 50px;
+            height: 50px;
+            background: var(--neon-green);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary-white);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            background: var(--electric-blue);
+            transform: translateY(-3px);
+        }
+
+        /* Sticky CTA */
+        .sticky-cta {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            z-index: 1000;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-10px); }
+            60% { transform: translateY(-5px); }
+        }
+
+        /* Footer */
+        footer {
+            background: var(--primary-black);
+            color: var(--primary-white);
+            padding: 3rem 0;
+            text-align: center;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: var(--primary-white);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--neon-green);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 1.1rem;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .contact-content {
+                grid-template-columns: 1fr;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .sticky-cta {
+                bottom: 1rem;
+                right: 1rem;
+            }
+        }
+
+        /* Animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Counter Animation */
+        .counter {
+            font-weight: 800;
+            color: var(--neon-green);
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <a href="#home" class="logo">ReduCycle</a>
+            <ul class="nav-links">
+                <li><a href="#about">About</a></li>
+                <li><a href="#impact">Impact</a></li>
+                <li><a href="#courses">Courses</a></li>
+                <li><a href="#get-involved">Get Involved</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1 class="animate__animated animate__fadeInUp">We don't just recycle tech. We recycle opportunity.</h1>
+            <p class="animate__animated animate__fadeInUp animate__delay-1s">ReduCycle turns e-waste in Dubai into digital literacy for underprivileged youth in the world.</p>
+            <div class="cta-buttons animate__animated animate__fadeInUp animate__delay-2s">
+                <a href="#get-involved" class="btn btn-primary">Join the Mission</a>
+                <a href="#get-involved" class="btn btn-secondary">Donate Devices</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <h2 class="section-title">About ReduCycle</h2>
+        <div class="about-content">
+            <div class="about-card" data-aos="fade-up">
+                <h3>Vision</h3>
+                <p>A world where digital literacy is a basic right, not a privilege.</p>
+            </div>
+            <div class="about-card" data-aos="fade-up" data-aos-delay="100">
+                <h3>Mission</h3>
+                <p>We collect e-waste and transform it into funding for peer-to-peer education. IB students in Dubai teach underprivileged youth aged 14–19 essential digital skills.</p>
+            </div>
+            <div class="about-card" data-aos="fade-up" data-aos-delay="200">
+                <h3>Values</h3>
+                <p><strong>Impact > Profit</strong><br>
+                   <strong>Transparency</strong><br>
+                   <strong>Student-led Change</strong></p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Impact Section -->
+    <section id="impact" class="impact">
+        <h2 class="section-title">Our Impact</h2>
+        <div class="impact-grid">
+            <div class="impact-card" data-aos="zoom-in">
+                <span class="impact-number counter" data-target="2500">0</span>
+                <div class="impact-label">Kg of e-waste collected</div>
+            </div>
+            <div class="impact-card" data-aos="zoom-in" data-aos-delay="100">
+                <span class="impact-number counter" data-target="1500">0</span>
+                <div class="impact-label">Hours of digital literacy classes delivered</div>
+            </div>
+            <div class="impact-card" data-aos="zoom-in" data-aos-delay="200">
+                <span class="impact-number counter" data-target="500">0</span>
+                <div class="impact-label">Students reached across India & Africa</div>
+            </div>
+        </div>
+        <div class="world-map" data-aos="fade-up">
+            <h3>Global Reach</h3>
+            <div class="map-placeholder"></div>
+            <p>Students Reached Across India & Africa</p>
+        </div>
+    </section>
+
+    <!-- Courses Section -->
+    <section id="courses" class="courses">
+        <h2 class="section-title">What Students Learn</h2>
+        <div class="courses-grid">
+            <div class="course-card" data-aos="flip-left">
+                <div class="course-icon">💻</div>
+                <h3>Computer Basics</h3>
+                <p>Master fundamental computer operations and understanding.</p>
+            </div>
+            <div class="course-card" data-aos="flip-left" data-aos-delay="100">
+                <div class="course-icon">🌐</div>
+                <h3>Internet & Email</h3>
+                <p>Navigate the web safely and communicate effectively online.</p>
+            </div>
+            <div class="course-card" data-aos="flip-left" data-aos-delay="200">
+                <div class="course-icon">📊</div>
+                <h3>Productivity Tools</h3>
+                <p>Learn Word, Excel, and PowerPoint for academic and professional success.</p>
+            </div>
+            <div class="course-card" data-aos="flip-left" data-aos-delay="300">
+                <div class="course-icon">🔒</div>
+                <h3>Online Safety</h3>
+                <p>Protect yourself and your data in the digital world.</p>
+            </div>
+            <div class="course-card" data-aos="flip-left" data-aos-delay="400">
+                <div class="course-icon">🚀</div>
+                <h3>Future Learning Pathways</h3>
+                <p>Discover opportunities for advanced digital skills and careers.</p>
+            </div>
+            <div class="course-card" data-aos="flip-left" data-aos-delay="500">
+                <div class="course-icon">📚</div>
+                <h3>Rich Content Coming Soon</h3>
+                <p>And more rich content to expand digital horizons!</p>
+            </div>
+        </div>
+        <div style="text-align: center; margin-top: 3rem;">
+            <p style="font-size: 1.2rem; font-weight: 600;">Students graduate with a ReduCycle Digital Literacy Certificate.</p>
+        </div>
+    </section>
+
+    <!-- Get Involved Section -->
+    <section id="get-involved" class="get-involved">
+        <h2 class="section-title">3 Ways to Join the Movement</h2>
+        <div class="involvement-grid">
+            <div class="involvement-card" data-aos="fade-up">
+                <div class="involvement-icon">📱</div>
+                <h3>Donate Devices</h3>
+                <p>School drop boxes / company donations. Your old laptop isn't waste—it's a child's first step into the digital world.</p>
+            </div>
+            <div class="involvement-card" data-aos="fade-up" data-aos-delay="100">
+                <div class="involvement-icon">👨‍🏫</div>
+                <h3>Volunteer</h3>
+                <p>Dubai students sign up to teach. Dubai students → teaching → global impact.</p>
+            </div>
+            <div class="involvement-card" data-aos="fade-up" data-aos-delay="200">
+                <div class="involvement-icon">🤝</div>
+                <h3>Partner</h3>
+                <p>NGOs/schools collaborate with us. Every device we collect funds lessons in digital literacy.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <h2 class="section-title">Get in Touch</h2>
+        <div class="contact-content">
+            <div class="contact-form" data-aos="fade-right">
+                <form>
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" name="message" rows="5" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Send Message</button>
+                </form>
+            </div>
+            <div class="contact-info" data-aos="fade-left">
+                <div class="contact-item">
+                    <h3>Email Us</h3>
+                    <p>info@reducycle.org</p>
+                </div>
+                <div class="contact-item">
+                    <h3>Follow Our Journey</h3>
+                    <div class="social-links">
+                        <a href="#" aria-label="Instagram">📷</a>
+                        <a href="#" aria-label="LinkedIn">💼</a>
+                        <a href="#" aria-label="YouTube">📺</a>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <h3>Reason to Contact</h3>
+                    <p>Have questions about donating devices? Want to volunteer? Interested in partnering? We're here to help!</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="#about">About</a>
+                <a href="#impact">Impact</a>
+                <a href="#courses">Courses</a>
+                <a href="#contact">Contact</a>
+            </div>
+            <p>ReduCycle: Turning e-waste into education.</p>
+            <p style="margin-top: 1rem; opacity: 0.7;">ReduCycle is not just a website. It's proof that a small group of students can rewrite the future.</p>
+        </div>
+    </footer>
+
+    <!-- Sticky CTA -->
+    <div class="sticky-cta">
+        <a href="#get-involved" class="btn btn-primary">Join the Mission</a>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script>
+        // Initialize AOS (Animate On Scroll)
+        AOS.init({
+            duration:">ReduCycle turns e-waste in Dubai into digital literacy for underprivileged youth in the world.</p>
+            <div class="cta-buttons animate__animated animate__fadeInUp animate__delay-2s">
+                <a href="#get-involved" class="cta-button primary">Join the Mission</a>
+                <a href="#get-involved" class="cta-button secondary">Donate Devices</a>
+            </div>
+        </div>
+        <div class="hero-video">
+            <div class="video-placeholder">
+                <div class="play-button">▶</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <h2 class="section-title" data-aos="fade-up">About ReduCycle</h2>
+            <div class="about-content">
+                <div class="about-card" data-aos="fade-up" data-aos-delay="100">
+                    <h3>Vision</h3>
+                    <p>"A world where digital literacy is a basic right, not a privilege."</p>
+                </div>
+                <div class="about-card" data-aos="fade-up" data-aos-delay="200">
+                    <h3>Mission</h3>
+                    <p>"We collect e-waste and transform it into funding for peer-to-peer education. IB students in Dubai teach underprivileged youth aged 14–19 essential digital skills."</p>
+                </div>
+                <div class="about-card" data-aos="fade-up" data-aos-delay="300">
+                    <h3>Values</h3>
+                    <p><strong>Impact > Profit</strong> - We prioritize social impact over financial gain</p>
+                    <p><strong>Transparency</strong> - Open about our processes and outcomes</p>
+                    <p><strong>Student-led Change</strong> - Empowering youth to drive transformation</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Impact Section -->
+    <section id="impact" class="impact">
+        <div class="container">
+            <h2 class="section-title" data-aos="fade-up">Our Impact</h2>
+            <p class="section-subtitle" data-aos="fade-up" data-aos-delay="100">Every device we collect funds lessons in digital literacy.</p>
+            
+            <div class="impact-stats">
+                <div class="stat-card" data-aos="zoom-in" data-aos-delay="200">
+                    <div class="stat-number counter" data-target="2457">0</div>
+                    <div class="stat-label">Kg of e-waste collected</div>
+                </div>
+                <div class="stat-card" data-aos="zoom-in" data-aos-delay="300">
+                    <div class="stat-number counter" data-target="1843">0</div>
+                    <div class="stat-label">Hours of digital literacy classes delivered</div>
+                </div>
+                <div class="stat-card" data-aos="zoom-in" data-aos-delay="400">
+                    <div class="stat-number counter" data-target="892">0</div>
+                    <div class="stat-label">Students reached across India & Africa</div>
+                </div>
+            </div>
+
+            <div class="world-map" data-aos="fade-up" data-aos-delay="500">
+                <h3>Global Reach</h3>
+                <div class="map-placeholder"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Courses Section -->
+    <section id="courses" class="courses">
+        <div class="container">
+            <h2 class="section-title" data-aos="fade-up">What Students Learn</h2>
+            <p class="section-subtitle" data-aos="fade-up" data-aos-delay="100">Students graduate with a ReduCycle Digital Literacy Certificate.</p>
+            
+            <div class="courses-grid">
+                <div class="course-card" data-aos="flip-left" data-aos-delay="100">
+                    <div class="course-icon">💻</div>
+                    <h3>Computer Basics</h3>
+                    <p>Understanding hardware, software, and basic computer operations</p>
+                </div>
+                <div class="course-card" data-aos="flip-left" data-aos-delay="200">
+                    <div class="course-icon">🌐</div>
+                    <h3>Internet & Email</h3>
+                    <p>Navigating the web safely and effective email communication</p>
+                </div>
+                <div class="course-card" data-aos="flip-left" data-aos-delay="300">
+                    <div class="course-icon">📊</div>
+                    <h3>Productivity Tools</h3>
+                    <p>Mastering Word, Excel, and PowerPoint for academic and professional success</p>
+                </div>
+                <div class="course-card" data-aos="flip-right" data-aos-delay="400">
+                    <div class="course-icon">🔒</div>
+                    <h3>Online Safety</h3>
+                    <p>Protecting yourself and your data in the digital world</p>
+                </div>
+                <div class="course-card" data-aos="flip-right" data-aos-delay="500">
+                    <div class="course-icon">🚀</div>
+                    <h3>Future Learning Pathways</h3>
+                    <p>Introduction to coding, design, and advanced digital skills</p>
+                </div>
+                <div class="course-card" data-aos="flip-right" data-aos-delay="600">
+                    <div class="course-icon">⭐</div>
+                    <h3>And More Rich Content</h3>
+                    <p>Exciting new courses coming soon to expand digital horizons</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Get Involved Section -->
+    <section id="get-involved" class="get-involved">
+        <div class="container">
+            <h2 class="section-title" data-aos="fade-up">3 Ways to Join the Movement</h2>
+            <p class="section-subtitle" data-aos="fade-up" data-aos-delay="100">Dubai students → teaching → global impact.</p>
+            
+            <div class="involvement-grid">
+                <div class="involvement-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="involvement-icon">📱</div>
+                    <h3>Donate Devices</h3>
+                    <p>School drop boxes and company donations make it easy to give your old tech new life</p>
+                    <a href="#contact" class="cta-button secondary">Learn How</a>
+                </div>
+                <div class="involvement-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="involvement-icon">👨‍🏫</div>
+                    <h3>Volunteer</h3>
+                    <p>Dubai students sign up to teach and make a direct impact on global digital literacy</p>
+                    <a href="#contact" class="cta-button secondary">Sign Up</a>
+                </div>
+                <div class="involvement-card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="involvement-icon">🤝</div>
+                    <h3>Partner</h3>
+                    <p>NGOs and schools collaborate with us to expand our reach and impact</p>
+                    <a href="#contact" class="cta-button secondary">Partner</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2 class="section-title" data-aos="fade-up">Get in Touch</h2>
+            <p class="section-subtitle" data-aos="fade-up" data-aos-delay="100">Ready to make a difference? We'd love to hear from you.</p>
+            
+            <div class="contact-content">
+                <div class="contact-form" data-aos="fade-right" data-aos-delay="200">
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <label for="name">Name</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea id="message" name="message" rows="5" required></textarea>
+                        </div>
+                        <button type="submit" class="cta-button primary">Send Message</button>
+                    </form>
+                </div>
+                
+                <div class="contact-info" data-aos="fade-left" data-aos-delay="300">
+                    <div class="contact-item">
+                        <h3>Email Us</h3>
+                        <p>info@reducycle.org</p>
+                    </div>
+                    <div class="contact-item">
+                        <h3>Follow Our Journey</h3>
+                        <p>Stay updated with our latest impact and stories</p>
+                        <div class="social-links">
+                            <a href="#" aria-label="Instagram">📷</a>
+                            <a href="#" aria-label="LinkedIn">💼</a>
+                            <a href="#" aria-label="YouTube">📺</a>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <h3>Reasons to Contact</h3>
+                        <ul style="list-style: none; padding: 0;">
+                            <li>✓ Device donation inquiries</li>
+                            <li>✓ Volunteer opportunities</li>
+                            <li>✓ Partnership proposals</li>
+                            <li>✓ Media and press</li>
+                            <li>✓ General questions</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sticky CTA -->
+    <div class="sticky-cta">
+        <a href="#get-involved" class="cta-button primary">Join the Mission</a>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="#about">About</a>
+                <a href="#impact">Impact</a>
+                <a href="#courses">Courses</a>
+                <a href="#contact">Contact</a>
+            </div>
+            <p>ReduCycle: Turning e-waste into education.</p>
+            <p>&copy; 2025 ReduCycle. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script>
+        // Initialize AOS (Animate On Scroll)
+        AOS.init({
+            duration: 800,
+            easing: 'ease-in-out',
+            once: true
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Counter animation
+        const counters = document.querySelectorAll('.counter');
+        const speed = 200;
+
+        const animateCounter = (counter) => {
+            const target = +counter.getAttribute('data-target');
+            const count = +counter.innerText;
+            const increment = target / speed;
+
+            if (count < target) {
+                counter.innerText = Math.ceil(count + increment);
+                setTimeout(() => animateCounter(counter), 10);
+            } else {
+                counter.innerText = target;
+            }
+        };
+
+        // Trigger counters when they come into view
+        const observerOptions = {
+            threshold: 0.5
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    animateCounter(entry.target);
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        counters.forEach(counter => {
+            observer.observe(counter);
+        });
+
+        // Form submission
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get form data
+            const formData = new FormData(this);
+            const name = formData.get('name');
+            const email = formData.get('email');
+            const message = formData.get('message');
+            
+            // Simulate form submission (replace with actual backend integration)
+            alert(`Thank you for your message, ${name}! We'll get back to you at ${email} soon.`);
+            
+            // Reset form
+            this.reset();
+        });
+
+        // Add scroll effect to navigation
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 100) {
+                nav.style.background = 'rgba(255, 255, 255, 0.98)';
+                nav.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.1)';
+            } else {
+                nav.style.background = 'rgba(255, 255, 255, 0.95)';
+                nav.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.1)';
+            }
+        });
+
+        // Add typing effect to hero headline
+        const heroTitle = document.querySelector('.hero h1');
+        const originalText = heroTitle.textContent;
+        heroTitle.textContent = '';
+        
+        let i = 0;
+        const typeWriter = () => {
+            if (i < originalText.length) {
+                heroTitle.textContent += originalText.charAt(i);
+                i++;
+                setTimeout(typeWriter, 50);
+            }
+        };
+        
+        // Start typing effect after page load
+        window.addEventListener('load', () => {
+            setTimeout(typeWriter, 500);
+        });
+    </script>
+</body>
+</html>
