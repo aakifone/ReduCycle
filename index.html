@@ -10,6 +10,7 @@
     <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
     <script src="https://unpkg.com/feather-icons"></script>
     <style>
+        
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
         body {
             font-family: 'Inter', sans-serif;
@@ -105,7 +106,33 @@
         <div class="absolute bottom-1/4 left-1/3 w-14 h-14 rounded-full bg-white/10 animate-float" style="animation-delay: 2s;"></div>
     </section>
 
+    
+    
     <style>
+        /* 1) 'Cycle' darker green so it reads on white footer */
+.footer .text-2xl span:last-child {        /* targets "Cycle" */
+  color: #2F7D32;                           /* deeper green */
+}
+
+/* 2) © year → 2025 */
+.footer .border-t p:last-child {
+  font-size: 0;
+}
+.footer .border-t p:last-child::after {
+  content: "© 2025 ReduCycle. All rights reserved.";
+  font-size: 0.875rem;
+  color: #9CA3AF;                           /* Tailwind gray-400 */
+}
+
+/* 3) footer headings readable */
+.footer h4 {
+  color: #D1D5DB;                           /* Tailwind gray-300 */
+}
+
+/* 4) kill newsletter block completely */
+footer .grid > div:last-child {             /* last column in footer grid */
+  display: none;
+}
         @keyframes float {
             0% { transform: translateY(0) rotate(0deg); }
             50% { transform: translateY(-20px) rotate(5deg); }
@@ -333,10 +360,6 @@
             Send Message
           </button>
         </form>
-        <!-- stops page refresh -->
-        <iframe name="hidden_iframe" style="display:none;" onload="if(submitted){window.location='#thank-you';}"></iframe>
-        <script>let submitted = false; document.querySelector('form').addEventListener('submit', () => submitted = true);</script>
-      </div>
 
       <!-- RIGHT: contact info -->
       <div data-aos="fade-up" data-aos-delay="200">
@@ -368,6 +391,8 @@
 </section>
     
     <!-- Footer -->
+
+    
     <footer class="bg-gradient-to-b from-var(--warm-brown) to-var(--deep-teal) text-white py-12">
         <div class="container mx-auto px-6">
             <div class="grid md:grid-cols-4 gap-10">
@@ -415,7 +440,7 @@
             
             <div class="border-t border-gray-700 mt-12 pt-8 text-center text-gray-400">
                 <p>
-                    &copy; 2023 ReduCycle. All rights reserved.
+                    &copy; 2025 ReduCycle. All rights reserved.
                 </p>
             </div>
         </div>
@@ -464,4 +489,5 @@
     </script>
 </body>
 </html>
+
 
