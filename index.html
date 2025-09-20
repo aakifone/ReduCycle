@@ -8,19 +8,8 @@
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
-    <script src="https://unpkg.com/feather-icons"></script>
     <style>
-        
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
-        body {
-            font-family: 'Inter', sans-serif;
-            scroll-behavior: smooth;
-        }
-        .hero-bg {
-            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('http://static.photos/technology/1200x630/42');
-            background-size: cover;
-            background-position: center;
-        }
         :root {
             --earth-green: #5a8f3d;
             --warm-brown: #8b5a2b;
@@ -28,469 +17,191 @@
             --sand: #d7b98e;
             --clay: #c77966;
         }
-        .accent {
-            color: var(--earth-green);
+        body {
+            font-family: 'Inter', sans-serif;
+            scroll-behavior: smooth;
         }
-        .bg-accent {
-            background-color: var(--earth-green);
+        .hero-bg {
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+                        url('http://static.photos/technology/1200x630/42');
+            background-size: cover;
+            background-position: center;
         }
-        .border-accent {
-            border-color: var(--earth-green);
-        }
-        .bg-brown {
-            background-color: var(--warm-brown);
-        }
-        .bg-teal {
-            background-color: var(--deep-teal);
-        }
-        .text-sand {
-            color: var(--sand);
-        }
-        .counter {
-            font-size: 3.5rem;
-            font-weight: 700;
-        }
-        .card-hover:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-        }
+        .accent { color: var(--earth-green); }
+        .bg-accent { background-color: var(--earth-green); }
+        .border-accent { border-color: var(--earth-green); }
+        .bg-brown { background-color: var(--warm-brown); }
+        .bg-teal { background-color: var(--deep-teal); }
+        .text-sand { color: var(--sand); }
+        .counter { font-size: 3.5rem; font-weight: 700; }
+        .card-hover:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0,0,0,.1); }
+
+        /* 1) "Cycle" darker green on white footer */
+        footer h3 span:last-child { color: #2F7D32; }
+
+        /* 3) footer headings readable */
+        footer h4 { color: #D1D5DB; }
+
+        /* 4) newsletter block removed */
+        footer .grid > div:last-child { display: none; }
+
+        /* 6) sticky CTA text colour ≠ white */
+        .sticky-cta { color: #111827; }
     </style>
 </head>
 <body class="bg-white text-gray-800">
-    <!-- Navigation -->
-    <nav class="fixed w-full bg-white shadow-md z-50">
-        <div class="container mx-auto px-6 py-4">
-            <div class="flex items-center justify-between">
-                <div class="text-2xl font-bold">
-                    <span class="accent">Redu</span>Cycle
-                </div>
-                <div class="hidden md:flex space-x-8">
-                    <a href="#about" class="hover:text-green-500 transition">About</a>
-                    <a href="#impact" class="hover:text-green-500 transition">Impact</a>
-                    <a href="#courses" class="hover:text-green-500 transition">Courses</a>
-                    <a href="#involved" class="hover:text-green-500 transition">Get Involved</a>
-                    <a href="#contact" class="hover:text-green-500 transition">Contact</a>
-                </div>
-                <button class="md:hidden focus:outline-none">
-                    <i data-feather="menu"></i>
-                </button>
-            </div>
+
+<!-- NAV -->
+<nav class="fixed w-full bg-white shadow-md z-50">
+    <div class="container mx-auto px-6 py-4 flex items-center justify-between">
+        <div class="text-2xl font-bold"><span class="accent">Redu</span>Cycle</div>
+        <div class="hidden md:flex space-x-8">
+            <a href="#about" class="hover:text-green-500 transition">About</a>
+            <a href="#impact" class="hover:text-green-500 transition">Impact</a>
+            <a href="#courses" class="hover:text-green-500 transition">Courses</a>
+            <a href="#involved" class="hover:text-green-500 transition">Get Involved</a>
+            <a href="#contact" class="hover:text-green-500 transition">Contact</a>
         </div>
-    </nav>
-
-    <!-- Hero Section -->
-    <section class="hero-bg min-h-screen flex items-center justify-center text-white pt-20 relative overflow-hidden">
-        <div class="absolute inset-0 bg-gradient-to-b from-black/70 to-var(--warm-brown)/30 z-10"></div>
-        <div class="absolute bottom-0 left-0 w-full h-32 bg-gradient-to-t from-var(--warm-brown) to-transparent z-20"></div>
-        <div class="container mx-auto px-6 text-center relative z-20">
-            <h1 class="text-4xl md:text-6xl font-bold mb-6 leading-tight" data-aos="fade-up" data-aos-delay="100">
-                <span class="inline-block">Your Trash. </span>
-                <span class="accent inline-block">Their Future.</span>
-            </h1>
-            <p class="text-xl md:text-2xl mb-10 max-w-3xl mx-auto" data-aos="fade-up" data-aos-delay="200">
-                We're flipping the script on e-waste - turning discarded tech into digital education for those who need it most.
-            </p>
-            <div class="flex flex-col sm:flex-row justify-center gap-4" data-aos="fade-up" data-aos-delay="300">
-                <button class="bg-accent text-white px-8 py-3 rounded-full font-bold hover:bg-green-600 transition transform hover:scale-105">
-                    Join the Movement
-                </button>
-                <button class="border-2 border-white text-white px-8 py-3 rounded-full font-bold hover:bg-white hover:text-gray-800 transition transform hover:scale-105">
-                    Donate Your Tech
-                </button>
-            </div>
-        </div>
-        
-        <!-- Animated floating devices -->
-        <div class="absolute top-1/4 left-1/4 w-16 h-16 rounded-full bg-white/10 animate-float" style="animation-delay: 0s;"></div>
-        <div class="absolute top-1/3 right-1/4 w-12 h-12 rounded-full bg-accent/20 animate-float" style="animation-delay: 1s;"></div>
-        <div class="absolute bottom-1/4 left-1/3 w-14 h-14 rounded-full bg-white/10 animate-float" style="animation-delay: 2s;"></div>
-    </section>
-
-    
-    
-    <style>
-        /* 1) 'Cycle' darker green so it reads on white footer */
-.footer .text-2xl span:last-child {        /* targets "Cycle" */
-  color: #2F7D32;                           /* deeper green */
-}
-
-/* 2) © year → 2025 */
-.footer .border-t p:last-child {
-  font-size: 0;
-}
-.footer .border-t p:last-child::after {
-  content: "© 2025 ReduCycle. All rights reserved.";
-  font-size: 0.875rem;
-  color: #9CA3AF;                           /* Tailwind gray-400 */
-}
-
-/* 3) footer headings readable */
-.footer h4 {
-  color: #D1D5DB;                           /* Tailwind gray-300 */
-}
-
-/* 4) kill newsletter block completely */
-footer .grid > div:last-child {             /* last column in footer grid */
-  display: none;
-}
-    </style>
-    <style>
-        @keyframes float {
-            0% { transform: translateY(0) rotate(0deg); }
-            50% { transform: translateY(-20px) rotate(5deg); }
-            100% { transform: translateY(0) rotate(0deg); }
-        }
-        .animate-float {
-            animation: float 6s ease-in-out infinite;
-        }
-    </style>
-
-    <!-- About Section -->
-    <section id="about" class="py-20 bg-gradient-to-b from-var(--sand) to-white">
-        <div class="container mx-auto px-6">
-            <h2 class="text-3xl md:text-4xl font-bold text-center mb-16" data-aos="fade-up">
-                This Isn't Just Recycling. <br>
-                <span class="accent">This Is Revolution.</span>
-            </h2>
-            
-            <div class="grid md:grid-cols-3 gap-10">
-                <div class="bg-white p-8 rounded-xl shadow-md" data-aos="fade-up" data-aos-delay="100">
-                    <div class="text-5xl mb-4 accent">
-                        <i data-feather="eye"></i>
-                    </div>
-                    <h3 class="text-xl font-bold mb-3">Vision</h3>
-                    <p class="text-gray-600">A world where digital literacy is a basic right, not a privilege.</p>
-                </div>
-                
-                <div class="bg-white p-8 rounded-xl shadow-md" data-aos="fade-up" data-aos-delay="200">
-                    <div class="text-5xl mb-4 accent">
-                        <i data-feather="target"></i>
-                    </div>
-                    <h3 class="text-xl font-bold mb-3">Mission</h3>
-                    <p class="text-gray-600">We collect e-waste and transform it into funding for peer-to-peer education. IB students in Dubai teach underprivileged youth aged 14–19 essential digital skills.</p>
-                </div>
-                
-                <div class="bg-white p-8 rounded-xl shadow-md" data-aos="fade-up" data-aos-delay="300">
-                    <div class="text-5xl mb-4 accent">
-                        <i data-feather="heart"></i>
-                    </div>
-                    <h3 class="text-xl font-bold mb-3">Values</h3>
-                    <ul class="text-gray-600 space-y-2">
-                        <li>Impact > Profit</li>
-                        <li>Transparency</li>
-                        <li>Student-led Change</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Impact Section -->
-    <section id="impact" class="py-20 bg-var(--clay)/10">
-        <div class="container mx-auto px-6">
-            <h2 class="text-3xl md:text-4xl font-bold text-center mb-16" data-aos="fade-up">See Our <span class="accent">Movement</span> in Action</h2>
-            
-            <div class="max-w-4xl mx-auto text-center mb-16" data-aos="fade-up">
-                <p class="text-2xl font-bold mb-6">
-                    "This isn't charity. This is <span class="accent">generational change</span> powered by your old tech."
-                </p>
-                <p class="text-lg">
-                    Watch how we're turning e-waste into education and creating real impact.
-                </p>
-            </div>
-
-            <!-- Instagram Reels Embed -->
-            <div class="grid md:grid-cols-2 gap-8" data-aos="fade-up">
-                <div class="bg-gray-100 rounded-xl aspect-[9/16] flex items-center justify-center">
-                    <div class="text-center p-8">
-                        <i data-feather="instagram" class="text-4xl mb-4 accent"></i>
-                        <h3 class="text-xl font-bold mb-2">Latest Reels</h3>
-                        <p class="text-gray-600 mb-4">See our students in action</p>
-                        <a href="#" class="bg-accent text-white px-6 py-2 rounded-full text-sm font-bold hover:bg-green-600 transition inline-block">
-                            Follow Us
-                        </a>
-                    </div>
-                </div>
-                <div class="bg-gray-100 rounded-xl aspect-[9/16] flex items-center justify-center">
-                    <div class="text-center p-8">
-                        <i data-feather="play-circle" class="text-4xl mb-4 accent"></i>
-                        <h3 class="text-xl font-bold mb-2">Success Stories</h3>
-                        <p class="text-gray-600">Watch transformation journeys</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Courses Section -->
-    <section id="courses" class="py-20 bg-gradient-to-b from-white to-var(--sand)/30">
-        <div class="container mx-auto px-6">
-            <h2 class="text-3xl md:text-4xl font-bold text-center mb-16" data-aos="fade-up">Our <span class="accent">Courses</span></h2>
-            
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <div class="bg-white p-6 rounded-xl shadow-md transition duration-300 card-hover" data-aos="fade-up" data-aos-delay="100">
-                    <div class="text-4xl mb-4 accent">
-                        <i data-feather="monitor"></i>
-                    </div>
-                    <h3 class="text-xl font-bold mb-3">Computer Basics</h3>
-                    <p class="text-gray-600">Fundamental skills to navigate and operate computers effectively.</p>
-                </div>
-                
-                <div class="bg-white p-6 rounded-xl shadow-md transition duration-300 card-hover" data-aos="fade-up" data-aos-delay="150">
-                    <div class="text-4xl mb-4 accent">
-                        <i data-feather="globe"></i>
-                    </div>
-                    <h3 class="text-xl font-bold mb-3">Internet & Email</h3>
-                    <p class="text-gray-600">Essential online navigation and communication skills.</p>
-                </div>
-                
-                <div class="bg-white p-6 rounded-xl shadow-md transition duration-300 card-hover" data-aos="fade-up" data-aos-delay="200">
-                    <div class="text-4xl mb-4 accent">
-                        <i data-feather="briefcase"></i>
-                    </div>
-                    <h3 class="text-xl font-bold mb-3">Productivity Tools</h3>
-                    <p class="text-gray-600">Mastering Word, Excel, and PowerPoint for professional use.</p>
-                </div>
-                
-                <div class="bg-white p-6 rounded-xl shadow-md transition duration-300 card-hover" data-aos="fade-up" data-aos-delay="250">
-                    <div class="text-4xl mb-4 accent">
-                        <i data-feather="shield"></i>
-                    </div>
-                    <h3 class="text-xl font-bold mb-3">Online Safety</h3>
-                    <p class="text-gray-600">Protecting personal information and safe browsing practices.</p>
-                </div>
-                
-                <div class="bg-white p-6 rounded-xl shadow-md transition duration-300 card-hover" data-aos="fade-up" data-aos-delay="300">
-                    <div class="text-4xl mb-4 accent">
-                        <i data-feather="book-open"></i>
-                    </div>
-                    <h3 class="text-xl font-bold mb-3">Future Learning</h3>
-                    <p class="text-gray-600">Pathways to continue digital education and skill development.</p>
-                </div>
-                
-                <div class="bg-white p-6 rounded-xl shadow-md transition duration-300 card-hover" data-aos="fade-up" data-aos-delay="350">
-                    <div class="text-4xl mb-4 accent">
-                        <i data-feather="plus"></i>
-                    </div>
-                    <h3 class="text-xl font-bold mb-3">More Coming Soon</h3>
-                    <p class="text-gray-600">We're constantly expanding our curriculum.</p>
-                </div>
-            </div>
-            
-            <div class="text-center mt-16" data-aos="fade-up">
-                <p class="text-xl mb-6">
-                    Students graduate with a <span class="font-bold accent">ReduCycle Digital Literacy Certificate</span>.
-                </p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Get Involved Section -->
-    <section id="involved" class="py-20 bg-var(--deep-teal)/5">
-        <div class="container mx-auto px-6">
-            <h2 class="text-3xl md:text-4xl font-bold text-center mb-16" data-aos="fade-up">
-                <span class="accent">Your Move.</span> <br>
-                Choose How You Change Lives
-            </h2>
-            <p class="text-xl text-center max-w-3xl mx-auto mb-16" data-aos="fade-up">
-                "The future isn't built by spectators. It's built by <span class="font-bold accent">doers</span>."
-            </p>
-            
-            <div class="grid md:grid-cols-3 gap-8">
-                <div class="bg-gray-50 p-8 rounded-xl border border-gray-200" data-aos="fade-up" data-aos-delay="100">
-                    <div class="text-5xl mb-4 accent">
-                        <i data-feather="cpu"></i>
-                    </div>
-                    <h3 class="text-xl font-bold mb-3">Donate Devices</h3>
-                    <p class="text-gray-600 mb-4">School drop boxes / company donations.</p>
-                    <button class="bg-accent text-white px-6 py-2 rounded-full text-sm font-bold hover:bg-green-600 transition">
-                        Learn More
-                    </button>
-                </div>
-                
-                <div class="bg-gray-50 p-8 rounded-xl border border-gray-200" data-aos="fade-up" data-aos-delay="200">
-                    <div class="text-5xl mb-4 accent">
-                        <i data-feather="users"></i>
-                    </div>
-                    <h3 class="text-xl font-bold mb-3">Volunteer</h3>
-                    <p class="text-gray-600 mb-4">Dubai students sign up to teach.</p>
-                    <button class="bg-accent text-white px-6 py-2 rounded-full text-sm font-bold hover:bg-green-600 transition">
-                        Sign Up
-                    </button>
-                </div>
-                
-                <div class="bg-gray-50 p-8 rounded-xl border border-gray-200" data-aos="fade-up" data-aos-delay="300">
-                    <div class="text-5xl mb-4 accent">
-                        <i data-feather="handshake"></i>
-                    </div>
-                    <h3 class="text-xl font-bold mb-3">Partner</h3>
-                    <p class="text-gray-600 mb-4">NGOs/schools collaborate with us.</p>
-                    <button class="bg-accent text-white px-6 py-2 rounded-full text-sm font-bold hover:bg-green-600 transition">
-                        Contact Us
-                    </button>
-                </div>
-            </div>
-        </div>
-    </section>
-
-<!-- Contact Section -->
-<section id="contact" class="py-20 bg-gradient-to-b from-var(--sand)/20 to-white">
-  <div class="container mx-auto px-6">
-    <h2 class="text-3xl md:text-4xl font-bold text-center mb-16" data-aos="fade-up">Contact <span class="accent">Us</span></h2>
-    <div class="max-w-4xl mx-auto grid md:grid-cols-2 gap-10">
-      <!-- LEFT: form -->
-      <div data-aos="fade-up" data-aos-delay="100">
-        <form action="https://script.google.com/macros/s/AKfycbzjjViwmOVKk4fNhJXZjewJYz77TagVPTQAd5l1fgTYaPvPeDX1T6jCHGAXsBD9NaI-/exec"
-              method="POST"
-              target="hidden_iframe"
-              class="space-y-6">
-          <input name="name" type="text" required placeholder="Name"
-                 class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500">
-          <input name="email" type="email" required placeholder="Email"
-                 class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500">
-          <select name="reason" required
-                  class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500">
-            <option>General Inquiry</option>
-            <option>Device Donation</option>
-            <option>Volunteering</option>
-            <option>Partnership</option>
-          </select>
-          <textarea name="message" required placeholder="Message" rows="4"
-                    class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500"></textarea>
-          <button type="submit"
-                  class="bg-accent text-white px-6 py-3 rounded-lg font-bold hover:bg-green-600 transition w-full">
-            Send Message
-          </button>
-        </form>
-
-      <!-- RIGHT: contact info -->
-      <div data-aos="fade-up" data-aos-delay="200">
-        <div class="bg-white p-8 rounded-xl shadow-md h-full">
-          <h3 class="text-xl font-bold mb-6">Other Ways to Reach Us</h3>
-          <div class="space-y-6">
-            <div class="flex items-start">
-              <div class="text-2xl mr-4 accent"><i data-feather="mail"></i></div>
-              <div><h4 class="font-bold mb-1">Email</h4><p class="text-gray-600">info.reducycle@gmail.com</p></div>
-            </div>
-            <div class="flex items-start">
-              <div class="text-2xl mr-4 accent"><i data-feather="map-pin"></i></div>
-              <div><h4 class="font-bold mb-1">Location</h4><p class="text-gray-600">Based in Dubai, UAE</p></div>
-            </div>
-            <div class="flex items-start">
-              <div class="text-2xl mr-4 accent"><i data-feather="share-2"></i></div>
-              <div>
-                <h4 class="font-bold mb-3">Social Media</h4>
-                <div class="flex space-x-4">
-                  <a href="#" class="text-gray-600 hover:text-green-500 transition"><i data-feather="instagram"></i></a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+        <button class="md:hidden focus:outline-none"><i data-feather="menu"></i></button>
     </div>
-  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero-bg min-h-screen flex items-center justify-center text-white pt-20 relative overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-b from-black/70 to-transparent z-10"></div>
+    <div class="container mx-auto px-6 text-center relative z-20">
+        <h1 class="text-4xl md:text-6xl font-bold mb-6" data-aos="fade-up"><span>Your Trash.</span> <span class="accent">Their Future.</span></h1>
+        <p class="text-xl md:text-2xl mb-10 max-w-3xl mx-auto" data-aos="fade-up" data-aos-delay="200">We're flipping the script on e-waste – turning discarded tech into digital education for those who need it most.</p>
+        <div class="flex flex-col sm:flex-row justify-center gap-4" data-aos="fade-up" data-aos-delay="300">
+            <a href="#contact" class="bg-accent text-white px-8 py-3 rounded-full font-bold hover:bg-green-600 transition transform hover:scale-105">Join the Movement</a>
+            <button class="border-2 border-white text-white px-8 py-3 rounded-full font-bold hover:bg-white hover:text-gray-800 transition transform hover:scale-105">Donate Your Tech</button>
+        </div>
+    </div>
+    <!-- floating shapes -->
+    <div class="absolute top-1/4 left-1/4 w-16 h-16 rounded-full bg-white/10 animate-float" style="animation-delay:0s"></div>
+    <div class="absolute top-1/3 right-1/4 w-12 h-12 rounded-full bg-accent/20 animate-float" style="animation-delay:1s"></div>
+    <div class="absolute bottom-1/4 left-1/3 w-14 h-14 rounded-full bg-white/10 animate-float" style="animation-delay:2s"></div>
 </section>
-    
-    <!-- Footer -->
 
-    
-    <footer class="bg-gradient-to-b from-var(--warm-brown) to-var(--deep-teal) text-white py-12">
-        <div class="container mx-auto px-6">
-            <div class="grid md:grid-cols-4 gap-10">
-                <div>
-                    <h3 class="text-2xl font-bold mb-4">
-                        <span class="accent">Redu</span>Cycle
-                    </h3>
-                    <p class="text-gray-400">
-                        Turning e-waste into education.
-                    </p>
-                </div>
-                
-                <div>
-                    <h4 class="font-bold mb-4">Quick Links</h4>
-                    <ul class="space-y-2">
-                        <li><a href="#about" class="text-gray-400 hover:text-white transition">About</a></li>
-                        <li><a href="#impact" class="text-gray-400 hover:text-white transition">Impact</a></li>
-                        <li><a href="#courses" class="text-gray-400 hover:text-white transition">Courses</a></li>
-                        <li><a href="#contact" class="text-gray-400 hover:text-white transition">Contact</a></li>
-                    </ul>
-                </div>
-                
-                <div>
-                    <h4 class="font-bold mb-4">Get Involved</h4>
-                    <ul class="space-y-2">
-                        <li><a href="#" class="text-gray-400 hover:text-white transition">Donate Devices</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white transition">Volunteer</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white transition">Partner With Us</a></li>
-                    </ul>
-                </div>
-                
-                <div>
-                    <h4 class="font-bold mb-4">Stay Updated</h4>
-                    <p class="text-gray-400 mb-4">
-                        Subscribe to our newsletter for updates.
-                    </p>
-                    <div class="flex">
-                        <input type="email" placeholder="Your email" class="px-4 py-2 rounded-l-lg focus:outline-none text-gray-800 w-full">
-                        <button class="bg-accent px-4 py-2 rounded-r-lg hover:bg-green-600 transition">
-                            <i data-feather="send"></i>
-                        </button>
+<!-- ABOUT -->
+<section id="about" class="py-20 bg-gradient-to-b from-gray-50 to-white">
+    <div class="container mx-auto px-6">
+        <h2 class="text-3xl md:text-4xl font-bold text-center mb-16" data-aos="fade-up">This Isn't Just Recycling.<br><span class="accent">This Is Revolution.</span></h2>
+        <div class="grid md:grid-cols-3 gap-10">
+            <div class="bg-white p-8 rounded-xl shadow-md" data-aos="fade-up" data-aos-delay="100">
+                <div class="text-5xl mb-4 accent"><i data-feather="eye"></i></div>
+                <h3 class="text-xl font-bold mb-3">Vision</h3>
+                <p class="text-gray-600">A world where digital literacy is a basic right, not a privilege.</p>
+            </div>
+            <div class="bg-white p-8 rounded-xl shadow-md" data-aos="fade-up" data-aos-delay="200">
+                <div class="text-5xl mb-4 accent"><i data-feather="target"></i></div>
+                <h3 class="text-xl font-bold mb-3">Mission</h3>
+                <p class="text-gray-600">We collect e-waste and transform it into funding for peer-to-peer education. IB students in Dubai teach underprivileged youth aged 14–19 essential digital skills.</p>
+            </div>
+            <div class="bg-white p-8 rounded-xl shadow-md" data-aos="fade-up" data-aos-delay="300">
+                <div class="text-5xl mb-4 accent"><i data-feather="heart"></i></div>
+                <h3 class="text-xl font-bold mb-3">Values</h3>
+                <ul class="text-gray-600 space-y-2"><li>Impact > Profit</li><li>Transparency</li><li>Student-led Change</li></ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- IMPACT -->
+<section id="impact" class="py-20 bg-gray-100">
+    <div class="container mx-auto px-6">
+        <h2 class="text-3xl md:text-4xl font-bold text-center mb-16" data-aos="fade-up">See Our <span class="accent">Movement</span> in Action</h2>
+        <div class="max-w-4xl mx-auto text-center mb-16" data-aos="fade-up">
+            <p class="text-2xl font-bold mb-6">"This isn't charity. This is <span class="accent">generational change</span> powered by your old tech."</p>
+            <p class="text-lg">Watch how we're turning e-waste into education and creating real impact.</p>
+        </div>
+        <div class="grid md:grid-cols-2 gap-8" data-aos="fade-up">
+            <div class="bg-gray-200 rounded-xl aspect-[9/16] flex items-center justify-center"><div class="text-center p-8"><i data-feather="instagram" class="text-4xl mb-4 accent"></i><h3 class="text-xl font-bold mb-2">Latest Reels</h3><p class="text-gray-600 mb-4">See our students in action</p><a href="#" class="bg-accent text-white px-6 py-2 rounded-full text-sm font-bold hover:bg-green-600 transition inline-block">Follow Us</a></div></div>
+            <div class="bg-gray-200 rounded-xl aspect-[9/16] flex items-center justify-center"><div class="text-center p-8"><i data-feather="play-circle" class="text-4xl mb-4 accent"></i><h3 class="text-xl font-bold mb-2">Success Stories</h3><p class="text-gray-600">Watch transformation journeys</p></div></div>
+        </div>
+    </div>
+</section>
+
+<!-- COURSES -->
+<section id="courses" class="py-20 bg-gradient-to-b from-white to-gray-50">
+    <div class="container mx-auto px-6">
+        <h2 class="text-3xl md:text-4xl font-bold text-center mb-16" data-aos="fade-up">Our <span class="accent">Courses</span></h2>
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div class="bg-white p-6 rounded-xl shadow-md card-hover" data-aos="fade-up" data-aos-delay="100"><div class="text-4xl mb-4 accent"><i data-feather="monitor"></i></div><h3 class="text-xl font-bold mb-3">Computer Basics</h3><p class="text-gray-600">Fundamental skills to navigate and operate computers effectively.</p></div>
+            <div class="bg-white p-6 rounded-xl shadow-md card-hover" data-aos="fade-up" data-aos-delay="150"><div class="text-4xl mb-4 accent"><i data-feather="globe"></i></div><h3 class="text-xl font-bold mb-3">Internet & Email</h3><p class="text-gray-600">Essential online navigation and communication skills.</p></div>
+            <div class="bg-white p-6 rounded-xl shadow-md card-hover" data-aos="fade-up" data-aos-delay="200"><div class="text-4xl mb-4 accent"><i data-feather="briefcase"></i></div><h3 class="text-xl font-bold mb-3">Productivity Tools</h3><p class="text-gray-600">Mastering Word, Excel, and PowerPoint for professional use.</p></div>
+            <div class="bg-white p-6 rounded-xl shadow-md card-hover" data-aos="fade-up" data-aos-delay="250"><div class="text-4xl mb-4 accent"><i data-feather="shield"></i></div><h3 class="text-xl font-bold mb-3">Online Safety</h3><p class="text-gray-600">Protecting personal information and safe browsing practices.</p></div>
+            <div class="bg-white p-6 rounded-xl shadow-md card-hover" data-aos="fade-up" data-aos-delay="300"><div class="text-4xl mb-4 accent"><i data-feather="book-open"></i></div><h3 class="text-xl font-bold mb-3">Future Learning</h3><p class="text-gray-600">Pathways to continue digital education and skill development.</p></div>
+            <div class="bg-white p-6 rounded-xl shadow-md card-hover" data-aos="fade-up" data-aos-delay="350"><div class="text-4xl mb-4 accent"><i data-feather="plus"></i></div><h3 class="text-xl font-bold mb-3">More Coming Soon</h3><p class="text-gray-600">We're constantly expanding our curriculum.</p></div>
+        </div>
+        <div class="text-center mt-16" data-aos="fade-up"><p class="text-xl mb-6">Students graduate with a <span class="font-bold accent">ReduCycle Digital Literacy Certificate</span>.</p></div>
+    </div>
+</section>
+
+<!-- GET INVOLVED -->
+<section id="involved" class="py-20 bg-gray-50">
+    <div class="container mx-auto px-6">
+        <h2 class="text-3xl md:text-4xl font-bold text-center mb-16" data-aos="fade-up"><span class="accent">Your Move.</span><br>Choose How You Change Lives</h2>
+        <p class="text-xl text-center max-w-3xl mx-auto mb-16" data-aos="fade-up">"The future isn't built by spectators. It's built by <span class="font-bold accent">doers</span>."</p>
+        <div class="grid md:grid-cols-3 gap-8">
+            <div class="bg-white p-8 rounded-xl border border-gray-200" data-aos="fade-up" data-aos-delay="100"><div class="text-5xl mb-4 accent"><i data-feather="cpu"></i></div><h3 class="text-xl font-bold mb-3">Donate Devices</h3><p class="text-gray-600 mb-4">School drop boxes / company donations.</p><button class="bg-accent text-white px-6 py-2 rounded-full text-sm font-bold hover:bg-green-600 transition">Learn More</button></div>
+            <div class="bg-white p-8 rounded-xl border border-gray-200" data-aos="fade-up" data-aos-delay="200"><div class="text-5xl mb-4 accent"><i data-feather="users"></i></div><h3 class="text-xl font-bold mb-3">Volunteer</h3><p class="text-gray-600 mb-4">Dubai students sign up to teach.</p><button class="bg-accent text-white px-6 py-2 rounded-full text-sm font-bold hover:bg-green-600 transition">Sign Up</button></div>
+            <div class="bg-white p-8 rounded-xl border border-gray-200" data-aos="fade-up" data-aos-delay="300"><div class="text-5xl mb-4 accent"><i data-feather="handshake"></i></div><h3 class="text-xl font-bold mb-3">Partner</h3><p class="text-gray-600 mb-4">NGOs/schools collaborate with us.</p><button class="bg-accent text-white px-6 py-2 rounded-full text-sm font-bold hover:bg-green-600 transition">Contact Us</button></div>
+        </div>
+    </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="py-20 bg-gradient-to-b from-gray-50 to-white">
+    <div class="container mx-auto px-6">
+        <h2 class="text-3xl md:text-4xl font-bold text-center mb-16" data-aos="fade-up">Contact <span class="accent">Us</span></h2>
+        <div class="max-w-5xl mx-auto grid md:grid-cols-2 gap-10 items-start">
+            <!-- form -->
+            <div data-aos="fade-up" data-aos-delay="100">
+                <form action="https://script.google.com/macros/s/AKfycbzjjViwmOVKk4fNhJXZjewJYz77TagVPTQAd5l1fgTYaPvPeDX1T6jCHGAXsBD9NaI-/exec" method="POST" target="hidden_iframe" class="space-y-6">
+                    <input name="name" type="text" required placeholder="Name" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500">
+                    <input name="email" type="email" required placeholder="Email" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500">
+                    <select name="reason" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500"><option>General Inquiry</option><option>Device Donation</option><option>Volunteering</option><option>Partnership</option></select>
+                    <textarea name="message" required placeholder="Message" rows="4" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500"></textarea>
+                    <button type="submit" class="bg-accent text-white px-6 py-3 rounded-lg font-bold hover:bg-green-600 transition w-full">Send Message</button>
+                </form>
+            </div>
+            <!-- info -->
+            <div data-aos="fade-up" data-aos-delay="200">
+                <div class="bg-white p-8 rounded-xl shadow-md h-full">
+                    <h3 class="text-xl font-bold mb-6">Other Ways to Reach Us</h3>
+                    <div class="space-y-6">
+                        <div class="flex items-start"><div class="text-2xl mr-4 accent"><i data-feather="mail"></i></div><div><h4 class="font-bold mb-1">Email</h4><p class="text-gray-600">info.reducycle@gmail.com</p></div></div>
+                        <div class="flex items-start"><div class="text-2xl mr-4 accent"><i data-feather="map-pin"></i></div><div><h4 class="font-bold mb-1">Location</h4><p class="text-gray-600">Based in Dubai, UAE</p></div></div>
+                        <div class="flex items-start"><div class="text-2xl mr-4 accent"><i data-feather="share-2"></i></div><div><h4 class="font-bold mb-3">Social Media</h4><div class="flex space-x-4"><a href="#" class="text-gray-600 hover:text-green-500 transition"><i data-feather="instagram"></i></a></div></div></div>
                     </div>
                 </div>
             </div>
-            
-            <div class="border-t border-gray-700 mt-12 pt-8 text-center text-gray-400">
-                <p>
-                    &copy; 2025 ReduCycle. All rights reserved.
-                </p>
-            </div>
         </div>
-    </footer>
-
-    <!-- Sticky CTA -->
-    <div class="fixed bottom-6 right-6 z-50 animate-bounce" style="animation-duration: 2s;">
-        <button class="bg-var(--warm-brown) text-white px-6 py-3 rounded-full font-bold shadow-lg hover:bg-var(--clay) transition flex items-center transform hover:scale-110">
-            <i data-feather="user-plus" class="mr-2"></i>
-            Join the Mission
-        </button>
     </div>
+</section>
 
-    <script>
-        AOS.init({
-            duration: 800,
-            easing: 'ease-in-out',
-            once: true
-        });
-        
-        feather.replace();
-        
-        // Scroll animations
-        document.addEventListener('DOMContentLoaded', () => {
-            const elements = document.querySelectorAll('[data-aos]');
-            elements.forEach(el => {
-                el.style.opacity = '0';
-                el.style.transition = 'all 0.8s ease-out';
-            });
+<!-- FOOTER -->
+<footer class="bg-gradient-to-b from-var(--warm-brown) to-var(--deep-teal) text-white py-12">
+    <div class="container mx-auto px-6">
+        <div class="grid md:grid-cols-4 gap-10">
+            <div><h3 class="text-2xl font-bold mb-4"><span class="accent">Redu</span>Cycle</h3><p class="text-gray-400">Turning e-waste into education.</p></div>
+            <div><h4 class="font-bold mb-4">Quick Links</h4><ul class="space-y-2"><li><a href="#about" class="text-gray-400 hover:text-white transition">About</a></li><li><a href="#impact" class="text-gray-400 hover:text-white transition">Impact</a></li><li><a href="#courses" class="text-gray-400 hover:text-white transition">Courses</a></li><li><a href="#contact" class="text-gray-400 hover:text-white transition">Contact</a></li></ul></div>
+            <div><h4 class="font-bold mb-4">Get Involved</h4><ul class="space-y-2"><li><a href="#" class="text-gray-400 hover:text-white transition">Donate Devices</a></li><li><a href="#" class="text-gray-400 hover:text-white transition">Volunteer</a></li><li><a href="#" class="text-gray-400 hover:text-white transition">Partner With Us</a></li></ul></div>
+            <div></div> <!-- newsletter removed -->
+        </div>
+        <div class="border-t border-gray-700 mt-12 pt-8 text-center text-gray-400"><p>&copy; 2025 ReduCycle. All rights reserved.</p></div>
+    </div>
+</footer>
 
-            const animateOnScroll = () => {
-                elements.forEach(el => {
-                    const rect = el.getBoundingClientRect();
-                    const isVisible = (rect.top <= window.innerHeight * 0.8) && (rect.bottom >= 0);
-                    
-                    if (isVisible) {
-                        el.style.opacity = '1';
-                        el.style.transform = 'translateY(0)';
-                    }
-                });
-            };
+<!-- STICKY CTA -->
+<a href="#contact" class="fixed bottom-6 right-6 z-50 animate-bounce sticky-cta bg-var(--warm-brown) px-6 py-3 rounded-full font-bold shadow-lg hover:bg-var(--clay) transition transform hover:scale-110" style="animation-duration:2s"><i data-feather="user-plus" class="mr-2 inline"></i>Join the Mission</a>
 
-            window.addEventListener('scroll', animateOnScroll);
-            animateOnScroll();
-        });
-    </script>
+<iframe name="hidden_iframe" style="display:none"></iframe>
+
+<script>
+    AOS.init({duration:800,easing:'ease-in-out',once:true});
+    feather.replace();
+</script>
 </body>
 </html>
-
-
-
