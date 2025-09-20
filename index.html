@@ -262,10 +262,6 @@
     update(); // initial call
 
     /* ---------- INSANE SCRIPTS ---------- */
-    // 1. glitch on every button / link
-    document.querySelectorAll('button, a').forEach(el=>{
-      el.addEventListener('click',()=>{el.classList.add('glitch'); setTimeout(()=>el.classList.remove('glitch'),350)})
-    });
 
     // 2. scroll-tilt & scale for cards
     const cards = document.querySelectorAll('.card-hover');
@@ -301,13 +297,7 @@
       setTimeout(()=>form.style.animation='',400);
     }
 
-    // 5. parallax footer
-    const footer = document.querySelector('footer');
-    window.addEventListener('scroll',()=>{
-      const speed = 0.3;
-      const y = -(window.scrollY * speed);
-      footer.style.transform = `translateY(${y}px)`;
-    });
 </script>
 </body>
 </html>
+
