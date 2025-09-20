@@ -304,91 +304,69 @@
         </div>
     </section>
 
-    <!-- Contact Section -->
-    <section id="contact" class="py-20 bg-gradient-to-b from-var(--sand)/20 to-white">
-        <div class="container mx-auto px-6">
-            <h2 class="text-3xl md:text-4xl font-bold text-center mb-16" data-aos="fade-up">Contact <span class="accent">Us</span></h2>
-            
-            <div class="max-w-4xl mx-auto grid md:grid-cols-2 gap-10">
-                <div data-aos="fade-up" data-aos-delay="100">
-                    <form class="space-y-6">
-                        <div>
-                            <label for="name" class="block mb-2 font-medium">Name</label>
-                            <input type="text" id="name" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500">
-                        </div>
-                        <div>
-                            <label for="email" class="block mb-2 font-medium">Email</label>
-                            <input type="email" id="email" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500">
-                        </div>
-                        <div>
-                            <label for="reason" class="block mb-2 font-medium">Reason for Contact</label>
-                            <select id="reason" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500">
-                                <option>General Inquiry</option>
-                                <option>Device Donation</option>
-                                <option>Volunteering</option>
-                                <option>Partnership</option>
-                            </select>
-                        </div>
-                        <div>
-                            <label for="message" class="block mb-2 font-medium">Message</label>
-                            <textarea id="message" rows="4" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"></textarea>
-                        </div>
-                        <button type="submit" class="bg-accent text-white px-6 py-3 rounded-lg font-bold hover:bg-green-600 transition w-full">
-                            Send Message
-                        </button>
-                    </form>
-                </div>
-                
-                <div data-aos="fade-up" data-aos-delay="200">
-                    <div class="bg-white p-8 rounded-xl shadow-md h-full">
-                        <h3 class="text-xl font-bold mb-6">Other Ways to Reach Us</h3>
-                        <div class="space-y-6">
-                            <div class="flex items-start">
-                                <div class="text-2xl mr-4 accent">
-                                    <i data-feather="mail"></i>
-                                </div>
-                                <div>
-                                    <h4 class="font-bold mb-1">Email</h4>
-                                    <p class="text-gray-600">info@reducycle.org</p>
-                                </div>
-                            </div>
-                            
-                            <div class="flex items-start">
-                                <div class="text-2xl mr-4 accent">
-                                    <i data-feather="map-pin"></i>
-                                </div>
-                                <div>
-                                    <h4 class="font-bold mb-1">Location</h4>
-                                    <p class="text-gray-600">Based in Dubai, UAE</p>
-                                </div>
-                            </div>
-                            
-                            <div class="flex items-start">
-                                <div class="text-2xl mr-4 accent">
-                                    <i data-feather="share-2"></i>
-                                </div>
-                                <div>
-                                    <h4 class="font-bold mb-3">Social Media</h4>
-                                    <div class="flex space-x-4">
-                                        <a href="#" class="text-gray-600 hover:text-green-500 transition">
-                                            <i data-feather="instagram"></i>
-                                        </a>
-                                        <a href="#" class="text-gray-600 hover:text-green-500 transition">
-                                            <i data-feather="linkedin"></i>
-                                        </a>
-                                        <a href="#" class="text-gray-600 hover:text-green-500 transition">
-                                            <i data-feather="youtube"></i>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+<!-- Contact Section -->
+<section id="contact" class="py-20 bg-gradient-to-b from-var(--sand)/20 to-white">
+  <div class="container mx-auto px-6">
+    <h2 class="text-3xl md:text-4xl font-bold text-center mb-16" data-aos="fade-up">Contact <span class="accent">Us</span></h2>
+    <div class="max-w-4xl mx-auto grid md:grid-cols-2 gap-10">
+      <!-- LEFT: form -->
+      <div data-aos="fade-up" data-aos-delay="100">
+        <form action="https://script.google.com/macros/s/AKfycbzjjViwmOVKk4fNhJXZjewJYz77TagVPTQAd5l1fgTYaPvPeDX1T6jCHGAXsBD9NaI-/exec"
+              method="POST"
+              target="hidden_iframe"
+              class="space-y-6">
+          <input name="name" type="text" required placeholder="Name"
+                 class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500">
+          <input name="email" type="email" required placeholder="Email"
+                 class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500">
+          <select name="reason" required
+                  class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500">
+            <option>General Inquiry</option>
+            <option>Device Donation</option>
+            <option>Volunteering</option>
+            <option>Partnership</option>
+          </select>
+          <textarea name="message" required placeholder="Message" rows="4"
+                    class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500"></textarea>
+          <button type="submit"
+                  class="bg-accent text-white px-6 py-3 rounded-lg font-bold hover:bg-green-600 transition w-full">
+            Send Message
+          </button>
+        </form>
+        <!-- stops page refresh -->
+        <iframe name="hidden_iframe" style="display:none;" onload="if(submitted){window.location='#thank-you';}"></iframe>
+        <script>let submitted = false; document.querySelector('form').addEventListener('submit', () => submitted = true);</script>
+      </div>
 
+      <!-- RIGHT: contact info -->
+      <div data-aos="fade-up" data-aos-delay="200">
+        <div class="bg-white p-8 rounded-xl shadow-md h-full">
+          <h3 class="text-xl font-bold mb-6">Other Ways to Reach Us</h3>
+          <div class="space-y-6">
+            <div class="flex items-start">
+              <div class="text-2xl mr-4 accent"><i data-feather="mail"></i></div>
+              <div><h4 class="font-bold mb-1">Email</h4><p class="text-gray-600">info.reducycle@gmail.com</p></div>
+            </div>
+            <div class="flex items-start">
+              <div class="text-2xl mr-4 accent"><i data-feather="map-pin"></i></div>
+              <div><h4 class="font-bold mb-1">Location</h4><p class="text-gray-600">Based in Dubai, UAE</p></div>
+            </div>
+            <div class="flex items-start">
+              <div class="text-2xl mr-4 accent"><i data-feather="share-2"></i></div>
+              <div>
+                <h4 class="font-bold mb-3">Social Media</h4>
+                <div class="flex space-x-4">
+                  <a href="#" class="text-gray-600 hover:text-green-500 transition"><i data-feather="instagram"></i></a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+    
     <!-- Footer -->
     <footer class="bg-gradient-to-b from-var(--warm-brown) to-var(--deep-teal) text-white py-12">
         <div class="container mx-auto px-6">
@@ -486,3 +464,4 @@
     </script>
 </body>
 </html>
+
