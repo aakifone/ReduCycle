@@ -291,13 +291,17 @@
     };
     setTimeout(type, 500);
 
-    // 4. shake form on submit
-    function shakeForm(form){
-      form.style.animation='shake .4s';
-      setTimeout(()=>form.style.animation='',400);
-    }
+// 4. shake ONLY if form is invalid
+function shakeForm(form) {
+  if (!form.checkValidity()) {
+    form.style.animation = 'shake .4s';
+    setTimeout(() => (form.style.animation = ''), 400);
+  }
+  // else: let the form submit normally → no shake
+}
 
 </script>
 </body>
 </html>
+
 
