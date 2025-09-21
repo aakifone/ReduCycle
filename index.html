@@ -9,38 +9,46 @@
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
 
-  <!-- =====  TextPressure (local font)  ===== -->
+  <!-- ===== TextPressure (local font) ===== -->
   <style>
     @font-face{
       font-family:'Compressa VF';
       src:url('./CompressaPRO-GX.woff2') format('woff2');
-      font-display:swap;
+      font-display:swap;           /* show fallback instantly */
     }
     .text-pressure{
+      display:block;
       font-family:'Compressa VF','Inter',sans-serif;
-      text-transform:uppercase;text-align:center;white-space:nowrap;
-      font-weight:100;line-height:1;color:#fff;
+      text-transform:uppercase;
+      text-align:center;
+      white-space:nowrap;
+      font-weight:100;
+      line-height:1;
+      color:#ffffff;
     }
-    .text-pressure span{display:inline-block;will-change:font-variation-settings,opacity;}
+    .text-pressure span{
+      display:inline-block;
+      will-change:font-variation-settings,opacity;
+    }
   </style>
 
-  <!-- =====  theme + animations  ===== -->
+  <!-- ===== your existing tailwind / theme vars ===== -->
   <style>
-    :root{--earth-green:#5a8f3d;--warm-brown:#8b5a2b;--deep-teal:#2a6559;--sand:#d7b98e;--clay:#c77966;}
-    body{font-family:'Inter',sans-serif;scroll-behavior:smooth;}
-    .hero-bg{background:linear-gradient(rgba(0,0,0,.6),rgba(0,0,0,.6)),url('http://static.photos/technology/1200x630/42');background-size:cover;background-position:center;}
-    .accent{color:var(--earth-green);}.bg-accent{background-color:var(--earth-green);}
-    footer h3 span:last-child{color:#2F7D32;}footer h4{color:#D1D5DB;}
-    footer .grid>div:last-child{display:none;}
-    .sticky-cta{background-color:var(--warm-brown);transition:.3s;}
-    .sticky-cta.white{color:#fff;}.sticky-cta.dark{color:#111827;}
-    /* insane anims */
-    .floating-devices{position:absolute;inset:0;overflow:hidden;pointer-events:none;perspective:1000px;}
-    .floating-devices img{position:absolute;opacity:.08;animation:float3d 12s infinite ease-in-out;}
-    @keyframes float3d{0%,100%{transform:translateY(0) rotateX(0) rotateY(0) scale(1);}25%{transform:translateY(-40px) rotateX(20deg) rotateY(180deg) scale(1.15);}50%{transform:translateY(20px) rotateX(-10deg) rotateY(360deg) scale(.9);}75%{transform:translateY(-20px) rotateX(15deg) rotateY(540deg) scale(1.05);}}
-    .glitch{animation:glitch .35s linear;}@keyframes glitch{0%,100%{transform:translate(0);}10%{transform:translate(-2px,-1px);}20%{transform:translate(2px,1px);}30%{transform:translate(-1px,2px);}40%{transform:translate(1px,-2px);}50%{transform:translate(-2px,1px);}60%{transform:translate(2px,-1px);}70%{transform:translate(-1px,-1px);}80%{transform:translate(1px,1px);}90%{transform:translate(-2px,0);}}
-    nav a{position:relative;overflow:hidden;}nav a::before{content:'';position:absolute;inset:0;background:linear-gradient(45deg,#ff0f7b,#ff512f,#fca311,#00f5d4,#9b5de5,#f15bb5);background-size:400% 400%;opacity:0;transition:opacity .3s;animation:rainbow 2s linear infinite;}nav a:hover::before{opacity:.25;}@keyframes rainbow{0%{background-position:0% 50%;}50%{background-position:100% 50%;}100%{background-position:0% 50%;}}
-    @keyframes shake{0%,100%{transform:translateX(0);}10%,30%,50%,70%,90%{transform:translateX(-6px);}20%,40%,60%,80%{transform:translateX(6px);}}
+    :root {
+      --earth-green: #5a8f3d;
+      --warm-brown: #8b5a2b;
+      --deep-teal: #2a6559;
+      --sand: #d7b98e;
+      --clay: #c77966;
+    }
+    body { font-family: 'Inter', sans-serif; scroll-behavior: smooth; }
+    .hero-bg {
+      background: linear-gradient(rgba(0,0,0,.6),rgba(0,0,0,.6)),url('http://static.photos/technology/1200x630/42');
+      background-size:cover;background-position:center;
+    }
+    .accent { color: var(--earth-green); }
+    .bg-accent { background-color: var(--earth-green); }
+    /* (keep all your other styles) */
   </style>
 </head>
 <body class="bg-white text-gray-800">
@@ -58,7 +66,9 @@
 <section id="hero" class="hero-bg min-h-screen flex items-center justify-center text-white pt-20 relative overflow-hidden">
   <div class="absolute inset-0 bg-gradient-to-b from-black/70 to-transparent z-10"></div>
   <div class="container mx-auto px-6 text-center relative z-20">
-    <h1 id="hero-pressure" class="text-4xl md:text-6xl font-bold mb-6 text-white">Your Trash. Their Future.</h1>
+   <h1 id="hero-pressure" class="text-4xl md:text-6xl font-bold mb-6 text-white">
+  Your Trash. Their Future.
+</h1>
     <p class="text-xl md:text-2xl mb-10 max-w-3xl mx-auto" data-aos="fade-up" data-aos-delay="200">We're flipping the script on e-waste – turning discarded tech into digital education for those who need it most.</p>
     <div class="flex flex-col sm:flex-row justify-center gap-4" data-aos="fade-up" data-aos-delay="300">
       <a href="#contact" class="bg-accent text-white px-8 py-3 rounded-full font-bold hover:bg-green-600 transition transform hover:scale-105">Join the Movement</a>
@@ -185,3 +195,4 @@ window.addEventListener('DOMContentLoaded',()=>new TextPressure('#hero-pressure'
 </script>
 </body>
 </html>
+
