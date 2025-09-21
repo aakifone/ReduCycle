@@ -64,17 +64,19 @@
 
 <!-- HERO -->
 <section id="hero" class="hero-bg min-h-screen flex items-center justify-center text-white pt-20 relative overflow-hidden">
-  <div class="absolute inset-0 bg-gradient-to-b from-black/70 to-transparent z-10"></div>
+  <!--  LIGHT-RAYS CANVAS (behind content)  -->
+  <div id="hero-light-rays" class="fixed inset-0 z-0"></div>
+
   <div class="container mx-auto px-6 text-center relative z-20">
-   <h1 id="hero-pressure" class="text-4xl md:text-6xl font-bold mb-6 text-white">
-  Your Trash. Their Future.
-</h1>
+    <h1 id="hero-pressure" class="text-4xl md:text-6xl font-bold mb-6 text-white">Your Trash. Their Future.</h1>
     <p class="text-xl md:text-2xl mb-10 max-w-3xl mx-auto" data-aos="fade-up" data-aos-delay="200">We're flipping the script on e-waste – turning discarded tech into digital education for those who need it most.</p>
     <div class="flex flex-col sm:flex-row justify-center gap-4" data-aos="fade-up" data-aos-delay="300">
       <a href="#contact" class="bg-accent text-white px-8 py-3 rounded-full font-bold hover:bg-green-600 transition transform hover:scale-105">Join the Movement</a>
-      <button class="border-2 border-white text-white px-8 py-3 rounded-full font-bold hover:bg-white hover:text-gray-800 transition transform hover:scale-105">Donate Your Tech</button>
+      <button class="border-2 border-white text-white px-8 py-3 rounded-full font-bold hover:bg-white hover:text-black transition transform hover:scale-105">Donate Your Tech</button>
     </div>
   </div>
+
+  <!-- 3-D floating devices -->
   <div class="floating-devices"><img src="https://img.icons8.com/ios/100/ffffff/monitor.png" style="top:10%;left:5%;width:80px;animation-delay:0s"><img src="https://img.icons8.com/ios/100/ffffff/laptop.png" style="top:70%;right:10%;width:90px;animation-delay:2s"><img src="https://img.icons8.com/ios/100/ffffff/smartphone.png" style="bottom:20%;left:15%;width:60px;animation-delay:4s"><img src="https://img.icons8.com/ios/100/ffffff/tablet.png" style="top:40%;right:20%;width:70px;animation-delay:1s"><img src="https://img.icons8.com/ios/100/ffffff/cpu.png" style="bottom:10%;right:5%;width:65px;animation-delay:3s"></div>
 </section>
 
@@ -293,12 +295,9 @@ window.addEventListener('DOMContentLoaded',()=>{
 <!-- FOOTER -->
 <footer class="bg-gradient-to-b from-var(--warm-brown) to-var(--deep-teal) text-white py-12"><div class="container mx-auto px-6"><div class="grid md:grid-cols-4 gap-10"><div><h3 class="text-2xl font-bold mb-4"><span class="accent">Redu</span>Cycle</h3><p class="text-gray-400">Turning e-waste into education.</p></div><div><h4 class="font-bold mb-4">Quick Links</h4><ul class="space-y-2"><li><a href="#about" class="text-gray-400 hover:text-white transition">About</a></li><li><a href="#impact" class="text-gray-400 hover:text-white transition">Impact</a></li><li><a href="#courses" class="text-gray-400 hover:text-white transition">Courses</a></li><li><a href="#contact" class="text-gray-400 hover:text-white transition">Contact</a></li></ul></div><div><h4 class="font-bold mb-4">Get Involved</h4><ul class="space-y-2"><li><a href="#" class="text-gray-400 hover:text-white transition">Donate Devices</a></li><li><a href="#" class="text-gray-400 hover:text-white transition">Volunteer</a></li><li><a href="#" class="text-gray-400 hover:text-white transition">Partner With Us</a></li></ul></div><div></div></div><div class="border-t border-gray-700 mt-12 pt-8 text-center text-gray-400"><p>&copy; 2025 ReduCycle. All rights reserved.</p></div></div></footer>
 
-<!-- STICKY CTA -->
-<a href="#contact" id="stickyCta" class="sticky-cta fixed bottom-6 right-6 z-50 animate-bounce bg-var(--warm-brown) px-6 py-3 rounded-full font-bold shadow-lg hover:bg-var(--clay) transition transform hover:scale-110" style="animation-duration:2s"><i data-feather="user-plus" class="mr-2 inline"></i>Join the Mission</a>
+  <iframe name="hidden_iframe" style="display:none"></iframe>
 
-<iframe name="hidden_iframe" style="display:none"></iframe>
-
-<!-- ===== JS ===== -->
+<!-- ===== WORKING VANILLA SCRIPTS ===== -->
 <script>
 /* TextPressure vanilla */
 class TextPressure{
@@ -380,12 +379,202 @@ class TextPressure{
   }
 }
 
-/* rest of your scripts */
+/* Light-Rays vanilla (no React, no OGL import) */
+class LightRays{
+  constructor(selector,opts={}){
+    this.container=typeof selector==='string'?document.querySelector(selector):selector;
+    if(!this.container){console.warn('LightRays: container not found');return;}
+    this.opts={
+      raysOrigin:opts.raysOrigin||'top-center',
+      raysColor:opts.raysColor||'#007BFF',
+      raysSpeed:opts.raysSpeed||1,
+      lightSpread:opts.lightSpread||2,
+      rayLength:opts.rayLength||3,
+      pulsating:opts.pulsating!==false,
+      fadeDistance:opts.fadeDistance||1,
+      saturation:opts.saturation||1,
+      followMouse:opts.followMouse!==false,
+      mouseInfluence:opts.mouseInfluence||0,
+      noiseAmount:opts.noiseAmount||0,
+      distortion:opts.distortion||1
+    };
+    this.init();
+  }
+  init(){
+    this.injectCSS();
+    this.buildCanvas();
+    this.start();
+  }
+  injectCSS(){
+    if(document.querySelector('#light-rays-css'))return;
+    const s=document.createElement('style');
+    s.id='light-rays-css';
+    s.textContent=`
+      .light-rays-canvas{display:block;width:100%;height:100%;position:absolute;top:0;left:0;pointer-events:none;z-index:0;}
+      .light-rays-container{position:absolute;top:0;left:0;width:100%;height:100%;z-index:0;}
+    `;
+    document.head.appendChild(s);
+  }
+  buildCanvas(){
+    this.canvas=document.createElement('canvas');
+    this.canvas.className='light-rays-canvas';
+    this.container.appendChild(this.canvas);
+    this.gl=this.canvas.getContext('webgl')||this.canvas.getContext('experimental-webgl');
+    if(!this.gl){console.warn('WebGL unavailable');return;}
+    this.resize();
+    window.addEventListener('resize',()=>this.resize());
+    this.initGL();
+  }
+  resize(){
+    const dpr=Math.min(window.devicePixelRatio,2);
+    const rect=this.container.getBoundingClientRect();
+    this.canvas.width=rect.width*dpr;
+    this.canvas.height=rect.height*dpr;
+    this.gl.viewport(0,0,this.canvas.width,this.canvas.height);
+  }
+  initGL(){
+    const gl=this.gl;
+    const vert=`attribute vec2 position;varying vec2 vUv;void main(){vUv=position*0.5+0.5;gl_Position=vec4(position,0.0,1.0);}`;
+    const frag=`precision highp float;
+uniform float iTime;uniform vec2 iResolution;uniform vec2 rayPos;uniform vec2 rayDir;uniform vec3 raysColor;
+uniform float raysSpeed;uniform float lightSpread;uniform float rayLength;uniform float pulsating;uniform float fadeDistance;
+uniform float saturation;uniform vec2 mousePos;uniform float mouseInfluence;uniform float noiseAmount;uniform float distortion;
+varying vec2 vUv;
+float noise(vec2 st){return fract(sin(dot(st.xy,vec2(12.9898,78.233)))*43758.5453123);}
+float rayStrength(vec2 raySource,vec2 rayRefDirection,vec2 coord,float seedA,float seedB,float speed){
+  vec2 sourceToCoord=coord-raySource;vec2 dirNorm=normalize(sourceToCoord);
+  float cosAngle=dot(dirNorm,rayRefDirection);float distortedAngle=cosAngle+distortion*sin(iTime*2.0+length(sourceToCoord)*0.01)*0.2;
+  float spreadFactor=pow(max(distortedAngle,0.0),1.0/max(lightSpread,0.001));
+  float distance=length(sourceToCoord);float maxDistance=iResolution.x*rayLength;
+  float lengthFalloff=clamp((maxDistance-distance)/maxDistance,0.0,1.0);
+  float fadeFalloff=clamp((iResolution.x*fadeDistance-distance)/(iResolution.x*fadeDistance),0.5,1.0);
+  float pulse=pulsating>0.5?(0.8+0.2*sin(iTime*speed*3.0)):1.0;
+  float baseStrength=clamp((0.45+0.15*sin(distortedAngle*seedA+iTime*speed))+(0.3+0.2*cos(-distortedAngle*seedB+iTime*speed)),0.0,1.0);
+  return baseStrength*lengthFalloff*fadeFalloff*spreadFactor*pulse;
+}
+void mainImage(out vec4 fragColor,in vec2 fragCoord){
+  vec2 coord=vec2(fragCoord.x,iResolution.y-fragCoord.y);
+  vec2 finalRayDir=rayDir;
+  if(mouseInfluence>0.0){
+    vec2 mouseScreenPos=mousePos*iResolution.xy;
+    vec2 mouseDirection=normalize(mouseScreenPos-rayPos);
+    finalRayDir=normalize(mix(rayDir,mouseDirection,mouseInfluence));
+  }
+  vec4 rays1=vec4(1.0)*rayStrength(rayPos,finalRayDir,coord,36.2214,21.11349,1.5*raysSpeed);
+  vec4 rays2=vec4(1.0)*rayStrength(rayPos,finalRayDir,coord,22.3991,18.0234,1.1*raysSpeed);
+  fragColor=rays1*0.5+rays2*0.4;
+  if(noiseAmount>0.0){float n=noise(coord*0.01+iTime*0.1);fragColor.rgb*=(1.0-noiseAmount+noiseAmount*n);}
+  float brightness=1.0-(coord.y/iResolution.y);
+  fragColor.x*=0.1+brightness*0.8;fragColor.y*=0.3+brightness*0.6;fragColor.z*=0.5+brightness*0.5;
+  if(saturation!=1.0){float gray=dot(fragColor.rgb,vec3(0.299,0.587,0.114));fragColor.rgb=mix(vec3(gray),fragColor.rgb,saturation);}
+  fragColor.rgb*=raysColor;
+}
+void main(){vec4 color;mainImage(color,gl_FragCoord.xy);gl_FragColor=color;}`;
+
+    const program=this.createProgram(vert,frag);
+    this.program=program;
+    this.uniforms={
+      iTime:{value:0},iResolution:{value:[1,1]},
+      rayPos:{value:[0,0]},rayDir:{value:[0,1]},
+      raysColor:{value:this.hexToRgb(this.opts.raysColor)},
+      raysSpeed:{value:this.opts.raysSpeed},
+      lightSpread:{value:this.opts.lightSpread},
+      rayLength:{value:this.opts.rayLength},
+      pulsating:{value:this.opts.pulsating?1:0},
+      fadeDistance:{value:this.opts.fadeDistance},
+      saturation:{value:this.opts.saturation},
+      mousePos:{value:[0.5,0.5]},mouseInfluence:{value:this.opts.mouseInfluence},
+      noiseAmount:{value:this.opts.noiseAmount},distortion:{value:this.opts.distortion}
+    };
+    this.createMesh();
+    this.loop();
+    if(this.opts.followMouse)this.bindMouse();
+  }
+  hexToRgb(hex){
+    const m=/^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+    return m?[parseInt(m[1],16)/255,parseInt(m[2],16)/255,parseInt(m[3],16)/255]:[1,1,1];
+  }
+  createProgram(vert,frag){
+    const gl=this.gl;
+    const vs=this.compileShader(vert,gl.VERTEX_SHADER);
+    const fs=this.compileShader(frag,gl.FRAGMENT_SHADER);
+    const prog=gl.createProgram();
+    gl.attachShader(prog,vs);gl.attachShader(prog,fs);gl.linkProgram(prog);
+    if(!gl.getProgramParameter(prog,gl.LINK_STATUS))console.error('Program link error:',gl.getProgramInfoLog(prog));
+    return prog;
+  }
+  compileShader(src,type){
+    const gl=this.gl;const s=gl.createShader(type);
+    gl.shaderSource(s,src);gl.compileShader(s);
+    if(!gl.getShaderParameter(s,gl.COMPILE_STATUS))console.error('Shader compile error:',gl.getShaderInfoLog(s));
+    return s;
+  }
+  createMesh(){
+    const gl=this.gl;
+    const vertices=new Float32Array([-1,-1,1,-1,-1,1,1,1]);
+    this.buffer=gl.createBuffer();
+    gl.bindBuffer(gl.ARRAY_BUFFER,this.buffer);
+    gl.bufferData(gl.ARRAY_BUFFER,vertices,gl.STATIC_DRAW);
+    this.positionLoc=gl.getAttribLocation(this.program,'position');
+    gl.enableVertexAttribArray(this.positionLoc);
+    gl.vertexAttribPointer(this.positionLoc,2,gl.FLOAT,false,0,0);
+  }
+  loop(){
+    const gl=this.gl;
+    const draw=()=>{
+      this.resize();
+      gl.useProgram(this.program);
+      Object.keys(this.uniforms).forEach(name=>{
+        const loc=gl.getUniformLocation(this.program,name);
+        const val=this.uniforms[name].value;
+        if(Array.isArray(val))gl['uniform'+val.length+'fv'](loc,val);
+        else gl.uniform1f(loc,val);
+      });
+      gl.drawArrays(gl.TRIANGLE_STRIP,0,4);
+      this.raf=requestAnimationFrame(draw);
+    };
+    draw();
+  }
+  bindMouse(){
+    const onMove=e=>{
+      const rect=this.canvas.getBoundingClientRect();
+      const x=(e.clientX-rect.left)/rect.width;
+      const y=(e.clientY-rect.top)/rect.height;
+      this.uniforms.mousePos.value=[x,y];
+    };
+    window.addEventListener('mousemove',onMove);
+    this.canvas.addEventListener('mousemove',onMove);
+  }
+  destroy(){
+    if(this.raf)cancelAnimationFrame(this.raf);
+    if(this.canvas&&this.canvas.parentNode)this.canvas.parentNode.removeChild(this.canvas);
+  }
+}
+
+/*  init Light-Rays with YOUR exact settings  */
+window.addEventListener('DOMContentLoaded',()=>{
+  new LightRays('#hero-light-rays',{
+    raysOrigin:'top-center',
+    raysColor:'#007BFF',      // YOUR colour
+    raysSpeed:1,              // YOUR speed
+    lightSpread:2,            // YOUR spread
+    rayLength:3,              // YOUR length
+    pulsating:true,           // YOUR pulsating ON
+    fadeDistance:1,           // YOUR fade
+    saturation:1,             // YOUR saturation
+    followMouse:true,         // keep mouse follow
+    mouseInfluence:0,         // YOUR influence OFF
+    noiseAmount:0,            // YOUR noise OFF
+    distortion:1              // YOUR distortion ON
+  });
+});
+
+/*  your existing scripts  */
 AOS.init({duration:800,easing:'ease-in-out',once:true});feather.replace();
 const btn=document.getElementById('stickyCta'),hero=document.getElementById('hero');
 const update=()=>{const hb=hero.getBoundingClientRect().bottom;btn.classList.toggle('white',hb>0);btn.classList.toggle('dark',hb<=0);};
 window.addEventListener('scroll',update);update();
-document.querySelectorAll('button, a').forEach(el=>el.addEventListener('click',()=>{el.classList.add('glitch');setTimeout(()=>el.classList.remove('glitch'),350);}));
+document.querySelectorAll('button,a').forEach(el=>el.addEventListener('click',()=>{el.classList.add('glitch');setTimeout(()=>el.classList.remove('glitch'),350);}));
 const cards=document.querySelectorAll('.card-hover'),io=new IntersectionObserver((e)=>{e.forEach((x)=>{if(x.isIntersecting){const r=x.intersectionRatio;x.target.style.transform=`scale(${1+.1*r}) rotateX(${-10*r}deg)`;x.target.style.transition='transform .4s ease-out';}});},{threshold:[0,.25,.5,.75,1]});cards.forEach((c)=>io.observe(c));
 function shakeForm(f){if(!f.checkValidity()){f.style.animation='shake .4s';setTimeout(()=>f.style.animation='',400);}}
 window.addEventListener('DOMContentLoaded',()=>new TextPressure('#hero-pressure',{textColor:'#ffffff',minFontSize:32}));
