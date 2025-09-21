@@ -1,0 +1,25 @@
+name: Build Tailwind CSS
+
+on:
+  push:
+    branches: [ main ]
+
+# give the job write access
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}   # make sure we use the token that now has write
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - run: npm ci
+      - run: npm run build-css
+      - uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "auto-build tailwind css"
