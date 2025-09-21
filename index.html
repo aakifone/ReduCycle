@@ -9,28 +9,31 @@
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
 
-  <!-- =====  Light-Rays CSS  ===== -->
-  <link rel="stylesheet" href="css/LightRays.css">
-
-  <!-- =====  TextPressure font + theme (black page / white text)  ===== -->
+  <!-- =====  TextPressure (local font)  ===== -->
   <style>
     @font-face{
       font-family:'Compressa VF';
       src:url('./CompressaPRO-GX.woff2') format('woff2');
       font-display:swap;
     }
-    :root{
-      --earth-green:#5a8f3d;
-      --warm-brown:#8b5a2b;
-      --deep-teal:#2a6559;
-      --sand:#d7b98e;
-      --clay:#c77966;
+    .text-pressure{
+      font-family:'Compressa VF','Inter',sans-serif;
+      text-transform:uppercase;text-align:center;white-space:nowrap;
+      font-weight:100;line-height:1;color:#fff;
     }
-    html,body{background:#000;color:#fff;font-family:'Inter',sans-serif;scroll-behavior:smooth;}
-    .accent{color:var(--earth-green);}
-    .bg-accent{background-color:var(--earth-green);}
-    nav a,.sticky-cta{color:#fff;}
-    footer{background:linear-gradient(to b, var(--warm-brown), var(--deep-teal));}
+    .text-pressure span{display:inline-block;will-change:font-variation-settings,opacity;}
+  </style>
+
+  <!-- =====  theme + animations  ===== -->
+  <style>
+    :root{--earth-green:#5a8f3d;--warm-brown:#8b5a2b;--deep-teal:#2a6559;--sand:#d7b98e;--clay:#c77966;}
+    body{font-family:'Inter',sans-serif;scroll-behavior:smooth;}
+    .hero-bg{background:linear-gradient(rgba(0,0,0,.6),rgba(0,0,0,.6)),url('http://static.photos/technology/1200x630/42');background-size:cover;background-position:center;}
+    .accent{color:var(--earth-green);}.bg-accent{background-color:var(--earth-green);}
+    footer h3 span:last-child{color:#2F7D32;}footer h4{color:#D1D5DB;}
+    footer .grid>div:last-child{display:none;}
+    .sticky-cta{background-color:var(--warm-brown);transition:.3s;}
+    .sticky-cta.white{color:#fff;}.sticky-cta.dark{color:#111827;}
     /* insane anims */
     .floating-devices{position:absolute;inset:0;overflow:hidden;pointer-events:none;perspective:1000px;}
     .floating-devices img{position:absolute;opacity:.08;animation:float3d 12s infinite ease-in-out;}
@@ -40,16 +43,10 @@
     @keyframes shake{0%,100%{transform:translateX(0);}10%,30%,50%,70%,90%{transform:translateX(-6px);}20%,40%,60%,80%{transform:translateX(6px);}}
   </style>
 </head>
-<body class="bg-black text-white">
-
-<!-- =====  LIGHT-RAYS CANVAS (behind everything)  ===== -->
-<div id="light-rays" class="fixed inset-0 z-0"></div>
-
-<!-- =====  SITE CONTENT (above canvas)  ===== -->
-<div class="relative z-10">
+<body class="bg-white text-gray-800">
 
 <!-- NAV -->
-<nav class="fixed w-full bg-black shadow-md z-50">
+<nav class="fixed w-full bg-white shadow-md z-50">
   <div class="container mx-auto px-6 py-4 flex items-center justify-between">
     <div class="text-2xl font-bold"><span class="accent">Redu</span>Cycle</div>
     <div class="hidden md:flex space-x-8"><a href="#about" class="hover:text-green-500">About</a><a href="#impact" class="hover:text-green-500">Impact</a><a href="#courses" class="hover:text-green-500">Courses</a><a href="#involved" class="hover:text-green-500">Get Involved</a><a href="#contact" class="hover:text-green-500">Contact</a></div>
@@ -58,70 +55,130 @@
 </nav>
 
 <!-- HERO -->
-<section id="hero" class="min-h-screen flex items-center justify-center text-white pt-20 relative overflow-hidden">
+<section id="hero" class="hero-bg min-h-screen flex items-center justify-center text-white pt-20 relative overflow-hidden">
+  <div class="absolute inset-0 bg-gradient-to-b from-black/70 to-transparent z-10"></div>
   <div class="container mx-auto px-6 text-center relative z-20">
     <h1 id="hero-pressure" class="text-4xl md:text-6xl font-bold mb-6 text-white">Your Trash. Their Future.</h1>
     <p class="text-xl md:text-2xl mb-10 max-w-3xl mx-auto" data-aos="fade-up" data-aos-delay="200">We're flipping the script on e-waste – turning discarded tech into digital education for those who need it most.</p>
     <div class="flex flex-col sm:flex-row justify-center gap-4" data-aos="fade-up" data-aos-delay="300">
       <a href="#contact" class="bg-accent text-white px-8 py-3 rounded-full font-bold hover:bg-green-600 transition transform hover:scale-105">Join the Movement</a>
-      <button class="border-2 border-white text-white px-8 py-3 rounded-full font-bold hover:bg-white hover:text-black transition transform hover:scale-105">Donate Your Tech</button>
+      <button class="border-2 border-white text-white px-8 py-3 rounded-full font-bold hover:bg-white hover:text-gray-800 transition transform hover:scale-105">Donate Your Tech</button>
     </div>
   </div>
-  <!-- 3-D floating devices -->
   <div class="floating-devices"><img src="https://img.icons8.com/ios/100/ffffff/monitor.png" style="top:10%;left:5%;width:80px;animation-delay:0s"><img src="https://img.icons8.com/ios/100/ffffff/laptop.png" style="top:70%;right:10%;width:90px;animation-delay:2s"><img src="https://img.icons8.com/ios/100/ffffff/smartphone.png" style="bottom:20%;left:15%;width:60px;animation-delay:4s"><img src="https://img.icons8.com/ios/100/ffffff/tablet.png" style="top:40%;right:20%;width:70px;animation-delay:1s"><img src="https://img.icons8.com/ios/100/ffffff/cpu.png" style="bottom:10%;right:5%;width:65px;animation-delay:3s"></div>
 </section>
 
 <!-- ABOUT -->
-<section id="about" class="py-20 bg-black text-white"><div class="container mx-auto px-6"><h2 class="text-3xl md:text-4xl font-bold text-center mb-16" data-aos="fade-up">This Isn't Just Recycling.<br><span class="accent">This Is Revolution.</span></h2><div class="grid md:grid-cols-3 gap-10"><div class="bg-black p-8 rounded-xl shadow-md card-hover" data-aos="fade-up" data-aos-delay="100"><div class="text-5xl mb-4 accent"><i data-feather="eye"></i></div><h3 class="text-xl font-bold mb-3">Vision</h3><p class="text-gray-300">A world where digital literacy is a basic right, not a privilege.</p></div><div class="bg-black p-8 rounded-xl shadow-md" data-aos="fade-up" data-aos-delay="200"><div class="text-5xl mb-4 accent"><i data-feather="target"></i></div><h3 class="text-xl font-bold mb-3">Mission</h3><p class="text-gray-300">We collect e-waste and transform it into funding for peer-to-peer education. IB students in Dubai teach underprivileged youth aged 14–19 essential digital skills.</p></div><div class="bg-black p-8 rounded-xl shadow-md" data-aos="fade-up" data-aos-delay="300"><div class="text-5xl mb-4 accent"><i data-feather="heart"></i></div><h3 class="text-xl font-bold mb-3">Values</h3><ul class="text-gray-300 space-y-2"><li>Impact > Profit</li><li>Transparency</li><li>Student-led Change</li></ul></div></div></div></section>
+<section id="about" class="py-20 bg-gradient-to-b from-gray-50 to-white"><div class="container mx-auto px-6"><h2 class="text-3xl md:text-4xl font-bold text-center mb-16" data-aos="fade-up">This Isn't Just Recycling.<br><span class="accent">This Is Revolution.</span></h2><div class="grid md:grid-cols-3 gap-10"><div class="bg-white p-8 rounded-xl shadow-md card-hover" data-aos="fade-up" data-aos-delay="100"><div class="text-5xl mb-4 accent"><i data-feather="eye"></i></div><h3 class="text-xl font-bold mb-3">Vision</h3><p class="text-gray-600">A world where digital literacy is a basic right, not a privilege.</p></div><div class="bg-white p-8 rounded-xl shadow-md" data-aos="fade-up" data-aos-delay="200"><div class="text-5xl mb-4 accent"><i data-feather="target"></i></div><h3 class="text-xl font-bold mb-3">Mission</h3><p class="text-gray-600">We collect e-waste and transform it into funding for peer-to-peer education. IB students in Dubai teach underprivileged youth aged 14–19 essential digital skills.</p></div><div class="bg-white p-8 rounded-xl shadow-md" data-aos="fade-up" data-aos-delay="300"><div class="text-5xl mb-4 accent"><i data-feather="heart"></i></div><h3 class="text-xl font-bold mb-3">Values</h3><ul class="text-gray-600 space-y-2"><li>Impact > Profit</li><li>Transparency</li><li>Student-led Change</li></ul></div></div></div></section>
 
 <!-- IMPACT -->
-<section id="impact" class="py-20 bg-black text-white"><div class="container mx-auto px-6"><h2 class="text-3xl md:text-4xl font-bold text-center mb-16" data-aos="fade-up">See Our <span class="accent">Movement</span> in Action</h2><div class="max-w-4xl mx-auto text-center mb-16" data-aos="fade-up"><p class="text-2xl font-bold mb-6">"This isn't charity. This is <span class="accent">generational change</span> powered by your old tech."</p><p class="text-lg">Watch how we're turning e-waste into education and creating real impact.</p></div><div class="grid md:grid-cols-2 gap-8" data-aos="fade-up"><div class="bg-gray-900 rounded-xl aspect-[9/16] flex items-center justify-center"><div class="text-center p-8"><i data-feather="instagram" class="text-4xl mb-4 accent"></i><h3 class="text-xl font-bold mb-2">Latest Reels</h3><p class="text-gray-300 mb-4">See our students in action</p><a href="#" class="bg-accent text-white px-6 py-2 rounded-full text-sm font-bold hover:bg-green-600 transition inline-block">Follow Us</a></div></div><div class="bg-gray-900 rounded-xl aspect-[9/16] flex items-center justify-center"><div class="text-center p-8"><i data-feather="play-circle" class="text-4xl mb-4 accent"></i><h3 class="text-xl font-bold mb-2">Success Stories</h3><p class="text-gray-300">Watch transformation journeys</p></div></div></div></div></section>
+<section id="impact" class="py-20 bg-gray-100"><div class="container mx-auto px-6"><h2 class="text-3xl md:text-4xl font-bold text-center mb-16" data-aos="fade-up">See Our <span class="accent">Movement</span> in Action</h2><div class="max-w-4xl mx-auto text-center mb-16" data-aos="fade-up"><p class="text-2xl font-bold mb-6">"This isn't charity. This is <span class="accent">generational change</span> powered by your old tech."</p><p class="text-lg">Watch how we're turning e-waste into education and creating real impact.</p></div><div class="grid md:grid-cols-2 gap-8" data-aos="fade-up"><div class="bg-gray-200 rounded-xl aspect-[9/16] flex items-center justify-center"><div class="text-center p-8"><i data-feather="instagram" class="text-4xl mb-4 accent"></i><h3 class="text-xl font-bold mb-2">Latest Reels</h3><p class="text-gray-600 mb-4">See our students in action</p><a href="#" class="bg-accent text-white px-6 py-2 rounded-full text-sm font-bold hover:bg-green-600 transition inline-block">Follow Us</a></div></div><div class="bg-gray-200 rounded-xl aspect-[9/16] flex items-center justify-center"><div class="text-center p-8"><i data-feather="play-circle" class="text-4xl mb-4 accent"></i><h3 class="text-xl font-bold mb-2">Success Stories</h3><p class="text-gray-600">Watch transformation journeys</p></div></div></div></div></section>
 
 <!-- COURSES -->
-<section id="courses" class="py-20 bg-black text-white"><div class="container mx-auto px-6"><h2 class="text-3xl md:text-4xl font-bold text-center mb-16" data-aos="fade-up">Our <span class="accent">Courses</span></h2><div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8"><div class="bg-black p-6 rounded-xl shadow-md card-hover" data-aos="fade-up" data-aos-delay="100"><div class="text-4xl mb-4 accent"><i data-feather="monitor"></i></div><h3 class="text-xl font-bold mb-3">Computer Basics</h3><p class="text-gray-300">Fundamental skills to navigate and operate computers effectively.</p></div><div class="bg-black p-6 rounded-xl shadow-md card-hover" data-aos="fade-up" data-aos-delay="150"><div class="text-4xl mb-4 accent"><i data-feather="globe"></i></div><h3 class="text-xl font-bold mb-3">Internet & Email</h3><p class="text-gray-300">Essential online navigation and communication skills.</p></div><div class="bg-black p-6 rounded-xl shadow-md card-hover" data-aos="fade-up" data-aos-delay="200"><div class="text-4xl mb-4 accent"><i data-feather="briefcase"></i></div><h3 class="text-xl font-bold mb-3">Productivity Tools</h3><p class="text-gray-300">Mastering Word, Excel, and PowerPoint for professional use.</p></div><div class="bg-black p-6 rounded-xl shadow-md card-hover" data-aos="fade-up" data-aos-delay="250"><div class="text-4xl mb-4 accent"><i data-feather="shield"></i></div><h3 class="text-xl font-bold mb-3">Online Safety</h3><p class="text-gray-300">Protecting personal information and safe browsing practices.</p></div><div class="bg-black p-6 rounded-xl shadow-md card-hover" data-aos="fade-up" data-aos-delay="300"><div class="text-4xl mb-4 accent"><i data-feather="book-open"></i></div><h3 class="text-xl font-bold mb-3">Future Learning</h3><p class="text-gray-300">Pathways to continue digital education and skill development.</p></div><div class="bg-black p-6 rounded-xl shadow-md card-hover" data-aos="fade-up" data-aos-delay="350"><div class="text-4xl mb-4 accent"><i data-feather="plus"></i></div><h3 class="text-xl font-bold mb-3">More Coming Soon</h3><p class="text-gray-300">We're constantly expanding our curriculum.</p></div></div><div class="text-center mt-16" data-aos="fade-up"><p class="text-xl mb-6">Students graduate with a <span class="font-bold accent">ReduCycle Digital Literacy Certificate</span>.</p></div></div></section>
+<section id="courses" class="py-20 bg-gradient-to-b from-white to-gray-50"><div class="container mx-auto px-6"><h2 class="text-3xl md:text-4xl font-bold text-center mb-16" data-aos="fade-up">Our <span class="accent">Courses</span></h2><div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8"><div class="bg-white p-6 rounded-xl shadow-md card-hover" data-aos="fade-up" data-aos-delay="100"><div class="text-4xl mb-4 accent"><i data-feather="monitor"></i></div><h3 class="text-xl font-bold mb-3">Computer Basics</h3><p class="text-gray-600">Fundamental skills to navigate and operate computers effectively.</p></div><div class="bg-white p-6 rounded-xl shadow-md card-hover" data-aos="fade-up" data-aos-delay="150"><div class="text-4xl mb-4 accent"><i data-feather="globe"></i></div><h3 class="text-xl font-bold mb-3">Internet & Email</h3><p class="text-gray-600">Essential online navigation and communication skills.</p></div><div class="bg-white p-6 rounded-xl shadow-md card-hover" data-aos="fade-up" data-aos-delay="200"><div class="text-4xl mb-4 accent"><i data-feather="briefcase"></i></div><h3 class="text-xl font-bold mb-3">Productivity Tools</h3><p class="text-gray-600">Mastering Word, Excel, and PowerPoint for professional use.</p></div><div class="bg-white p-6 rounded-xl shadow-md card-hover" data-aos="fade-up" data-aos-delay="250"><div class="text-4xl mb-4 accent"><i data-feather="shield"></i></div><h3 class="text-xl font-bold mb-3">Online Safety</h3><p class="text-gray-600">Protecting personal information and safe browsing practices.</p></div><div class="bg-white p-6 rounded-xl shadow-md card-hover" data-aos="fade-up" data-aos-delay="300"><div class="text-4xl mb-4 accent"><i data-feather="book-open"></i></div><h3 class="text-xl font-bold mb-3">Future Learning</h3><p class="text-gray-600">Pathways to continue digital education and skill development.</p></div><div class="bg-white p-6 rounded-xl shadow-md card-hover" data-aos="fade-up" data-aos-delay="350"><div class="text-4xl mb-4 accent"><i data-feather="plus"></i></div><h3 class="text-xl font-bold mb-3">More Coming Soon</h3><p class="text-gray-600">We're constantly expanding our curriculum.</p></div></div><div class="text-center mt-16" data-aos="fade-up"><p class="text-xl mb-6">Students graduate with a <span class="font-bold accent">ReduCycle Digital Literacy Certificate</span>.</p></div></div></section>
 
 <!-- GET INVOLVED -->
-<section id="involved" class="py-20 bg-black text-white"><div class="container mx-auto px-6"><h2 class="text-3xl md:text-4xl font-bold text-center mb-16" data-aos="fade-up"><span class="accent">Your Move.</span><br>Choose How You Change Lives</h2><p class="text-xl text-center max-w-3xl mx-auto mb-16" data-aos="fade-up">"The future isn't built by spectators. It's built by <span class="font-bold accent">doers</span>."</p><div class="grid md:grid-cols-3 gap-8"><div class="bg-black p-8 rounded-xl border border-gray-800 card-hover" data-aos="fade-up" data-aos-delay="100"><div class="text-5xl mb-4 accent"><i data-feather="cpu"></i></div><h3 class="text-xl font-bold mb-3">Donate Devices</h3><p class="text-gray-300 mb-4">School drop boxes / company donations.</p><button class="bg-accent text-white px-6 py-2 rounded-full text-sm font-bold hover:bg-green-600 transition">Learn More</button></div><div class="bg-black p-8 rounded-xl border border-gray-800 card-hover" data-aos="fade-up" data-aos-delay="200"><div class="text-5xl mb-4 accent"><i data-feather="users"></i></div><h3 class="text-xl font-bold mb-3">Volunteer</h3><p class="text-gray-300 mb-4">Dubai students sign up to teach.</p><button class="bg-accent text-white px-6 py-2 rounded-full text-sm font-bold hover:bg-green-600 transition">Sign Up</button></div><div class="bg-black p-8 rounded-xl border border-gray-800 card-hover" data-aos="fade-up" data-aos-delay="300"><div class="text-5xl mb-4 accent"><i data-feather="handshake"></i></div><h3 class="text-xl font-bold mb-3">Partner</h3><p class="text-gray-300 mb-4">NGOs/schools collaborate with us.</p><button class="bg-accent text-white px-6 py-2 rounded-full text-sm font-bold hover:bg-green-600 transition">Contact Us</button></div></div></div></section>
+<section id="involved" class="py-20 bg-gray-50"><div class="container mx-auto px-6"><h2 class="text-3xl md:text-4xl font-bold text-center mb-16" data-aos="fade-up"><span class="accent">Your Move.</span><br>Choose How You Change Lives</h2><p class="text-xl text-center max-w-3xl mx-auto mb-16" data-aos="fade-up">"The future isn't built by spectators. It's built by <span class="font-bold accent">doers</span>."</p><div class="grid md:grid-cols-3 gap-8"><div class="bg-white p-8 rounded-xl border border-gray-200" data-aos="fade-up" data-aos-delay="100"><div class="text-5xl mb-4 accent"><i data-feather="cpu"></i></div><h3 class="text-xl font-bold mb-3">Donate Devices</h3><p class="text-gray-600 mb-4">School drop boxes / company donations.</p><button class="bg-accent text-white px-6 py-2 rounded-full text-sm font-bold hover:bg-green-600 transition">Learn More</button></div><div class="bg-white p-8 rounded-xl border border-gray-200" data-aos="fade-up" data-aos-delay="200"><div class="text-5xl mb-4 accent"><i data-feather="users"></i></div><h3 class="text-xl font-bold mb-3">Volunteer</h3><p class="text-gray-600 mb-4">Dubai students sign up to teach.</p><button class="bg-accent text-white px-6 py-2 rounded-full text-sm font-bold hover:bg-green-600 transition">Sign Up</button></div><div class="bg-white p-8 rounded-xl border border-gray-200" data-aos="fade-up" data-aos-delay="300"><div class="text-5xl mb-4 accent"><i data-feather="handshake"></i></div><h3 class="text-xl font-bold mb-3">Partner</h3><p class="text-gray-600 mb-4">NGOs/schools collaborate with us.</p><button class="bg-accent text-white px-6 py-2 rounded-full text-sm font-bold hover:bg-green-600 transition">Contact Us</button></div></div></div></section>
 
 <!-- CONTACT -->
-<section id="contact" class="py-20 bg-black text-white"><div class="container mx-auto px-6"><h2 class="text-3xl md:text-4xl font-bold text-center mb-16" data-aos="fade-up">Contact <span class="accent">Us</span></h2><div class="max-w-5xl mx-auto grid md:grid-cols-2 gap-10 items-start"><div data-aos="fade-up" data-aos-delay="100"><form action="https://script.google.com/macros/s/AKfycbzjjViwmOVKk4fNhJXZjewJYz77TagVPTQAd5l1fgTYaPvPeDX1T6jCHGAXsBD9NaI-/exec" method="POST" target="hidden_iframe" class="space-y-6" onsubmit="shakeForm(this)"><input name="name" type="text" required placeholder="Name" class="w-full px-4 py-2 border border-gray-700 rounded-lg focus:ring-2 focus:ring-green-500 bg-gray-900 text-white"><input name="email" type="email" required placeholder="Email" class="w-full px-4 py-2 border border-gray-700 rounded-lg focus:ring-2 focus:ring-green-500 bg-gray-900 text-white"><select name="reason" required class="w-full px-4 py-2 border border-gray-700 rounded-lg focus:ring-2 focus:ring-green-500 bg-gray-900 text-white"><option>General Inquiry</option><option>Device Donation</option><option>Volunteering</option><option>Partnership</option></select><textarea name="message" required placeholder="Message" rows="4" class="w-full px-4 py-2 border border-gray-700 rounded-lg focus:ring-2 focus:ring-green-500 bg-gray-900 text-white"></textarea><button type="submit" class="bg-accent text-white px-6 py-3 rounded-lg font-bold hover:bg-green-600 transition w-full">Send Message</button></form></div><div data-aos="fade-up" data-aos-delay="200"><div class="bg-black p-8 rounded-xl shadow-md h-full"><h3 class="text-xl font-bold mb-6">Other Ways to Reach Us</h3><div class="space-y-6"><div class="flex items-start"><div class="text-2xl mr-4 accent"><i data-feather="mail"></i></div><div><h4 class="font-bold mb-1">Email</h4><p class="text-gray-300">info.reducycle@gmail.com</p></div></div><div class="flex items-start"><div class="text-2xl mr-4 accent"><i data-feather="map-pin"></i></div><div><h4 class="font-bold mb-1">Location</h4><p class="text-gray-300">Based in Dubai, UAE</p></div></div><div class="flex items-start"><div class="text-2xl mr-4 accent"><i data-feather="share-2"></i></div><div><h4 class="font-bold mb-3">Social Media</h4><div class="flex space-x-4"><a href="#" class="text-gray-300 hover:text-green-500 transition"><i data-feather="instagram"></i></a></div></div></div></div></div></div></div></div></section>
+<section id="contact" class="py-20 bg-gradient-to-b from-gray-50 to-white"><div class="container mx-auto px-6"><h2 class="text-3xl md:text-4xl font-bold text-center mb-16" data-aos="fade-up">Contact <span class="accent">Us</span></h2><div class="max-w-5xl mx-auto grid md:grid-cols-2 gap-10 items-start"><div data-aos="fade-up" data-aos-delay="100"><form action="https://script.google.com/macros/s/AKfycbzjjViwmOVKk4fNhJXZjewJYz77TagVPTQAd5l1fgTYaPvPeDX1T6jCHGAXsBD9NaI-/exec" method="POST" target="hidden_iframe" class="space-y-6" onsubmit="shakeForm(this)"><input name="name" type="text" required placeholder="Name" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500"><input name="email" type="email" required placeholder="Email" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500"><select name="reason" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500"><option>General Inquiry</option><option>Device Donation</option><option>Volunteering</option><option>Partnership</option></select><textarea name="message" required placeholder="Message" rows="4" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500"></textarea><button type="submit" class="bg-accent text-white px-6 py-3 rounded-lg font-bold hover:bg-green-600 transition w-full">Send Message</button></form></div><div data-aos="fade-up" data-aos-delay="200"><div class="bg-white p-8 rounded-xl shadow-md h-full"><h3 class="text-xl font-bold mb-6">Other Ways to Reach Us</h3><div class="space-y-6"><div class="flex items-start"><div class="text-2xl mr-4 accent"><i data-feather="mail"></i></div><div><h4 class="font-bold mb-1">Email</h4><p class="text-gray-600">info.reducycle@gmail.com</p></div></div><div class="flex items-start"><div class="text-2xl mr-4 accent"><i data-feather="map-pin"></i></div><div><h4 class="font-bold mb-1">Location</h4><p class="text-gray-600">Based in Dubai, UAE</p></div></div><div class="flex items-start"><div class="text-2xl mr-4 accent"><i data-feather="share-2"></i></div><div><h4 class="font-bold mb-3">Social Media</h4><div class="flex space-x-4"><a href="#" class="text-gray-600 hover:text-green-500 transition"><i data-feather="instagram"></i></a></div></div></div></div></div></div></div></div></section>
 
 <!-- FOOTER -->
-<footer class="bg-gradient-to-b from-var(--warm-brown) to-var(--deep-teal) text-white py-12"><div class="container mx-auto px-6"><div class="grid md:grid-cols-4 gap-10"><div><h3 class="text-2xl font-bold mb-4"><span class="accent">Redu</span>Cycle</h3><p class="text-gray-400">Turning e-waste into education.</p></div><div><h4 class="font-bold mb-4">Quick Links</h4><ul class="space-y-2"><li><a href="#about" class="text-gray-300 hover:text-white transition">About</a></li><li><a href="#impact" class="text-gray-300 hover:text-white transition">Impact</a></li><li><a href="#courses" class="text-gray-300 hover:text-white transition">Courses</a></li><li><a href="#contact" class="text-gray-300 hover:text-white transition">Contact</a></li></ul></div><div><h4 class="font-bold mb-4">Get Involved</h4><ul class="space-y-2"><li><a href="#" class="text-gray-300 hover:text-white transition">Donate Devices</a></li><li><a href="#" class="text-gray-300 hover:text-white transition">Volunteer</a></li><li><a href="#" class="text-gray-300 hover:text-white transition">Partner With Us</a></li></ul></div><div></div></div><div class="border-t border-gray-700 mt-12 pt-8 text-center text-gray-400"><p>&copy; 2025 ReduCycle. All rights reserved.</p></div></div></footer>
+<footer class="bg-gradient-to-b from-var(--warm-brown) to-var(--deep-teal) text-white py-12"><div class="container mx-auto px-6"><div class="grid md:grid-cols-4 gap-10"><div><h3 class="text-2xl font-bold mb-4"><span class="accent">Redu</span>Cycle</h3><p class="text-gray-400">Turning e-waste into education.</p></div><div><h4 class="font-bold mb-4">Quick Links</h4><ul class="space-y-2"><li><a href="#about" class="text-gray-400 hover:text-white transition">About</a></li><li><a href="#impact" class="text-gray-400 hover:text-white transition">Impact</a></li><li><a href="#courses" class="text-gray-400 hover:text-white transition">Courses</a></li><li><a href="#contact" class="text-gray-400 hover:text-white transition">Contact</a></li></ul></div><div><h4 class="font-bold mb-4">Get Involved</h4><ul class="space-y-2"><li><a href="#" class="text-gray-400 hover:text-white transition">Donate Devices</a></li><li><a href="#" class="text-gray-400 hover:text-white transition">Volunteer</a></li><li><a href="#" class="text-gray-400 hover:text-white transition">Partner With Us</a></li></ul></div><div></div></div><div class="border-t border-gray-700 mt-12 pt-8 text-center text-gray-400"><p>&copy; 2025 ReduCycle. All rights reserved.</p></div></div></footer>
 
 <!-- STICKY CTA -->
 <a href="#contact" id="stickyCta" class="sticky-cta fixed bottom-6 right-6 z-50 animate-bounce bg-var(--warm-brown) px-6 py-3 rounded-full font-bold shadow-lg hover:bg-var(--clay) transition transform hover:scale-110" style="animation-duration:2s"><i data-feather="user-plus" class="mr-2 inline"></i>Join the Mission</a>
 
 <iframe name="hidden_iframe" style="display:none"></iframe>
 
-</div> <!-- /relative z-10 -->
-
-<!-- =====  Light-Rays JS (vanilla)  ===== -->
-<script src="js/LightRays.js"></script>
+<!-- ===== JS ===== -->
 <script>
-/*  vanilla Light-Rays with YOUR exact settings  */
-window.addEventListener('DOMContentLoaded',()=>{
-  new LightRays('#light-rays',{
-    raysOrigin:'top',
-    raysColor:'#007BFF',      // YOUR colour
-    raysSpeed:1,              // YOUR speed
-    lightSpread:2,            // YOUR spread
-    rayLength:3,              // YOUR length
-    pulsating:true,           // YOUR pulsating ON
-    fadeDistance:1,           // YOUR fade
-    saturation:1,             // YOUR saturation
-    followMouse:true,         // keep mouse follow
-    mouseInfluence:0,         // YOUR influence OFF
-    noiseAmount:0,            // YOUR noise OFF
-    distortion:1              // YOUR distortion ON
-  });
-});
-/*  your existing scripts  */
+/* TextPressure vanilla */
+class TextPressure{
+  constructor(selector,opts={}){
+    this.container=typeof selector==='string'?document.querySelector(selector):selector;
+    if(!this.container){console.warn('TextPressure: element not found');return;}
+    this.text=opts.text||this.container.textContent||'Compressa';
+    this.textColor=opts.textColor||'#FFFFFF';
+    this.minFontSize=opts.minFontSize||24;
+    this.width=opts.width!==false;
+    this.weight=opts.weight!==false;
+    this.italic=opts.italic!==false;
+    this.alpha=opts.alpha||false;
+    this.spans=[];
+    this.mouse={x:0,y:0};
+    this.cursor={x:0,y:0};
+    this.init();
+  }
+  init(){
+    this.container.innerHTML='';
+    this.container.className='text-pressure';
+    this.container.style.color=this.textColor;
+    if(!document.querySelector('#text-pressure-font')){
+      const s=document.createElement('style');
+      s.id='text-pressure-font';
+      s.textContent=`@font-face{font-family:'Compressa VF';src:url('./CompressaPRO-GX.woff2') format('woff2');}`;
+      document.head.appendChild(s);
+    }
+    this.buildSpans();
+    this.bindEvents();
+    this.animate();
+  }
+  buildSpans(){
+    this.text.split('').forEach(ch=>{
+      const span=document.createElement('span');
+      span.textContent=ch===''?'\u00A0':ch;
+      this.container.appendChild(span);
+      this.spans.push(span);
+    });
+  }
+  bindEvents(){
+    const onMove=e=>{
+      const t=e.touches?e.touches[0]:e;
+      this.cursor.x=t.clientX;
+      this.cursor.y=t.clientY;
+    };
+    window.addEventListener('mousemove',onMove);
+    window.addEventListener('touchmove',onMove,{passive:false});
+    window.addEventListener('resize',()=>this.setSize());
+    this.setSize();
+  }
+  setSize(){
+    const rect=this.container.getBoundingClientRect();
+    const fontSize=Math.max(rect.width/(this.text.length/2),this.minFontSize);
+    this.container.style.fontSize=fontSize+'px';
+  }
+  animate(){
+    const loop=()=>{
+      this.mouse.x+=(this.cursor.x-this.mouse.x)/15;
+      this.mouse.y+=(this.cursor.y-this.mouse.y)/15;
+      const rect=this.container.getBoundingClientRect();
+      const maxDist=rect.width/2;
+      this.spans.forEach(span=>{
+        const r=span.getBoundingClientRect();
+        const cx=r.x+r.width/2;
+        const cy=r.y+r.height/2;
+        const d=Math.hypot(this.mouse.x-cx,this.mouse.y-cy);
+        const getAttr=(dist,min,max)=>Math.max(min,max-Math.abs((max*dist)/maxDist));
+        const wdth=this.width?Math.floor(getAttr(d,5,200)):100;
+        const wght=this.weight?Math.floor(getAttr(d,100,900)):400;
+        const ital=this.italic?getAttr(d,0,1).toFixed(2):0;
+        const alpha=this.alpha?getAttr(d,0,1).toFixed(2):1;
+        span.style.opacity=alpha;
+        span.style.fontVariationSettings=`'wght' ${wght}, 'wdth' ${wdth}, 'ital' ${ital}`;
+      });
+      requestAnimationFrame(loop);
+    };
+    loop();
+  }
+}
+
+/* rest of your scripts */
 AOS.init({duration:800,easing:'ease-in-out',once:true});feather.replace();
 const btn=document.getElementById('stickyCta'),hero=document.getElementById('hero');
 const update=()=>{const hb=hero.getBoundingClientRect().bottom;btn.classList.toggle('white',hb>0);btn.classList.toggle('dark',hb<=0);};
 window.addEventListener('scroll',update);update();
-document.querySelectorAll('button,a').forEach(el=>el.addEventListener('click',()=>{el.classList.add('glitch');setTimeout(()=>el.classList.remove('glitch'),350);}));
+document.querySelectorAll('button, a').forEach(el=>el.addEventListener('click',()=>{el.classList.add('glitch');setTimeout(()=>el.classList.remove('glitch'),350);}));
 const cards=document.querySelectorAll('.card-hover'),io=new IntersectionObserver((e)=>{e.forEach((x)=>{if(x.isIntersecting){const r=x.intersectionRatio;x.target.style.transform=`scale(${1+.1*r}) rotateX(${-10*r}deg)`;x.target.style.transition='transform .4s ease-out';}});},{threshold:[0,.25,.5,.75,1]});cards.forEach((c)=>io.observe(c));
 function shakeForm(f){if(!f.checkValidity()){f.style.animation='shake .4s';setTimeout(()=>f.style.animation='',400);}}
 window.addEventListener('DOMContentLoaded',()=>new TextPressure('#hero-pressure',{textColor:'#ffffff',minFontSize:32}));
