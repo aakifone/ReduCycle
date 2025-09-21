@@ -104,7 +104,9 @@
 <section id="hero" class="hero-bg min-h-screen flex items-center justify-center text-white pt-20 relative overflow-hidden">
     <div class="absolute inset-0 bg-gradient-to-b from-black/70 to-transparent z-10"></div>
     <div class="container mx-auto px-6 text-center relative z-20">
-        <h1 class="text-4xl md:text-6xl font-bold mb-6" data-aos="fade-up"><span>Your Trash.</span> <span class="accent">Their Future.</span></h1>
+        <h1 id="hero-pressure" class="text-4xl md:text-6xl font-bold mb-6 text-white">
+  Your Trash. Their Future.
+</h1>
         <p class="text-xl md:text-2xl mb-10 max-w-3xl mx-auto" data-aos="fade-up" data-aos-delay="200">We're flipping the script on e-waste – turning discarded tech into digital education for those who need it most.</p>
         <div class="flex flex-col sm:flex-row justify-center gap-4" data-aos="fade-up" data-aos-delay="300">
             <a href="#contact" class="bg-accent text-white px-8 py-3 rounded-full font-bold hover:bg-green-600 transition transform hover:scale-105">Join the Movement</a>
@@ -292,8 +294,17 @@
     setTimeout(type, 500);
 
 </script>
+    <script>
+  window.addEventListener('DOMContentLoaded', () => {
+    new TextPressure('#hero-pressure', {
+      textColor: '#ffffff',
+      minFontSize: 32
+    });
+  });
+</script>
 </body>
 </html>
+
 
 
 
