@@ -1,0 +1,17 @@
+@font-face{
+  font-family:'Compressa VF';
+  src:url('https://res.cloudinary.com/dr6lvwubh/raw/upload/v1529908256/CompressaPRO-GX.woff2') format('woff2');
+}
+.text-pressure{
+  display:block;
+  font-family:'Compressa VF',sans-serif;
+  text-transform:uppercase;
+  text-align:center;
+  white-space:nowrap;
+  font-weight:100;
+  line-height:1;
+}
+.text-pressure span{
+  display:inline-block;
+  will-change:font-variation-settings,opacity;
+}
