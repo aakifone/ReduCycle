@@ -4,36 +4,41 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ReduCycle - Turning E-Waste into Education</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+
+  <!-- =====  Light-Rays + TextPressure fonts  ===== -->
   <style>
-    /* =====  BLACK PAGE + WHITE TEXT  ===== */
-    html,body{margin:0;padding:0;background:#000;color:#fff;font-family:'Inter',sans-serif;scroll-behavior:smooth;}
-    .accent{color:#5a8f3d;}
-    .bg-accent{background-color:#5a8f3d;}
-    nav a,.sticky-cta{color:#fff;}
-    footer{background:linear-gradient(to bottom,#8b5a2b,#2a6559);}
-    
-    /* =====  LIGHT-RAYS CANVAS  ===== */
-    #light-rays{position:fixed;inset:0;z-index:0;pointer-events:none;}
-    .content{position:relative;z-index:1;}
-    
-    /* =====  FLOATING DEVICES  ===== */
-    .floating-devices{position:absolute;inset:0;overflow:hidden;pointer-events:none;}
-    .floating-devices img{position:absolute;opacity:.08;animation:float3d 12s infinite ease-in-out;}
-    @keyframes float3d{0%,100%{transform:translateY(0) rotateX(0) rotateY(0) scale(1);}25%{transform:translateY(-40px) rotateX(20deg) rotateY(180deg) scale(1.15);}50%{transform:translateY(20px) rotateX(-10deg) rotateY(360deg) scale(.9);}75%{transform:translateY(-20px) rotateX(15deg) rotateY(540deg) scale(1.05);}}
-    
-    /* =====  TEXT-PRESSURE  ===== */
     @font-face{font-family:'Compressa VF';src:url('./CompressaPRO-GX.woff2') format('woff2');font-display:swap;}
     .text-pressure{font-family:'Compressa VF','Inter',sans-serif;text-transform:uppercase;text-align:center;white-space:nowrap;font-weight:100;line-height:1;color:#fff;}
     .text-pressure span{display:inline-block;will-change:font-variation-settings,opacity;}
   </style>
+
+  <!-- =====  THEME + ANIMATIONS  ===== -->
+  <style>
+    :root{--earth-green:#5a8f3d;--warm-brown:#8b5a2b;--deep-teal:#2a6559;--sand:#d7b98e;--clay:#c77966;}
+    html,body{background:#000;color:#fff;font-family:'Inter',sans-serif;scroll-behavior:smooth;}
+    .accent{color:var(--earth-green);}
+    .bg-accent{background-color:var(--earth-green);}
+    nav a,.sticky-cta{color:#fff;}
+    footer{background:linear-gradient(to b, var(--warm-brown), var(--deep-teal));}
+    .floating-devices{position:absolute;inset:0;overflow:hidden;pointer-events:none;}
+    .floating-devices img{position:absolute;opacity:.08;animation:float3d 12s infinite ease-in-out;}
+    @keyframes float3d{0%,100%{transform:translateY(0) rotateX(0) rotateY(0) scale(1);}25%{transform:translateY(-40px) rotateX(20deg) rotateY(180deg) scale(1.15);}50%{transform:translateY(20px) rotateX(-10deg) rotateY(360deg) scale(.9);}75%{transform:translateY(-20px) rotateX(15deg) rotateY(540deg) scale(1.05);}}
+    .glitch{animation:glitch .35s linear;}@keyframes glitch{0%,100%{transform:translate(0);}10%{transform:translate(-2px,-1px);}20%{transform:translate(2px,1px);}30%{transform:translate(-1px,2px);}40%{transform:translate(1px,-2px);}50%{transform:translate(-2px,1px);}60%{transform:translate(2px,-1px);}70%{transform:translate(-1px,-1px);}80%{transform:translate(1px,1px);}90%{transform:translate(-2px,0);}}
+    nav a{position:relative;overflow:hidden;}nav a::before{content:'';position:absolute;inset:0;background:linear-gradient(45deg,#ff0f7b,#ff512f,#fca311,#00f5d4,#9b5de5,#f15bb5);background-size:400% 400%;opacity:0;transition:opacity .3s;animation:rainbow 2s linear infinite;}nav a:hover::before{opacity:.25;}@keyframes rainbow{0%{background-position:0% 50%;}50%{background-position:100% 50%;}100%{background-position:0% 50%;}}
+    @keyframes shake{0%,100%{transform:translateX(0);}10%,30%,50%,70%,90%{transform:translateX(-6px);}20%,40%,60%,80%{transform:translateX(6px);}}
+  </style>
 </head>
 <body class="bg-black text-white">
 
-<!-- =====  LIGHT-RAYS CANVAS  ===== -->
-<canvas id="light-rays"></canvas>
+<!-- =====  LIGHT-RAYS CANVAS (behind everything)  ===== -->
+<canvas id="light-rays" class="fixed inset-0 z-0"></canvas>
 
-<!-- =====  CONTENT  ===== -->
-<div class="content">
+<!-- =====  SITE CONTENT (above canvas)  ===== -->
+<div class="relative z-10">
 
 <!-- NAV -->
 <nav class="fixed w-full bg-black shadow-md z-50">
@@ -47,215 +52,4 @@
 <!-- HERO -->
 <section id="hero" class="min-h-screen flex items-center justify-center text-white pt-20 relative overflow-hidden">
   <div class="container mx-auto px-6 text-center relative z-10">
-    <h1 id="hero-pressure" class="text-4xl md:text-6xl font-bold mb-6 text-white">Your Trash. Their Future.</h1>
-    <p class="text-xl md:text-2xl mb-10 max-w-3xl mx-auto">We're flipping the script on e-waste – turning discarded tech into digital education for those who need it most.</p>
-    <div class="flex flex-col sm:flex-row justify-center gap-4">
-      <a href="#contact" class="bg-accent text-white px-8 py-3 rounded-full font-bold hover:bg-green-600 transition transform hover:scale-105">Join the Movement</a>
-      <button class="border-2 border-white text-white px-8 py-3 rounded-full font-bold hover:bg-white hover:text-black transition transform hover:scale-105">Donate Your Tech</button>
-    </div>
-  </div>
-  <!-- 3-D floating devices -->
-  <div class="floating-devices"><img src="https://img.icons8.com/ios/100/ffffff/monitor.png" style="top:10%;left:5%;width:80px;animation-delay:0s"><img src="https://img.icons8.com/ios/100/ffffff/laptop.png" style="top:70%;right:10%;width:90px;animation-delay:2s"><img src="https://img.icons8.com/ios/100/ffffff/smartphone.png" style="bottom:20%;left:15%;width:60px;animation-delay:4s"><img src="https://img.icons8.com/ios/100/ffffff/tablet.png" style="top:40%;right:20%;width:70px;animation-delay:1s"><img src="https://img.icons8.com/ios/100/ffffff/cpu.png" style="bottom:10%;right:5%;width:65px;animation-delay:3s"></div>
-</section>
-
-<!-- ABOUT -->
-<section id="about" class="py-20 bg-black text-white"><div class="container mx-auto px-6"><h2 class="text-3xl md:text-4xl font-bold text-center mb-16">This Isn't Just Recycling.<br><span class="accent">This Is Revolution.</span></h2><div class="grid md:grid-cols-3 gap-10"><div class="bg-black p-8 rounded-xl shadow-md"><div class="text-5xl mb-4 accent"><i data-feather="eye"></i></div><h3 class="text-xl font-bold mb-3">Vision</h3><p class="text-gray-300">A world where digital literacy is a basic right, not a privilege.</p></div><div class="bg-black p-8 rounded-xl shadow-md"><div class="text-5xl mb-4 accent"><i data-feather="target"></i></div><h3 class="text-xl font-bold mb-3">Mission</h3><p class="text-gray-300">We collect e-waste and transform it into funding for peer-to-peer education. IB students in Dubai teach underprivileged youth aged 14–19 essential digital skills.</p></div><div class="bg-black p-8 rounded-xl shadow-md"><div class="text-5xl mb-4 accent"><i data-feather="heart"></i></div><h3 class="text-xl font-bold mb-3">Values</h3><ul class="text-gray-300 space-y-2"><li>Impact > Profit</li><li>Transparency</li><li>Student-led Change</li></ul></div></div></div></section>
-
-<!-- FOOTER -->
-<footer class="bg-gradient-to-b from-[#8b5a2b] to-[#2a6559] text-white py-12"><div class="container mx-auto px-6"><div class="grid md:grid-cols-4 gap-10"><div><h3 class="text-2xl font-bold mb-4"><span class="accent">Redu</span>Cycle</h3><p class="text-gray-400">Turning e-waste into education.</p></div><div><h4 class="font-bold mb-4">Quick Links</h4><ul class="space-y-2"><li><a href="#about" class="text-gray-300 hover:text-white transition">About</a></li><li><a href="#impact" class="text-gray-300 hover:text-white transition">Impact</a></li><li><a href="#courses" class="text-gray-300 hover:text-white transition">Courses</a></li><li><a href="#contact" class="text-gray-300 hover:text-white transition">Contact</a></li></ul></div><div><h4 class="font-bold mb-4">Get Involved</h4><ul class="space-y-2"><li><a href="#" class="text-gray-300 hover:text-white transition">Donate Devices</a></li><li><a href="#" class="text-gray-300 hover:text-white transition">Volunteer</a></li><li><a href="#" class="text-gray-300 hover:text-white transition">Partner With Us</a></li></ul></div><div></div></div><div class="border-t border-gray-700 mt-12 pt-8 text-center text-gray-400"><p>&copy; 2025 ReduCycle. All rights reserved.</p></div></div></footer>
-
-<!-- =====  SCRIPTS  ===== -->
-<script src="https://unpkg.com/feather-icons"></script>
-<script>feather.replace();</script>
-<script>
-/* =====  LIGHT-RAYS (vanilla, no deps)  ===== */
-const canvas=document.getElementById('light-rays');
-const gl=canvas.getContext('webgl')||canvas.getContext('experimental-webgl');
-if(!gl){console.warn('WebGL unavailable');}else{
-  const resize=()=>{
-    const dpr=Math.min(window.devicePixelRatio,2);
-    const rect=document.body.getBoundingClientRect();
-    canvas.width=rect.width*dpr;canvas.height=rect.height*dpr;
-    gl.viewport(0,0,canvas.width,canvas.height);
-  };window.addEventListener('resize',resize);resize();
-
-  const vert=`attribute vec2 position;varying vec2 vUv;void main(){vUv=position*0.5+0.5;gl_Position=vec4(position,0.0,1.0);}`;
-  const frag=`precision highp float;
-uniform float iTime;uniform vec2 iResolution;uniform vec2 rayPos;uniform vec2 rayDir;uniform vec3 raysColor;
-uniform float raysSpeed;uniform float lightSpread;uniform float rayLength;uniform float pulsating;uniform float fadeDistance;
-uniform float saturation;uniform vec2 mousePos;uniform float mouseInfluence;uniform float noiseAmount;uniform float distortion;
-varying vec2 vUv;
-float noise(vec2 st){return fract(sin(dot(st.xy,vec2(12.9898,78.233)))*43758.5453123);}
-float rayStrength(vec2 raySource,vec2 rayRefDirection,vec2 coord,float seedA,float seedB,float speed){
-  vec2 sourceToCoord=coord-raySource;vec2 dirNorm=normalize(sourceToCoord);
-  float cosAngle=dot(dirNorm,rayRefDirection);float distortedAngle=cosAngle+distortion*sin(iTime*2.0+length(sourceToCoord)*0.01)*0.2;
-  float spreadFactor=pow(max(distortedAngle,0.0),1.0/max(lightSpread,0.001));
-  float distance=length(sourceToCoord);float maxDistance=iResolution.x*rayLength;
-  float lengthFalloff=clamp((maxDistance-distance)/maxDistance,0.0,1.0);
-  float fadeFalloff=clamp((iResolution.x*fadeDistance-distance)/(iResolution.x*fadeDistance),0.5,1.0);
-  float pulse=pulsating>0.5?(0.8+0.2*sin(iTime*speed*3.0)):1.0;
-  float baseStrength=clamp((0.45+0.15*sin(distortedAngle*seedA+iTime*speed))+(0.3+0.2*cos(-distortedAngle*seedB+iTime*speed)),0.0,1.0);
-  return baseStrength*lengthFalloff*fadeFalloff*spreadFactor*pulse;
-}
-void mainImage(out vec4 fragColor,in vec2 fragCoord){
-  vec2 coord=vec2(fragCoord.x,iResolution.y-fragCoord.y);
-  vec2 finalRayDir=rayDir;
-  if(mouseInfluence>0.0){
-    vec2 mouseScreenPos=mousePos*iResolution.xy;
-    vec2 mouseDirection=normalize(mouseScreenPos-rayPos);
-    finalRayDir=normalize(mix(rayDir,mouseDirection,mouseInfluence));
-  }
-  vec4 rays1=vec4(1.0)*rayStrength(rayPos,finalRayDir,coord,36.2214,21.11349,1.5*1.0);
-  vec4 rays2=vec4(1.0)*rayStrength(rayPos,finalRayDir,coord,22.3991,18.0234,1.1*1.0);
-  fragColor=rays1*0.5+rays2*0.4;
-  if(0.0>0.0){float n=noise(coord*0.01+iTime*0.1);fragColor.rgb*=(1.0-0.0+0.0*n);}
-  float brightness=1.0-(coord.y/iResolution.y);
-  fragColor.x*=0.1+brightness*0.8;fragColor.y*=0.3+brightness*0.6;fragColor.z*=0.5+brightness*0.5;
-  if(1.0!=1.0){float gray=dot(fragColor.rgb,vec3(0.299,0.587,0.114));fragColor.rgb=mix(vec3(gray),fragColor.rgb,1.0);}
-  fragColor.rgb*=#007BFF;
-}
-void main(){mainImage(gl_FragColor,gl_FragCoord.xy);}`;
-
-  const program=((v,f)=>{
-    const p=gl.createProgram();const vs=gl.createShader(gl.VERTEX_SHADER);const fs=gl.createShader(gl.FRAGMENT_SHADER);
-    gl.shaderSource(vs,v);gl.shaderSource(fs,f);gl.compileShader(vs);gl.compileShader(fs);
-    gl.attachShader(p,vs);gl.attachShader(p,fs);gl.linkProgram(p);return p;
-  })(vert,frag);
-
-  const buffer=gl.createBuffer();gl.bindBuffer(gl.ARRAY_BUFFER,buffer);gl.bufferData(gl.ARRAY_BUFFER,new Float32Array([-1,-1,1,-1,-1,1,1,1]),gl.STATIC_DRAW);
-  const posLoc=gl.getAttribLocation(program,'position');gl.enableVertexAttribArray(posLoc);gl.vertexAttribPointer(posLoc,2,gl.FLOAT,false,0,0);
-
-  const uniforms={
-    iTime:gl.getUniformLocation(program,'iTime'),
-    iResolution:gl.getUniformLocation(program,'iResolution'),
-    rayPos:gl.getUniformLocation(program,'rayPos'),
-    rayDir:gl.getUniformLocation(program,'rayDir'),
-    raysColor:gl.getUniformLocation(program,'raysColor'),
-    raysSpeed:gl.getUniformLocation(program,'raysSpeed'),
-    lightSpread:gl.getUniformLocation(program,'lightSpread'),
-    rayLength:gl.getUniformLocation(program,'rayLength'),
-    pulsating:gl.getUniformLocation(program,'pulsating'),
-    fadeDistance:gl.getUniformLocation(program,'fadeDistance'),
-    saturation:gl.getUniformLocation(program,'saturation'),
-    mousePos:gl.getUniformLocation(program,'mousePos'),
-    mouseInfluence:gl.getUniformLocation(program,'mouseInfluence'),
-    noiseAmount:gl.getUniformLocation(program,'noiseAmount'),
-    distortion:gl.getUniformLocation(program,'distortion')
-  };
-
-  const mouse={x:0.5,y:0.5};
-  window.addEventListener('mousemove',e=>{
-    const rect=document.body.getBoundingClientRect();
-    mouse.x=(e.clientX-rect.left)/rect.width;
-    mouse.y=(e.clientY-rect.top)/rect.height;
-  });
-
-  const draw=()=>{
-    gl.useProgram(program);
-    gl.uniform1f(uniforms.iTime,performance.now()*0.001);
-    gl.uniform2f(uniforms.iResolution,canvas.width,canvas.height);
-    gl.uniform2f(uniforms.rayPos,0.5*canvas.width,0);
-    gl.uniform2f(uniforms.rayDir,0,1);
-    gl.uniform3f(uniforms.raysColor,0/255,123/255,255/255);
-    gl.uniform1f(uniforms.raysSpeed,1);
-    gl.uniform1f(uniforms.lightSpread,2);
-    gl.uniform1f(uniforms.rayLength,3);
-    gl.uniform1f(uniforms.pulsating,1);
-    gl.uniform1f(uniforms.fadeDistance,1);
-    gl.uniform1f(uniforms.saturation,1);
-    gl.uniform2f(uniforms.mousePos,mouse.x,mouse.y);
-    gl.uniform1f(uniforms.mouseInfluence,0);
-    gl.uniform1f(uniforms.noiseAmount,0);
-    gl.uniform1f(uniforms.distortion,1);
-    gl.drawArrays(gl.TRIANGLE_STRIP,0,4);
-    requestAnimationFrame(draw);
-  };draw();
-}
-
-/* =====  TEXT-PRESSURE  ===== */
-class TextPressure{
-  constructor(selector,opts={}){
-    this.container=typeof selector==='string'?document.querySelector(selector):selector;
-    if(!this.container){console.warn('TextPressure: element not found');return;}
-    this.text=opts.text||this.container.textContent||'Compressa';
-    this.textColor=opts.textColor||'#FFFFFF';
-    this.minFontSize=opts.minFontSize||24;
-    this.width=opts.width!==false;
-    this.weight=opts.weight!==false;
-    this.italic=opts.italic!==false;
-    this.alpha=opts.alpha||false;
-    this.spans=[];
-    this.mouse={x:0,y:0};
-    this.cursor={x:0,y:0};
-    this.init();
-  }
-  init(){
-    this.container.innerHTML='';
-    this.container.className='text-pressure';
-    this.container.style.color=this.textColor;
-    if(!document.querySelector('#text-pressure-font')){
-      const s=document.createElement('style');
-      s.id='text-pressure-font';
-      s.textContent=`@font-face{font-family:'Compressa VF';src:url('./CompressaPRO-GX.woff2') format('woff2');}`;
-      document.head.appendChild(s);
-    }
-    this.buildSpans();
-    this.bindEvents();
-    this.animate();
-  }
-  buildSpans(){
-    this.text.split('').forEach(ch=>{
-      const span=document.createElement('span');
-      span.textContent=ch===''?'\u00A0':ch;
-      this.container.appendChild(span);
-      this.spans.push(span);
-    });
-  }
-  bindEvents(){
-    const onMove=e=>{
-      const t=e.touches?e.touches[0]:e;
-      this.cursor.x=t.clientX;
-      this.cursor.y=t.clientY;
-    };
-    window.addEventListener('mousemove',onMove);
-    window.addEventListener('touchmove',onMove,{passive:false});
-    window.addEventListener('resize',()=>this.setSize());
-    this.setSize();
-  }
-  setSize(){
-    const rect=this.container.getBoundingClientRect();
-    const fontSize=Math.max(rect.width/(this.text.length/2),this.minFontSize);
-    this.container.style.fontSize=fontSize+'px';
-  }
-  animate(){
-    const loop=()=>{
-      this.mouse.x+=(this.cursor.x-this.mouse.x)/15;
-      this.mouse.y+=(this.cursor.y-this.mouse.y)/15;
-      const rect=this.container.getBoundingClientRect();
-      const maxDist=rect.width/2;
-      this.spans.forEach(span=>{
-        const r=span.getBoundingClientRect();
-        const cx=r.x+r.width/2;
-        const cy=r.y+r.height/2;
-        const d=Math.hypot(this.mouse.x-cx,this.mouse.y-cy);
-        const getAttr=(dist,min,max)=>Math.max(min,max-Math.abs((max*dist)/maxDist));
-        const wdth=this.width?Math.floor(getAttr(d,5,200)):100;
-        const wght=this.weight?Math.floor(getAttr(d,100,900)):400;
-        const ital=this.italic?getAttr(d,0,1).toFixed(2):0;
-        const alpha=this.alpha?getAttr(d,0,1).toFixed(2):1;
-        span.style.opacity=alpha;
-        span.style.fontVariationSettings=`'wght' ${wght}, 'wdth' ${wdth}, 'ital' ${ital}`;
-      });
-      requestAnimationFrame(loop);
-    };
-    loop();
-  }
-}
-
-/* =====  BOOT  ===== */
-window.addEventListener('DOMContentLoaded',()=>{
-  new TextPressure('#hero-pressure',{textColor:'#ffffff',minFontSize:32});
-});
-</script>
-</body>
-</html>
+    <h
