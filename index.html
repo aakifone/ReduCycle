@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ReduCycle - Turning E-Waste into Education</title>
     <meta name="description" content="ReduCycle turns e-waste into free digital-education for under-privileged youth in Dubai. Donate your old tech or volunteer.">
+    <link rel="preload" as="font" href="https://fonts.gstatic.com/s/inter/v12/UcC73FwrK3iLTeHuS_fvQtMwCp50KnMa1ZL7W0Q5nw.woff2" crossorigin>
     <link rel="icon" type="image/png" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNkYPhfDwAChwGA60e6kgAAAABJRU5ErkJggg=="><!-- 1×1 transparent favicon -->
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
@@ -62,6 +63,30 @@
         nav a:hover::before{opacity:.25}
         @keyframes rainbow{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
         @keyframes shake{0%,100%{transform:translateX(0)}10%,30%,50%,70%,90%{transform:translateX(-6px)}20%,40%,60%,80%{transform:translateX(6px)}}
+
+        /* ---------- pressure-text hero ---------- */
+#hero-pressure{
+  font-family:'Inter',sans-serif;
+  text-transform:uppercase;
+  line-height:1;
+  user-select:none;
+  overflow:hidden;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  gap:.4em;
+}
+.hero-chunk{
+  display:inline-block;
+  font-size:clamp(2.2rem,7vw,5.5rem);
+  font-variation-settings:'wght' 100,'wdth' 80;
+  transition:font-variation-settings .1s linear;
+}
+.hero-left { color:var(--earth-green); }
+.hero-right{ color:#ffffff; }
+
+/* little helper for vertical centre */
+#hero-pressure{ transform:translateY(-.5rem); }
     </style>
 </head>
 <body class="bg-white text-gray-800">
@@ -85,7 +110,10 @@
 <section id="hero" class="hero-bg h-screen flex items-center justify-center text-white relative overflow-hidden scroll-mt-20">
     <div class="absolute inset-0 bg-gradient-to-b from-black/70 to-transparent z-10"></div>
     <div class="container mx-auto px-6 text-center relative z-20">
-        <h1 id="hero-pressure" class="text-4xl md:text-6xl font-bold mb-6" data-aos="fade-up">Your Trash. Their Future.</h1>
+       <h1 id="hero-pressure" class="text-4xl md:text-6xl font-bold mb-6 relative h-28 md:h-36" data-aos="fade-up">
+  <span class="hero-left  hero-chunk">Your&nbsp;Trash.</span>
+  <span class="hero-right hero-chunk">Their&nbsp;Future.</span>
+</h1>
         <p class="text-xl md:text-2xl mb-10 max-w-3xl mx-auto" data-aos="fade-up" data-aos-delay="200">We're flipping the script on e-waste – turning discarded tech into digital education for those who need it most.</p>
         <div class="flex flex-col sm:flex-row justify-center gap-4" data-aos="fade-up" data-aos-delay="300">
             <a href="#contact" class="bg-accent text-white px-8 py-3 rounded-full font-bold hover:bg-green-600 transition transform hover:scale-105">Join the Movement</a>
@@ -247,5 +275,48 @@
         return true;
     }
 </script>
+    <script>
+/* ==========  pressure-text animation  ========== */
+(() => {
+  const container = document.getElementById('hero-pressure');
+  if (!container) return;
+
+  const left  = container.querySelector('.hero-left');
+  const right = container.querySelector('.hero-right');
+
+  const mouse = { x:0, y:0 };
+  let raf;
+
+  const onMove = e => {
+    mouse.x = e.touches ? e.touches[0].clientX : e.clientX;
+    mouse.y = e.touches ? e.touches[0].clientY : e.clientY;
+    if (!raf) raf = requestAnimationFrame(update);
+  };
+
+  function update(){
+    const bounds = container.getBoundingClientRect();
+    const maxDist = bounds.width * .5;
+
+    [left, right].forEach(span => {
+      const b = span.getBoundingClientRect();
+      const cx = b.left + b.width  / 2;
+      const cy = b.top  + b.height / 2;
+      const d  = Math.hypot(mouse.x - cx, mouse.y - cy);
+      const ratio = Math.min(d / maxDist, 1);
+
+      const wght = Math.round(900 - 800 * ratio);   /* 100-900 */
+      const wdth = Math.round(200 - 120 * ratio);   /* 80-200  */
+
+      span.style.fontVariationSettings = `'wght' ${wght}, 'wdth' ${wdth}`;
+    });
+
+    raf = null;
+  }
+
+  window.addEventListener('mousemove', onMove, {passive:true});
+  window.addEventListener('touchmove', onMove, {passive:true});
+})();
+</script>
 </body>
 </html>
+
