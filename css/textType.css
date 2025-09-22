@@ -1,0 +1,3 @@
+text-type{ display:inline-block; white-space:pre-wrap; }
+text-type .cursor{ margin-left:0.25rem; }
+text-type .cursor--hidden{ display:none; }
