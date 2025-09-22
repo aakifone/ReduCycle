@@ -67,22 +67,22 @@
         @keyframes shake{0%,100%{transform:translateX(0)}10%,30%,50%,70%,90%{transform:translateX(-6px)}20%,40%,60%,80%{transform:translateX(6px)}}
         /* pressure-text hero */
         #hero-pressure{
-          font-family:'Inter',sans-serif;
-          text-transform:uppercase;
-          line-height:1;
-          user-select:none;
-          overflow:hidden;
-          display:flex;
-          justify-content:center;
-          align-items:center;
-          gap:.4em;
-        }
-        .hero-chunk{
-          display:inline-block;
-          font-size:clamp(2.2rem,7vw,5.5rem);
-          font-variation-settings:'wght' 100,'wdth' 80;
-          transition:font-variation-settings .1s linear;
-        }
+  font-family:'Inter',sans-serif;
+  text-transform:uppercase;
+  line-height:1.1;
+  user-select:none;
+  display:flex;
+  flex-wrap:wrap;          /* allow break */
+  justify-content:center;
+  align-items:center;
+  gap:0.2em;
+  padding:0 0.5em;         /* side breathing room */
+}
+.hero-chunk{
+  font-size:clamp(2rem, 10vw, 5.5rem); /* tighter clamp for phones */
+  font-variation-settings:'wght' 100,'wdth' 80;
+  transition:font-variation-settings .1s linear;
+}
         .hero-left { color:var(--earth-green); }
         .hero-right{ color:#ffffff; }
         #hero-pressure{ transform:translateY(-.5rem); }
@@ -109,10 +109,12 @@
 <section id="hero" class="hero-bg h-screen flex items-center justify-center text-white relative overflow-hidden scroll-mt-20">
     <div class="absolute inset-0 bg-gradient-to-b from-black/50 to-transparent z-10"></div>
     <div class="container mx-auto px-6 text-center relative z-20">
-        <h1 id="hero-pressure" class="text-4xl md:text-6xl font-bold mb-6 relative h-28 md:h-36" data-aos="fade-up">
-            <span class="hero-left  hero-chunk">Your&nbsp;Trash.</span>
-            <span class="hero-right hero-chunk">Their&nbsp;Future.</span>
-        </h1>
+       <h1 id="hero-pressure" class="font-bold mb-6 relative" data-aos="fade-up">
+  <span class="hero-left hero-chunk">Your</span>
+  <span class="hero-right hero-chunk">Trash.</span>
+  <span class="hero-left hero-chunk">Their</span>
+  <span class="hero-right hero-chunk">Future.</span>
+</h1>
         <p class="text-xl md:text-2xl mb-10 max-w-3xl mx-auto" data-aos="fade-up" data-aos-delay="200">
             We're flipping the script on e-waste – turning discarded tech into digital education for those who need it most.
         </p>
@@ -525,6 +527,7 @@ void main(){
 
 </body>
 </html>
+
 
 
 
