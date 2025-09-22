@@ -524,9 +524,52 @@ void main(){
   customElements.define('light-rays', LightRays);
 })();
 </script>
+    ...existing scripts...
 
+    <!-- =====  upgraded pressure-text  ===== -->
+    <script>
+    /* ==========  upgraded pressure-text (works on ALL .hero-chunk spans)  ========== */
+    (() => {
+      const container = document.getElementById('hero-pressure');
+      if (!container) return;
+
+      const mouse = { x: 0, y: 0 };
+      let raf;
+
+      const onMove = e => {
+        const t = e.touches ? e.touches[0] : e;
+        mouse.x = t.clientX;
+        mouse.y = t.clientY;
+        if (!raf) raf = requestAnimationFrame(update);
+      };
+
+      function update(){
+        const bounds = container.getBoundingClientRect();
+        const maxDist = bounds.width * 0.5;
+
+        container.querySelectorAll('.hero-chunk').forEach(span => {
+          const b = span.getBoundingClientRect();
+          const cx = b.left + b.width  / 2;
+          const cy = b.top  + b.height / 2;
+          const d  = Math.hypot(mouse.x - cx, mouse.y - cy);
+          const ratio = Math.min(d / maxDist, 1);
+
+          const wght = Math.round(900 - 800 * ratio);   /* 100-900 */
+          const wdth = Math.round(200 - 120 * ratio);   /* 80-200  */
+
+          span.style.fontVariationSettings = `'wght' ${wght}, 'wdth' ${wdth}`;
+        });
+
+        raf = null;
+      }
+
+      window.addEventListener('mousemove', onMove, { passive: true });
+      window.addEventListener('touchmove', onMove, { passive: true });
+    })();
+    </script>
 </body>
 </html>
+
 
 
 
