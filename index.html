@@ -225,7 +225,11 @@
         <div class="max-w-5xl mx-auto grid md:grid-cols-2 gap-10 items-start">
             <!-- form -->
             <div data-aos="fade-up" data-aos-delay="100">
-                <form action="https://script.google.com/macros/s/AKfycbzjjViwmOVKk4fNhJXZjewJYz77TagVPTQAd5l1fgTYaPvPeDX1T6jCHGAXsBD9NaI-/exec" method="POST" target="hidden_iframe" class="space-y-6" onsubmit="return shakeForm(this)">
+                <form action="https://script.google.com/macros/s/AKfycbzjjViwmOVKk4fNhJXZjewJYz77TagVPTQAd5l1fgTYaPvPeDX1T6jCHGAXsBD9NaI-/exec"
+                      method="POST"
+                      target="hidden_iframe"
+                      class="space-y-6"
+                      onsubmit="nicePopup(); return true;">
                     <input name="name" type="text" required placeholder="Name" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500">
                     <input name="email" type="email" required placeholder="Email" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500">
                     <select name="reason" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500"><option>General Inquiry</option><option>Device Donation</option><option>Volunteering</option><option>Partnership</option></select>
@@ -248,7 +252,7 @@
     </div>
 </section>
 
-    <!-- =====  POPUP WITH FADE-IN  ===== -->
+<!-- =====  POPUP WITH FADE-IN  ===== -->
 <div id="nicePopup" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-0 pointer-events-none z-50 transition-all duration-500 ease-out">
     <div class="bg-white rounded-2xl p-8 max-w-sm mx-4 text-center shadow-xl opacity-0 scale-95 transition-all duration-500 ease-out">
         <div class="text-5xl mb-4">🌱</div>
@@ -276,7 +280,6 @@ function closeNicePopup(){
     box.classList.remove('opacity-100','scale-100');
 }
 </script>
-
 
 <!-- =====  FOOTER  ===== -->
 <footer class="text-white py-12" style="background:linear-gradient(135deg, #a1c4fd 0%, #c2e9fb 100%);">
@@ -630,6 +633,7 @@ void main(){
     </script>
 </body>
 </html>
+
 
 
 
