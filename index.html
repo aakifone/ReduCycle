@@ -6,7 +6,6 @@
     <link rel="icon" href="favicon.ico" type="image/x-icon">
     <title>ReduCycle</title>
     <meta name="description" content="ReduCycle turns e-waste into free digital-education for under-privileged youth in Dubai. Donate your old tech or volunteer.">
-    <link rel="stylesheet" href="star-border.css">
     <link rel="preload" as="font" href="https://fonts.gstatic.com/s/inter/v12/UcC73FwrK3iLTeHuS_fvQtMwCp50KnMa1ZL7W0Q5nw.woff2" crossorigin>
     <link rel="icon" type="image/png" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNkYPhfDwAChwGA60e6kgAAAABJRU5ErkJggg==">
     <script src="https://cdn.tailwindcss.com"></script>
@@ -99,7 +98,7 @@
             <span class="accent">Redu</span><span style="color:#000">Cycle</span>
         </div>
         <div class="hidden md:flex space-x-8">
-            <a href="#about" class="star-btn bg-accent:text-green-500 transition">About</a>
+            <a href="#about" class="hover:text-green-500 transition">About</a>
             <a href="#impact" class="hover:text-green-500 transition">Impact</a>
             <a href="#courses" class="hover:text-green-500 transition">Courses</a>
             <a href="#involved" class="hover:text-green-500 transition">Get Involved</a>
@@ -634,55 +633,6 @@ void main(){
     </script>
 
     <script>
-        
-/* =====  auto-init star-border on every .star-btn  ===== */
-document.querySelectorAll('.star-btn').forEach(btn=>{
-  const top=document.createElement('div'), bottom=document.createElement('div');
-  top.className='star-top'; bottom.className='star-bottom';
-  /* read data-color / data-speed if you want custom colours */
-  const color = btn.dataset.color || 'magneta';
-  const speed = btn.dataset.speed || '5s';
-  top.style.background = bottom.style.background = `radial-gradient(circle, ${color}, transparent 10%)`;
-  top.style.animationDuration = bottom.style.animationDuration = speed;
-  btn.appendChild(top); btn.appendChild(bottom);
-
-  /* wrap existing text so the inner border works */
-  const inner = document.createElement('span');
-  inner.className='star-inner';
-  while(btn.firstChild && btn.firstChild!==top) inner.appendChild(btn.firstChild);
-  btn.appendChild(inner);
-});
-</script>
-    
+            
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
