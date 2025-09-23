@@ -405,7 +405,7 @@ void main(){
   gl_Position = vec4(position, 0.0, 1.0);
 }`;
 
-  const FRAG = `
+  const FRAG = 
 precision highp float;
 uniform float iTime;
 uniform vec2  iResolution;
@@ -466,7 +466,7 @@ void main(){
   }
   col.rgb *= raysColor;
   gl_FragColor = col;
-}`;
+};
 
   const hexToRgb = h => {
     const m = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(h);
@@ -636,6 +636,7 @@ void main(){
             
 </body>
 </html>
+
 
 
 
