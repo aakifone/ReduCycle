@@ -667,8 +667,46 @@ void main(){
     })();
     </script>
 
-    <script>
-            
+<!-- =====  MOBILE-MENU TOGGLE  ===== -->
+<script>
+  const toggle = document.querySelector('button[aria-label="Open navigation"]');
+  const menu   = document.createElement('div');
+  menu.id = 'mobile-menu';
+  menu.className = 'hidden absolute top-full left-0 w-full bg-white shadow-md md:hidden';
+  menu.innerHTML = `
+    <div class="flex flex-col space-y-4 px-6 py-4">
+      <a href="#about"    class="hover:text-green-500 transition" onclick="this.parentElement.parentElement.classList.add('hidden')">About</a>
+      <a href="#impact"  class="hover:text-green-500 transition" onclick="this.parentElement.parentElement.classList.add('hidden')">Impact</a>
+      <a href="#courses" class="hover:text-green-500 transition" onclick="this.parentElement.parentElement.classList.add('hidden')">Courses</a>
+      <a href="#involved" class="hover:text-green-500 transition" onclick="this.parentElement.parentElement.classList.add('hidden')">Get Involved</a>
+      <a href="#contact" class="hover:text-green-500 transition" onclick="this.parentElement.parentElement.classList.add('hidden')">Contact</a>
+    </div>`;
+  toggle.after(menu);
+  toggle.addEventListener('click', () => menu.classList.toggle('hidden'));
+</script>
+
+
+<script>  
+    
+    
+  // <!-- MARVEL VS DC -->
+  //    ╔════════════════════════════════════════════════════════════════════╗
+  //    ║  MARVEL  |  DC                                                    ║
+  //    ║  Civil War  →  Batman v Superman                                 ║
+  //    ║  Iron-Man  →  Green-Arrow-with-a-Visa-Card                       ║
+  //    ║  Spider-Man  →  Night-Monkey-with-a-Cape                         ║
+  //    ║  Thor  →  Wonder-Woman’s hammer-less cousin                       ║
+  //    ║  Hulk  →  Martian-Manhunter on leg-day skip                      ║
+  //    ║  Stan Lee cameo  →  Zack Snyder slow-mo                          ║
+  //    ║  Post-credit scene  →  Post-credit scene (but it’s just Aquaman) ║
+  //    ║  Endgame  →  Game that never ends (release the Snyder Cut!)      ║
+  //    ║                                                                    ║
+  //    ║  Winner: whoever’s reading this comment.                         ║
+  //    ╚════════════════════════════════════════════════════════════════════╝
+  //  <!-- Who do ypu support -->
+
+
+</script>
 </body>
 </html>
 
