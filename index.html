@@ -17,6 +17,23 @@
     <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
 
     <!-- Light-rays basic skin -->
+    
+<!-- Change 1 -->
+    
+    <script>
+/* =====  VISIT-RANDOM COLOUR  ===== */
+const PALETTE = ['#FFFFFF','#28D411','#640C8D','#19D7C0','#001EFF','#99A512']; // your hex codes
+const COLOUR  = PALETTE[Math.floor(Math.random()*PALETTE.length)];
+// push it into the tag as soon as DOM is ready
+document.addEventListener('DOMContentLoaded',()=>{
+  const rays = document.querySelector('light-rays');
+  if(rays) rays.setAttribute('rays-color',COLOUR);
+});
+</script>
+
+
+<!-- Change 1 -->
+    
     <style>
         light-rays {
             position: absolute;
@@ -133,7 +150,6 @@
     <!-- =====  LIGHT-RAYS  ===== -->
     <light-rays
   rays-origin="bottom"
-  rays-color="#ffffff"
   rays-speed="3"
   light-spread="2"
   ray-length="3"
@@ -146,7 +162,8 @@
   distortion="0">
         </light-rays>
    </section>
-
+    
+    
 <!-- ABOUT -->
 <section id="about" class="py-20 bg-gradient-to-b from-gray-50 to-white scroll-mt-20">
     <div class="container mx-auto px-6">
@@ -639,6 +656,7 @@ void main(){
             
 </body>
 </html>
+
 
 
 
