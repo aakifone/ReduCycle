@@ -94,7 +94,7 @@ light-rays { z-index: 40; }
         .sticky-cta.dark  { color: #111827; }
         .glitch{animation:glitch .35s linear}
         @keyframes glitch{0%,100%{transform:translate(0)}10%{transform:translate(-2px,-1px)}20%{transform:translate(2px,1px)}30%{transform:translate(-1px,2px)}40%{transform:translate(1px,-2px)}50%{transform:translate(-2px,1px)}60%{transform:translate(2px,-1px)}70%{transform:translate(-1px,-1px)}80%{transform:translate(1px,1px)}90%{transform:translate(-2px,0)}}
-        nav a{position:relative;overflow:hidden}
+         a{position:relative;overflow:hidden}
         nav a::before{
           content:'';position:absolute;inset:0;
           background:linear-gradient(45deg,#ff0f7b,#ff512f,#fca311,#00f5d4,#9b5de5,#f15bb5);
@@ -142,10 +142,10 @@ light-rays { z-index: 40; }
       <a href="#involved" class="hover:text-green-500 transition">Get Involved</a>
       <a href="#contact" class="hover:text-green-500 transition">Contact</a>
     </div>
-    <button class="md:hidden focus:outline-none" aria-label="Open navigation"><i data-feather="menu"></i></button>
+    <button id="nav-toggle" class="md:hidden focus:outline-none" aria-label="Open navigation"><i data-feather="menu"></i></button>
   </div>
 
-  <!-- mobile menu INSIDE nav -->
+  <!-- HARD-CODED menu inside nav -->
   <div id="mobile-menu" class="hidden absolute top-full left-0 w-full bg-white shadow-md md:hidden z-30 max-h-[60vh] overflow-y-auto">
     <div class="flex flex-col space-y-4 px-6 py-4">
       <a href="#about"    class="hover:text-green-500 transition" onclick="this.parentElement.parentElement.classList.add('hidden')">About</a>
@@ -156,6 +156,13 @@ light-rays { z-index: 40; }
     </div>
   </div>
 </nav>
+
+<!-- one-line toggle -->
+<script>
+  document.getElementById('nav-toggle').addEventListener('click', () => {
+    document.getElementById('mobile-menu').classList.toggle('hidden');
+  });
+</script>
 
 <!-- toggle script still works because the menu is already in the DOM -->
 <script>
@@ -767,6 +774,7 @@ function rainbowBurst() {
 </script>
 </body>
 </html>
+
 
 
 
