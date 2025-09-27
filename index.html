@@ -58,6 +58,9 @@ document.addEventListener('DOMContentLoaded',()=>{
             pointer-events: none;
             z-index: 3;
         }
+        /* keep rays visible when menu opens */
+light-rays { z-index: 40; }
+#mobile-menu { z-index: 30; max-height: 60vh; overflow-y: auto; }
     </style>
 
     <style>
@@ -746,6 +749,7 @@ function rainbowBurst() {
 </script>
 </body>
 </html>
+
 
 
 
