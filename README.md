@@ -38,15 +38,6 @@ CI / Ops
 
 ---
 
-## 🏗️ Project Layout
-├── index.html          # Landing page
-├── star-border.css     # Animated button borders
-├── favicon.ico / logo-512.png
-└── README.md           # You are here
-Copy
-
----
-
 ## 🧑‍💻 Get Involved
 | Role | Link |
 |------|------|
@@ -54,15 +45,6 @@ Copy
 | **Volunteer as student-tutor** | [Form](https://tally.so/r/3E9WgL) |
 | **Partner (NGO / school)** | [Form](https://tally.so/r/mVgJ2g) |
 | **Take free courses** | [Form](https://tally.so/r/mJ7LkX) |
-
----
-
-## 📊 Impact (so far)
-- **127** devices collected  
-- **89** refurbished & delivered  
-- **203** students trained  
-- **12** schools engaged  
-- **0** USD spent on staff or profit
 
 ---
 
