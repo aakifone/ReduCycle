@@ -58,15 +58,7 @@ document.addEventListener('DOMContentLoaded',()=>{
             pointer-events: none;
             z-index: 3;
         }
-        /* keep rays visible when menu opens */
-light-rays { z-index: 40; }
-#mobile-menu { z-index: 30; max-height: 60vh; overflow-y: auto; }
-        /* KEEP RAYS ALIVE ON MOBILE */
-light-rays {
-  will-change: transform;          /* permanent compositing layer */
-  pointer-events: auto !important; /* let the browser think it’s interactive */
-  touch-action: none;              /* but don’t let it block scrolling */
-}
+
     </style>
 
     <style>
@@ -151,31 +143,7 @@ light-rays {
     <button id="nav-toggle" class="md:hidden focus:outline-none" aria-label="Open navigation"><i data-feather="menu"></i></button>
   </div>
 
-  <!-- HARD-CODED menu inside nav -->
-  <div id="mobile-menu" class="hidden absolute top-full left-0 w-full bg-white shadow-md md:hidden z-30 max-h-[60vh] overflow-y-auto">
-    <div class="flex flex-col space-y-4 px-6 py-4">
-      <a href="#about"    class="hover:text-green-500 transition" onclick="this.parentElement.parentElement.classList.add('hidden')">About</a>
-      <a href="#impact"  class="hover:text-green-500 transition" onclick="this.parentElement.parentElement.classList.add('hidden')">Impact</a>
-      <a href="#courses" class="hover:text-green-500 transition" onclick="this.parentElement.parentElement.classList.add('hidden')">Courses</a>
-      <a href="#involved" class="hover:text-green-500 transition" onclick="this.parentElement.parentElement.classList.add('hidden')">Get Involved</a>
-      <a href="#contact" class="hover:text-green-500 transition" onclick="this.parentElement.parentElement.classList.add('hidden')">Contact</a>
-    </div>
-  </div>
 </nav>
-
-<!-- one-line toggle -->
-<script>
-  document.getElementById('nav-toggle').addEventListener('click', () => {
-    document.getElementById('mobile-menu').classList.toggle('hidden');
-  });
-</script>
-
-<!-- toggle script still works because the menu is already in the DOM -->
-<script>
-  const toggle = document.querySelector('button[aria-label="Open navigation"]');
-  const menu   = document.getElementById('mobile-menu');
-  toggle.addEventListener('click', () => menu.classList.toggle('hidden'));
-</script>
     
 <!-- HERO -->
 <section id="hero" class="hero-bg h-screen flex items-center justify-center text-white relative overflow-hidden scroll-mt-20">
@@ -780,6 +748,7 @@ function rainbowBurst() {
 </script>
 </body>
 </html>
+
 
 
 
