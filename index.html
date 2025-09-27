@@ -129,9 +129,9 @@ document.addEventListener('DOMContentLoaded',()=>{
 <!-- NAV -->
 <nav class="fixed w-full bg-white shadow-md z-50">
     <div class="container mx-auto px-6 py-4 flex items-center justify-between">
-        <div class="text-2xl font-bold">
-            <span class="accent">Redu</span><span style="color:#000">Cycle</span>
-        </div>
+        <a href="#hero" id="logo-tap" class="text-2xl font-bold inline-block min-w-[120px] px-2 py-3">
+    <span class="accent">Redu</span><span style="color:#000">Cycle</span>
+</a>
         <div class="hidden md:flex space-x-8">
             <a href="#about" class="hover:text-green-500 transition">About</a>
             <a href="#impact" class="hover:text-green-500 transition">Impact</a>
@@ -699,7 +699,7 @@ document.addEventListener('keydown', e => {
 
 /* Logo tap for mobile */
 let tapCount = 0;
-const logo = document.querySelector('.text-2xl.font-bold'); // “ReduCycle” in nav
+const logo = document.getElementById('logo-tap'); // “ReduCycle” in nav
 if (logo) {
   logo.addEventListener('click', () => {
     tapCount++;
@@ -746,5 +746,6 @@ function rainbowBurst() {
 </script>
 </body>
 </html>
+
 
 
