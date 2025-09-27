@@ -685,6 +685,43 @@ void main(){
   toggle.addEventListener('click', () => menu.classList.toggle('hidden'));
 </script>
 
+    <!-- =====  KONAMI / LOGO-TAP EASTER EGG  ===== -->
+<script>
+/* Konami sequence detector */
+const KONAMI = ['ArrowUp','ArrowUp','ArrowDown','ArrowDown','ArrowLeft','ArrowRight','ArrowLeft','ArrowRight','b','a'];
+let pos = 0;
+document.addEventListener('keydown', e => {
+  if (e.key.toLowerCase() === KONAMI[pos] || e.key === KONAMI[pos]) {
+    pos++;
+    if (pos === KONAMI.length) { rainbowBurst(); pos = 0; }
+  } else { pos = 0; }
+});
+
+/* Logo tap for mobile */
+let tapCount = 0;
+const logo = document.querySelector('.text-2xl.font-bold'); // “ReduCycle” in nav
+if (logo) {
+  logo.addEventListener('click', () => {
+    tapCount++;
+    if (tapCount === 10) { rainbowBurst(); tapCount = 0; }
+  });
+}
+
+/* Activate rainbow for 30 s */
+function rainbowBurst() {
+  const rays = document.querySelector('light-rays');
+  if (!rays) return;
+  const save = rays.getAttribute('rays-color');
+  const palette = ['#ff0f7b','#ff512f','#fca311','#00f5d4','#9b5de5','#e6ff4b'];
+  let idx = 0, id = setInterval(() => {
+    rays.setAttribute('rays-color', palette[(idx++) % palette.length]);
+  }, 200);
+  setTimeout(() => {
+    clearInterval(id);
+    rays.setAttribute('rays-color', save);
+  }, 30000);
+}
+</script>
 
 <script>  
     
@@ -709,4 +746,5 @@ void main(){
 </script>
 </body>
 </html>
+
 
