@@ -30,26 +30,6 @@
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
-
-    <!-- =====  MOBILE-MENU TOGGLE  ===== -->
-    <nav class="fixed w-full bg-white shadow-md z-50 relative">
-<script>
-  const toggle = document.querySelector('button[aria-label="Open navigation"]');
-  const nav    = toggle.closest('nav');          // ➜ keep everything inside nav
-  const menu   = document.createElement('div');
-  menu.id = 'mobile-menu';
-  menu.className = 'hidden absolute top-full left-0 w-full bg-white shadow-md md:hidden z-30 max-h-[60vh] overflow-y-auto';
-  menu.innerHTML = `
-    <div class="flex flex-col space-y-4 px-6 py-4">
-      <a href="#about"    class="hover:text-green-500 transition" onclick="this.parentElement.parentElement.classList.add('hidden')">About</a>
-      <a href="#impact"  class="hover:text-green-500 transition" onclick="this.parentElement.parentElement.classList.add('hidden')">Impact</a>
-      <a href="#courses" class="hover:text-green-500 transition" onclick="this.parentElement.parentElement.classList.add('hidden')">Courses</a>
-      <a href="#involved" class="hover:text-green-500 transition" onclick="this.parentElement.parentElement.classList.add('hidden')">Get Involved</a>
-      <a href="#contact" class="hover:text-green-500 transition" onclick="this.parentElement.parentElement.classList.add('hidden')">Contact</a>
-    </div>`;
-  nav.appendChild(menu);
-  toggle.addEventListener('click', () => menu.classList.toggle('hidden'));
-</script>
     
     <!-- Light-rays basic skin -->
     
@@ -150,21 +130,39 @@ light-rays { z-index: 40; }
 <body class="bg-white text-gray-800">
 
 <!-- NAV -->
-<nav class="fixed w-full bg-white shadow-md z-50">
-    <div class="container mx-auto px-6 py-4 flex items-center justify-between">
-        <a href="#hero" id="logo-tap" class="text-2xl font-bold inline-block min-w-[120px] px-2 py-3">
-    <span class="accent">Redu</span><span style="color:#000">Cycle</span>
-</a>
-        <div class="hidden md:flex space-x-8">
-            <a href="#about" class="hover:text-green-500 transition">About</a>
-            <a href="#impact" class="hover:text-green-500 transition">Impact</a>
-            <a href="#courses" class="hover:text-green-500 transition">Courses</a>
-            <a href="#involved" class="hover:text-green-500 transition">Get Involved</a>
-            <a href="#contact" class="hover:text-green-500 transition">Contact</a>
-        </div>
-        <button class="md:hidden focus:outline-none" aria-label="Open navigation"><i data-feather="menu"></i></button>
+<nav class="fixed w-full bg-white shadow-md z-50 relative">
+  <div class="container mx-auto px-6 py-4 flex items-center justify-between">
+    <a href="#hero" id="logo-tap" class="text-2xl font-bold inline-block min-w-[120px] px-2 py-3">
+      <span class="accent">Redu</span><span style="color:#000">Cycle</span>
+    </a>
+    <div class="hidden md:flex space-x-8">
+      <a href="#about" class="hover:text-green-500 transition">About</a>
+      <a href="#impact" class="hover:text-green-500 transition">Impact</a>
+      <a href="#courses" class="hover:text-green-500 transition">Courses</a>
+      <a href="#involved" class="hover:text-green-500 transition">Get Involved</a>
+      <a href="#contact" class="hover:text-green-500 transition">Contact</a>
     </div>
+    <button class="md:hidden focus:outline-none" aria-label="Open navigation"><i data-feather="menu"></i></button>
+  </div>
+
+  <!-- mobile menu INSIDE nav -->
+  <div id="mobile-menu" class="hidden absolute top-full left-0 w-full bg-white shadow-md md:hidden z-30 max-h-[60vh] overflow-y-auto">
+    <div class="flex flex-col space-y-4 px-6 py-4">
+      <a href="#about"    class="hover:text-green-500 transition" onclick="this.parentElement.parentElement.classList.add('hidden')">About</a>
+      <a href="#impact"  class="hover:text-green-500 transition" onclick="this.parentElement.parentElement.classList.add('hidden')">Impact</a>
+      <a href="#courses" class="hover:text-green-500 transition" onclick="this.parentElement.parentElement.classList.add('hidden')">Courses</a>
+      <a href="#involved" class="hover:text-green-500 transition" onclick="this.parentElement.parentElement.classList.add('hidden')">Get Involved</a>
+      <a href="#contact" class="hover:text-green-500 transition" onclick="this.parentElement.parentElement.classList.add('hidden')">Contact</a>
+    </div>
+  </div>
 </nav>
+
+<!-- toggle script still works because the menu is already in the DOM -->
+<script>
+  const toggle = document.querySelector('button[aria-label="Open navigation"]');
+  const menu   = document.getElementById('mobile-menu');
+  toggle.addEventListener('click', () => menu.classList.toggle('hidden'));
+</script>
     
 <!-- HERO -->
 <section id="hero" class="hero-bg h-screen flex items-center justify-center text-white relative overflow-hidden scroll-mt-20">
@@ -769,6 +767,7 @@ function rainbowBurst() {
 </script>
 </body>
 </html>
+
 
 
 
