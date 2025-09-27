@@ -61,6 +61,12 @@ document.addEventListener('DOMContentLoaded',()=>{
         /* keep rays visible when menu opens */
 light-rays { z-index: 40; }
 #mobile-menu { z-index: 30; max-height: 60vh; overflow-y: auto; }
+        /* KEEP RAYS ALIVE ON MOBILE */
+light-rays {
+  will-change: transform;          /* permanent compositing layer */
+  pointer-events: auto !important; /* let the browser think it’s interactive */
+  touch-action: none;              /* but don’t let it block scrolling */
+}
     </style>
 
     <style>
@@ -774,6 +780,7 @@ function rainbowBurst() {
 </script>
 </body>
 </html>
+
 
 
 
